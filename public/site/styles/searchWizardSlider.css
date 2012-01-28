@@ -1,0 +1,29 @@
+#wizardSliderWrapper {
+	height: 200px;
+	position: relative;
+	overflow: hidden;
+}
+
+#wizardSlider {
+	position: absolute;
+	clear: both;
+}
+
+.slideBox {
+	height: 200px;
+	background-color: rgba(60,170,66,.3);
+	text-align: center;
+	float: left;
+	position: relative;
+}
+
+
+#slideBox1 {
+	background-color: rgba(50,140,200,.3);
+}
+#slideBox12 {
+	background-color: rgba(90,5,66,.3);
+}	
+#slideBox3 {
+	background-color: rgba(200,5,66,.3);
+}

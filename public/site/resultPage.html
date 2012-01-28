@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link href="styles/resultPage.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+	<script src="scripts/jquery.tmpl.js"></script>
+	<script src="scripts/resultPage.js"></script>
+</head>
+
+<body>
+	<div id="pageSection">
+	
+		<!-- Debugging box -->
+		<div id="debuggingBox">
+			<label style="color: white;">Debugging Box</label> </br>
+			<a href="homePage.html">Home Page</a> </br>
+			<a onclick="renderTemplate();">Render Template</a>
+		</div>
+	
+		<div id="topErudioLogoContainer">
+			<div id="topErudioLogo"></div>
+		</div>
+		<div id="pageTopFrame"></div>
+
+		<div id="headerSection">
+			<div id="authenticationBox"></div>
+		</div>
+
+		<div id="resultSection">
+			<div id="resultsColumn">
+				Results Column
+			</div>
+			
+			<!-- [START] FILTER SECTION - ACOMODAR!!!! -->
+			<div id="filterColumn">
+				<div>Filtrar Resultados</div></br>
+				<div style="outline: 1px dashed green">	
+					<div style="float: left;">Zona</div>
+					<div style="float: right;">
+						On Off &nbsp;<input type="checkbox"/>
+					</div>
+				</div>
+
+				<div style="outline: 1px dashed green; clear: both;">	
+					<div style="float: left;">Telefono</div>
+					<div style="float: right;">
+						On Off &nbsp;<input type="checkbox"/>
+					</div>
+				</div>
+				<div style="outline: 1px dashed green; clear: both;">	
+					<div style="float: left;">Mail</div>
+					<div style="float: right;">
+						On Off &nbsp;<input type="checkbox"/>
+					</div>
+				</div>
+				<div style="outline: 1px dashed green; clear: both;">	
+					<div style="float: left;">A Domicilio</div>
+					<div style="float: right;">
+						On Off &nbsp;<input type="checkbox"/>
+					</div>
+				</div>
+				<div style="outline: 1px dashed green; clear: both;">	
+					<div style="float: left;">En su Domicilio</div>
+					<div style="float: right;">
+						On Off &nbsp;<input type="checkbox"/>
+					</div>
+				</div>
+				<div style="outline: 1px dashed green; clear: both;">	
+					<div style="float: left;">Tiene Precio</div>
+					<div style="float: right;">
+						On Off &nbsp;<input type="checkbox"/>
+					</div>
+				</div>
+
+			<div style="clear: both"></div>
+			</div>
+			<!-- [END] FILTER SECTION -->
+						
+		</div>
+		
+		<div id="footerSection">		
+			Footer
+		</div>
+	
+	</div>
+	
+	
+	<!-- RESULT TEMPLATE -->
+	<script id="resultTemplate" type="text/x-jquery-tmpl">
+	    <ul>
+			{{each teachers}}
+				<li>
+					Name: ${ name }</br>
+					Last Name: ${ lastName }</br>
+					Telefono: ${ telefono }</br>
+					Domicilio: ${ domicilio }</br>
+				</li>
+				</br>
+			{{/each}}
+		</ul>
+	</script>
+	
+</body>
+</html>
