@@ -1,5 +1,5 @@
 #wizardSliderWrapper {
-	height: 200px;
+	height: 300px;
 	position: relative;
 	overflow: hidden;
 }
@@ -10,18 +10,15 @@
 }
 
 .slideBox {
-	height: 200px;
-	background-color: rgba(60,170,66,.3);
+	height: 300px;
 	text-align: center;
 	float: left;
 	position: relative;
 }
 
 
-#slideBox1 {
-	background-color: rgba(50,140,200,.3);
-}
-#slideBox12 {
+
+#slideBox2 {
 	background-color: rgba(90,5,66,.3);
 }	
 #slideBox3 {

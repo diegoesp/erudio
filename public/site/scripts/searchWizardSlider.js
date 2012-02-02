@@ -14,7 +14,7 @@ $(document).ready(function() {
 		valueToMove = parseInt(- slider.sectionWidth * slider.current)
 		$('#wizardSlider').stop().animate({
 			left: valueToMove + 'px',
-		}, 1000, function() {
+		}, 650, function() {
 		});
 	});
 		
@@ -28,13 +28,13 @@ $(document).ready(function() {
 function setWidths() {
 	var slider = window.application.slider;
 	
-	slider.totalBoxes = $('#wizardSlider div').length;
+	slider.totalBoxes = $('#wizardSlider .slideBox').length;
 	slider.sectionWidth = $('#wizardSliderWrapper').width();
 	slider.boxesTotalWidth = slider.sectionWidth * slider.totalBoxes;
 	
 	$('#wizardSlider').width(slider.boxesTotalWidth);
 	
-	$("#wizardSlider div").each(function(){
+	$("#wizardSlider .slideBox").each(function(){
 		$(this).width(slider.sectionWidth);
 	});
 }
@@ -53,7 +53,7 @@ function right() {
 	
 	$('#wizardSlider').stop().animate({
 		left: valueToMove + 'px',
-	}, 1000, function() {
+	}, 650, function() {
 	});
 
 }
@@ -70,7 +70,7 @@ function left() {
 	
 	$('#wizardSlider').stop().animate({
 		left: valueToMove + 'px',
-	}, 1000, function() {
+	}, 650, function() {
 	});
 
 }

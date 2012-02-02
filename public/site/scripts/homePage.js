@@ -4,6 +4,13 @@ window.application = {};
 // Init logic after page 'loading'
 //
 $(document).ready(function() {
-	activities = window.application.activities;
-	$( "#activityTemplate" ).tmpl().appendTo( "#slideBox1" );
+	var template = _.template($("#activityTemplate")[0].text, {data: window.application.activities});
+    $("#activitiesContainer").html(template);
+
 });
+
+
+function selectActivity() {
+	right();
+}
+
