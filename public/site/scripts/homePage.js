@@ -28,3 +28,34 @@ function selectActivity(htmlContainer) {
 function alertSearchTerm() {
 	alert(JSON.stringify(window.application.searchTerm));
 }
+
+//
+// TODO(rafael.chiti): Remove this. Just for debugging.
+//
+function postSearch() {
+	jqxhr = $.ajax({
+		type: 'POST',
+		url: 'http://localhost:3000/pages/testPage/home',
+		data: window.application.searchTerm,
+		success: 'postSearchSuccessCB',
+		dataType: 'json'
+	});
+	//jqxhr.error = "postSearchFailCB";
+	
+}
+
+//
+// TODO(rafael.chiti): Remove this. Just for debuggin (the call back function for the ajax call).
+//
+function postSearchSuccessCB(data, textStatus, jqXHR) {
+	alert("response succeed");
+}
+//
+// TODO(rafael.chiti): Remove this. Just for debuggin (the call back function for the ajax call).
+//
+function postSearchFailCB() {
+	alert("request failed");
+}
+
+
+
