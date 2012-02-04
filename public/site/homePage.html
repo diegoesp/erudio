@@ -19,6 +19,7 @@
 		<!-- Debugging box -->
 		<div id="debuggingBox">
 			<label style="color: white;">Debugging Box</label> </br>
+			<a onclick="alertSearchTerm();">Search Term to JSON</a>	</br>
 			<a onclick="left();">Previous</a> &nbsp;|&nbsp; <a onclick="right();">Next</a>	</br>
 			<a href="resultPage.html">Result Page</a>
 		</div>
@@ -85,8 +86,9 @@
 	<script id="activityTemplate" type="text/template">	
     	<% _.each(data, function(activity){  %>
 			<div class="activityContainer">
-				<div class="activityBox" onclick="selectActivity();">
+				<div class="activityBox" onclick="selectActivity(this);">
 					<span><%= activity.name %></span>
+					<input type="hidden" name="activityId" value=" <%= activity.id %>"/>
 				</div>			
 			</div>
     	<% }); %>
@@ -97,7 +99,7 @@
 	
 	<!-- JSON DATA -->
 	<script>
-		window.application.activities = [{"id":"1","name":"Piano"},{"id":"2","name":"Bateria"},{"id":"3","name":"Guitarra"},{"id":"4","name":"Ingles"},{"id":"4","name":"Fisica"}, {"id":"5","name":"Petear"}];
+		window.application.activities = [{"id":"1","name":"Piano"},{"id":"2","name":"Bateria"},{"id":"3","name":"Guitarra"},{"id":"4","name":"Ingles"},{"id":"4","name":"Fisica"}, {"id":"5","name":"Petear"}, {"id": "6", "name": "Actividad 1"}];
 	</script>
 	
 </body>
