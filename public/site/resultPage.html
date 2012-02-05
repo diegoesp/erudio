@@ -6,15 +6,21 @@
 	<script src="http://code.jquery.com/jquery-1.7.1.js"></script>
 	<script src="scripts/jquery.tmpl.js"></script>
 	<script src="scripts/resultPage.js"></script>
+
+	<!-- SWEET CHECKBOX	-->
+	<script src="sweetCheckbox/sweetCheckbox.js"></script>	
+	<link href="sweetCheckbox/sweetCheckbox.css" rel="stylesheet" type="text/css" />
 	
 	<!-- REPLACE THIS LIBRARY WITH THE LOCAL + PRODUCTIVE ONE -->
 	<script src="http://documentcloud.github.com/underscore/underscore.js"></script>
+
+	<!-- REPLACE THIS LIBRARY WITH THE LOCAL + PRODUCTIVE ONE -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 	
 </head>
 
 <body>
 	<div id="pageSection">
-	
 		<!-- Debugging box -->
 		<div id="debuggingBox">
 			<label style="color: white;">Debugging Box</label> </br>
@@ -44,7 +50,7 @@
 				<div style="outline: 1px dashed green">	
 					<div style="float: left;">Zona</div>
 					<div style="float: right;">
-						On Off &nbsp;<input name="zone" type="checkbox" onclick="updateBoolFilter(this, 'zone');"/>
+						<div class="sweetCheckbox" title="zone" onclick="updateBoolFilter(this, this.title)"></div>
 					</div>
 				</div>
 
@@ -52,7 +58,7 @@
 				<div style="outline: 1px dashed green; clear: both;">	
 					<div style="float: left;">Telefono</div>
 					<div style="float: right;">
-						On Off &nbsp;<input name="phone" type="checkbox" onclick="updateBoolFilter(this, 'phone');"/>
+						<div class="sweetCheckbox" title="phone" onclick="updateBoolFilter(this, this.title)"></div>
 					</div>
 				</div>
 
@@ -60,7 +66,7 @@
 				<div style="outline: 1px dashed green; clear: both;">	
 					<div style="float: left;">Mail</div>
 					<div style="float: right;">
-						On Off &nbsp;<input name="email" type="checkbox" onclick="updateBoolFilter(this, 'email');"/>
+						<div class="sweetCheckbox" title="email" onclick="updateBoolFilter(this, this.title)"></div>
 					</div>
 				</div>
 				
@@ -68,7 +74,7 @@
 				<div style="outline: 1px dashed green; clear: both;">	
 					<div style="float: left;">A Domicilio</div>
 					<div style="float: right;">
-						On Off &nbsp;<input name="commute" type="checkbox" onclick="updateBoolFilter(this, 'commute');"/>
+						<div class="sweetCheckbox" title="commute" onclick="updateBoolFilter(this, this.title)"></div>
 					</div>
 				</div>
 				
@@ -76,7 +82,7 @@
 				<div style="outline: 1px dashed green; clear: both;">	
 					<div style="float: left;">Tiene Precio</div>
 					<div style="float: right;">
-						On Off &nbsp;<input name="price" type="checkbox" onclick="updateBoolFilter(this, 'price');" />
+						<div class="sweetCheckbox" title="price" onclick="updateBoolFilter(this, this.title)"></div>
 					</div>
 				</div>
 
@@ -111,7 +117,7 @@
 	
 	
 	<script>
-		window.application.searchTerm = {"zone": true, "phone": true, "commute": false, "price": false, "email": false};
+		window.application.searchTerm = {"zone": false, "phone": true, "commute": false, "price": true, "email": false};
 		window.application.results = [{"activity":"Teatro","description":"Lorem ipsum dolum","lastName":"Chiti","name":"Rafael","phone":"46595841","price":"$ 45"},{"activity":"Guitarra","description":"Lorem ipsum dolum","lastName":"Espada","name":"Diego","phone":"46577654","price":"$ 65"},{"activity":"Piano","description":"Lorem ipsum dolum","lastName":"Pochiero","name":"Octavio","phone":"45678723","price":"$ 66"}];
 	</script>
 </body>

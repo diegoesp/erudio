@@ -5,6 +5,9 @@ checkBoxes = undefined;
 
 // Init logic after page 'loading'
 $(document).ready(function() {
+	
+	configureSweetCheckboxes();
+
 	var template = _.template($("#resultTemplate")[0].text, {data: window.application.results});
     $("#resultsColumn").html(template);
 
@@ -12,9 +15,11 @@ $(document).ready(function() {
 	// synch them with the search term status from the server.
 	// TODO(rafael.chiti) This logic should be on the server, changing the 
 	// status of the chekboxes after loading the page is not "nice".
-	checkBoxes = $("#filterColumn").find("input[type=checkbox]");
+	checkBoxes = $(".sweetCheckbox");
 	checkBoxes.each(function(index){
-		$(this).attr("checked", window.application.searchTerm[this.name]);
+		if (window.application.searchTerm[this.title] === true) {
+			$(this).trigger('turnOn');		
+		} 
 	});
 
 });
@@ -22,7 +27,7 @@ $(document).ready(function() {
 // Each time the user clicks any of the options from the filter
 // this functions is triggered.
 function updateBoolFilter(checkBox, filterOption) {
-	window.application.searchTerm[filterOption] = checkBox.checked;
+	window.application.searchTerm[filterOption] = !$(checkBox).triggerHandler('isOn');
 }
 
 

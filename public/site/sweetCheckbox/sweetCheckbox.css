@@ -1,0 +1,33 @@
+.sweetCheckbox {
+	width: 68px;
+	height: 29px;
+	cursor: pointer;
+}
+
+.sweetCheckboxBGOff {
+	background: url(sweetCheckboxBGOff.png);
+}
+.sweetCheckboxBGOn {
+	background: url(sweetCheckboxBGOn.png);
+}
+
+.sweetCheckboxBallContainer {
+	width: 100%;
+	height: 100%;
+}
+
+.sweetCheckboxBall {
+	display: block;
+	position: relative;
+	width: 28px;
+	height: 28px;
+	background: url(sweetCheckboxBall.png);
+}
+
+.sweetCheckboxBallOn {
+	left: 2px;
+}
+
+.sweetCheckboxBallOff {
+	left: 42px;
+}
