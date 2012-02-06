@@ -44,49 +44,77 @@
 			
 			<!-- [START] FILTER SECTION - ACOMODAR!!!! -->
 			<div id="filterColumn">
-				<div>Filtrar Resultados</div></br>
-				
-				<!-- ZONE -->
-				<div style="outline: 1px dashed green">	
-					<div style="float: left;">Zona</div>
-					<div style="float: right;">
-						<div class="sweetCheckbox" title="zone" onclick="updateBoolFilter(this, this.title)"></div>
-					</div>
+				<div class="filterHeaderRowContainer">
+					<div class="filterRowLeftCommon filterHeaderLeftCorner"></div>
+					<div class="filterRowMiddleCommon filterHeaderLeftMiddle"></div>
+					<div class="filterRowRightCommon filterHeaderRightCorner"></div>
+					<div class="filterHeaderTitle">Filtrar Resultados</div>
 				</div>
 
+				<!-- ZONE -->
+				<div class="filterChildRowContainerCommon">
+					<div class="filterRowLeftCommon filterOddRowLeft"></div>
+					<div class="filterRowMiddleCommon filterOddRowMiddle"></div>
+					<div class="filterRowRightCommon filterOddRowRight"></div>
+					<div class="filterOddRowContent">
+						<div style="float: left;">Zona</div>
+						<div style="float: right;">
+							<div class="sweetCheckbox" title="zone" onclick="updateBoolFilter(this, this.title)"></div>
+						</div>
+					</div>				
+				</div>
+				
 				<!-- PHONE -->
-				<div style="outline: 1px dashed green; clear: both;">	
-					<div style="float: left;">Telefono</div>
-					<div style="float: right;">
-						<div class="sweetCheckbox" title="phone" onclick="updateBoolFilter(this, this.title)"></div>
-					</div>
+				<div class="filterChildRowContainerCommon">
+					<div class="filterRowLeftCommon filterEvenRowLeft"></div>
+					<div class="filterRowMiddleCommon filterEvenRowMiddle"></div>
+					<div class="filterRowRightCommon filterEvenRowRight"></div>
+					<div class="filterEvenRowContent">
+						<div style="float: left;">Telefono</div>
+						<div style="float: right;">
+							<div class="sweetCheckbox" title="phone" onclick="updateBoolFilter(this, this.title)"></div>
+						</div>
+					</div>				
 				</div>
 
 				<!-- EMAIL -->
-				<div style="outline: 1px dashed green; clear: both;">	
-					<div style="float: left;">Mail</div>
-					<div style="float: right;">
-						<div class="sweetCheckbox" title="email" onclick="updateBoolFilter(this, this.title)"></div>
-					</div>
+				<div class="filterChildRowContainerCommon">
+					<div class="filterRowLeftCommon filterOddRowLeft"></div>
+					<div class="filterRowMiddleCommon filterOddRowMiddle"></div>
+					<div class="filterRowRightCommon filterOddRowRight"></div>
+					<div class="filterOddRowContent">
+						<div style="float: left;">Mail</div>
+						<div style="float: right;">
+							<div class="sweetCheckbox" title="email" onclick="updateBoolFilter(this, this.title)"></div>
+						</div>
+					</div>				
 				</div>
-				
+
 				<!-- COMMUTE -->
-				<div style="outline: 1px dashed green; clear: both;">	
-					<div style="float: left;">A Domicilio</div>
-					<div style="float: right;">
-						<div class="sweetCheckbox" title="commute" onclick="updateBoolFilter(this, this.title)"></div>
-					</div>
+				<div class="filterChildRowContainerCommon">
+					<div class="filterRowLeftCommon filterEvenRowLeft"></div>
+					<div class="filterRowMiddleCommon filterEvenRowMiddle"></div>
+					<div class="filterRowRightCommon filterEvenRowRight"></div>
+					<div class="filterEvenRowContent">
+						<div style="float: left;">A Domicilio</div>
+						<div style="float: right;">
+							<div class="sweetCheckbox" title="commute" onclick="updateBoolFilter(this, this.title)"></div>
+						</div>
+					</div>				
 				</div>
 				
 				<!-- HAS PRICE -->
-				<div style="outline: 1px dashed green; clear: both;">	
-					<div style="float: left;">Tiene Precio</div>
-					<div style="float: right;">
-						<div class="sweetCheckbox" title="price" onclick="updateBoolFilter(this, this.title)"></div>
-					</div>
+				<div class="filterChildRowContainerCommon">
+					<div class="filterRowLeftCommon filterOddRowLeft"></div>
+					<div class="filterRowMiddleCommon filterOddRowMiddle"></div>
+					<div class="filterRowRightCommon filterOddRowRight"></div>
+					<div class="filterOddRowContent">
+						<div style="float: left;">Tiene Precio</div>
+						<div style="float: right;">
+							<div class="sweetCheckbox" title="price" onclick="updateBoolFilter(this, this.title)"></div>
+						</div>
+					</div>				
 				</div>
-
-			<div style="clear: both"></div>
 			</div>
 			<!-- [END] FILTER SECTION -->
 						
