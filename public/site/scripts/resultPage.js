@@ -22,6 +22,7 @@ $(document).ready(function() {
 		} 
 	});
 
+	// Configure the ToolTipsy tool.
 	$('.hasTooltipsy').tooltipsy({
 	    offset: [-10, 0],
 	    show: function (e, $el) {
