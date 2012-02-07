@@ -5,10 +5,18 @@
 }
 
 .sweetCheckboxBGOff {
-	background: url(sweetCheckboxBGOff.png);
+	background: url(sweetCheckbox.png);
+	background-repeat: no-repeat;
+	background-position-x: -1px;
+	background-position-y: -28px;
+	
 }
 .sweetCheckboxBGOn {
-	background: url(sweetCheckboxBGOn.png);
+	background: url(sweetCheckbox.png);
+	background-repeat: no-repeat;
+	background-position-x: -1px;
+	background-position-y: -1px;
+
 }
 
 .sweetCheckboxBallContainer {
@@ -21,7 +29,10 @@
 	position: relative;
 	width: 28px;
 	height: 28px;
-	background: url(sweetCheckboxBall.png);
+	background: url(sweetCheckbox.png);
+	background-repeat: no-repeat;
+	background-position-x: -4px;
+	background-position-y: -57px;
 }
 
 .sweetCheckboxBallOn {
