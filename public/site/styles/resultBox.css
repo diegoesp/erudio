@@ -1,8 +1,9 @@
 .resultBox {
 	width: 620px;
 	height: 108px;
-	outline: 1px solid #c0bdb0;
+	border: 1px solid #c0bdb0;
 	position: relative;
+	border-radius: 5px;
 }
 
 .resultBoxOdd {
@@ -35,16 +36,10 @@
 	float: left;
 }
 .resultBox .teacherReputationYellowStar {
-	background-image: url(../assets/result_item_sprite.png);
-	background-repeat: no-repeat;
-	background-position-x: -89px;
-	background-position-y: -41px;
+	background: url(../assets/result_item_sprite.png) no-repeat -89px -41px;
 }
 .resultBox .teacherReputationBlackStar {
-	background-image: url(../assets/result_item_sprite.png);
-	background-repeat: no-repeat;
-	background-position-x: -107px;
-	background-position-y: -41px;
+	background: url(../assets/result_item_sprite.png) no-repeat -107px -41px;
 }
 
 
@@ -70,10 +65,7 @@
 
 .resultBox .showDetails {
 	cursor: pointer;
-	background-image: url(../assets/result_item_sprite.png);
-	background-repeat: no-repeat;
-	background-position-x: 0px;
-	background-position-y: -4px;
+	background: url(../assets/result_item_sprite.png) no-repeat 0px -4px;
 	width: 60px;
 	height: 60px;
 	position: absolute;
@@ -96,20 +88,14 @@
 	margin-right: 5px;
 }
 .resultBox .tagLeftBg {
-	background-image: url(../assets/tag_sprite.png);
-	background-repeat: no-repeat;
-	background-position-x: 0px;
-	background-position-y: 0px;
+	background: url(../assets/tag_sprite.png) no-repeat 0px 0px;
 	width: 14px;
 	height: 22px;
 	float: left;
 
 }
 .resultBox .tagMiddleBg {
-	background-image: url(../assets/tag_sprite.png);
-	background-repeat: repeat-x;
-	background-position-x: 0px;
-	background-position-y: -25px;
+	background: url(../assets/tag_sprite.png) repeat-x 0px -25px;
 	height: 22px;	
 	float: left;
 }
@@ -122,10 +108,7 @@
 	margin-right: 10px;
 }
 .resultBox .tagRightBg {
-	background-image: url(../assets/tag_sprite.png);
-	background-repeat: no-repeat;
-	background-position-x: -19px;
-	background-position-y: 0px;
+	background: url(../assets/tag_sprite.png) no-repeat -19px 0px;
 	height: 22px;
 	width: 2px;
 	float: left;
