@@ -6,6 +6,8 @@
 	<script src="http://code.jquery.com/jquery-1.7.1.js"></script>
 	<script src="scripts/resultPage.js"></script>
 
+	<link href="styles/resultBox.css" rel="stylesheet" type="text/css" />
+
 	<script type="text/javascript" src="scripts/tooltipsy.min.js"></script>
 	
 	<!-- SWEET CHECKBOX	-->
@@ -40,7 +42,6 @@
 
 		<div id="resultSection">
 			<div id="resultsColumn">
-				Results Column
 			</div>
 			
 			<!-- [START] FILTER SECTION - ACOMODAR!!!! -->
@@ -126,28 +127,67 @@
 		</div>
 	
 	</div>
-	
+
 	
 	<!-- RESULT TEMPLATE -->
 	<script id="resultTemplate" type="text/x-jquery-tmpl">
-	    <ul>
-			<% _.each(data, function(result){  %>
-				<li>
-					Name: <%= result.name %></br>
-					Last Name: <%= result.lastName %> </br>
-					Telefono:  <%= result.phone %></br>
-					Descripccion: <%= result.description %></br>
-					Precio: <%= result.price %></br>
-				</li>
-				</br>
+			<% _.each(data, function(result, index){  %>
+			
+				<% 
+					classValue = "";
+					if (index%2 === 0) { 
+						classValue = "resultBoxOdd" 
+					} else { 
+						classValue = "resultBoxEven" 
+					} 
+				%>
+				<div class="resultBox <%= classValue%>">
+					<img src="assets/picture_thumb_example.jpg" class="resultThumbnail" alt="" />
+					<div class="reputationBox">
+						<span class="teacherReputationYellowStar"></span>
+						<span class="teacherReputationYellowStar"></span>
+						<span class="teacherReputationYellowStar"></span>
+						<span class="teacherReputationBlackStar"></span>
+						<span class="teacherReputationBlackStar"></span>
+					</div>
+					<div class="detailsSection">
+						<div class="teacherName">
+							<%= result.name %> <%= result.lastName %>
+						</div>
+						<div class="teacherDescription">
+							<%= result.description %>
+						</div>				
+						<div class="tagsSection">
+							
+							<!-- TODO(rafael.chiti): Replace this with a _.each() -->
+							<!-- Tag 2 -->
+							<div class="tagContainer">
+								<div class="tagLeftBg"></div>
+								<div class="tagMiddleBg">
+									<span class="tagText">Guitar </span>
+								</div>
+								<div class="tagRightBg"></div>
+								
+							</div>
+							<!-- Tag 2 -->
+							<div class="tagContainer">
+								<div class="tagLeftBg"></div>
+								<div class="tagMiddleBg">
+									<span class="tagText">Rockstar</span>
+								</div>
+								<div class="tagRightBg"></div>								
+							</div>
+						</div>
+						<div class="showDetails"></div>
+					</div>
+				</div>
 			<% }); %>
-		</ul>
 	</script>
 	
 	
 	<script>
 		window.application.searchTerm = {"zone": false, "phone": true, "commute": false, "price": true, "email": false};
-		window.application.results = [{"activity":"Teatro","description":"Lorem ipsum dolum","lastName":"Chiti","name":"Rafael","phone":"46595841","price":"$ 45"},{"activity":"Guitarra","description":"Lorem ipsum dolum","lastName":"Espada","name":"Diego","phone":"46577654","price":"$ 65"},{"activity":"Piano","description":"Lorem ipsum dolum","lastName":"Pochiero","name":"Octavio","phone":"45678723","price":"$ 66"}];
+		window.application.results = [{"activity":"Teatro","description":"Lorem ipsum dolum","lastName":"Chiti","name":"Rafael","phone":"46595841","price":"$ 45"},{"activity":"Guitarra","description":"Lorem ipsum dolum","lastName":"Espada","name":"Diego","phone":"46577654","price":"$ 65"},{"activity":"Piano","description":"Lorem ipsum dolum","lastName":"Pochiero","name":"Octavio","phone":"45678723","price":"$ 66"},{"activity":"Saxo","description":"Lorem ipsum dolum","lastName":"Rodriguez","name":"Pedro","phone":"47656789","price":"$ 10"}];
 	</script>
 </body>
 </html>

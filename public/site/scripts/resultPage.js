@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 	// Bind the "results" JSON object to the template and render it.
 	var template = _.template($("#resultTemplate")[0].text, {data: window.application.results});
-    $("#resultsColumn").html(template);
+    $("#resultsColumn").append(template);
 
 	// Load all the checkboxes from the filter section and 
 	// synch them with the search term status from the server.
