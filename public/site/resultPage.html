@@ -133,52 +133,49 @@
 	<script id="resultTemplate" type="text/x-jquery-tmpl">
 			<% _.each(data, function(result, index){  %>
 			
-				<% 
-					classValue = "";
-					if (index%2 === 0) { 
-						classValue = "resultBoxOdd" 
-					} else { 
-						classValue = "resultBoxEven" 
-					} 
-				%>
+				<% classValue = index%2 === 0 ? "resultBoxOdd" : "resultBoxEven"; %>
+				
 				<div class="resultBox <%= classValue%>">
+					
 					<img src="assets/picture_thumb_example.jpg" class="resultThumbnail" alt="" />
+					
 					<div class="reputationBox">
-						<span class="teacherReputationYellowStar"></span>
-						<span class="teacherReputationYellowStar"></span>
-						<span class="teacherReputationYellowStar"></span>
-						<span class="teacherReputationBlackStar"></span>
-						<span class="teacherReputationBlackStar"></span>
+						<% _.each([1,2,3,4,5], function(index){ 
+						
+							classValue = index <= result.stars ? "teacherReputationYellowStar" : "teacherReputationBlackStar";
+						%>
+							<span class="<%=classValue%>"></span>
+						<% });%>
 					</div>
+					
 					<div class="detailsSection">
+						
 						<div class="teacherName">
 							<%= result.name %> <%= result.lastName %>
 						</div>
+						
 						<div class="teacherDescription">
 							<%= result.description %>
 						</div>				
+						
 						<div class="tagsSection">
-							
-							<!-- TODO(rafael.chiti): Replace this with a _.each() -->
-							<!-- Tag 2 -->
-							<div class="tagContainer">
-								<div class="tagLeftBg"></div>
-								<div class="tagMiddleBg">
-									<span class="tagText">Guitar </span>
+
+							<% _.each(result.tags, function(each) {%>
+								<div class="tagContainer">
+									<div class="tagLeftBg"></div>
+									<div class="tagMiddleBg">
+										<span class="tagText">
+											<%= each%>
+										</span>
+									</div>
+									<div class="tagRightBg"></div>
 								</div>
-								<div class="tagRightBg"></div>
-								
-							</div>
-							<!-- Tag 2 -->
-							<div class="tagContainer">
-								<div class="tagLeftBg"></div>
-								<div class="tagMiddleBg">
-									<span class="tagText">Rockstar</span>
-								</div>
-								<div class="tagRightBg"></div>								
-							</div>
+							<%});%>
+
 						</div>
+						
 						<div class="showDetails"></div>
+						
 					</div>
 				</div>
 			<% }); %>
@@ -187,7 +184,7 @@
 	
 	<script>
 		window.application.searchTerm = {"zone": false, "phone": true, "commute": false, "price": true, "email": false};
-		window.application.results = [{"activity":"Teatro","description":"Lorem ipsum dolum","lastName":"Chiti","name":"Rafael","phone":"46595841","price":"$ 45"},{"activity":"Guitarra","description":"Lorem ipsum dolum","lastName":"Espada","name":"Diego","phone":"46577654","price":"$ 65"},{"activity":"Piano","description":"Lorem ipsum dolum","lastName":"Pochiero","name":"Octavio","phone":"45678723","price":"$ 66"},{"activity":"Saxo","description":"Lorem ipsum dolum","lastName":"Rodriguez","name":"Pedro","phone":"47656789","price":"$ 10"}];
+		window.application.results = [{"activity":"Teatro","description":"Lorem ipsum dolum","lastName":"Chiti","name":"Rafael","phone":"46595841","price":"$ 45","stars":"2","tags":["Musico","Rockstar"]},{"activity":"Guitarra","description":"Lorem ipsum dolum","lastName":"Espada","name":"Diego","phone":"46577654","price":"$ 65","stars":"3","tags":["Rockstar","Loquito lindo","Tag very very long"]},{"activity":"Piano","description":"Lorem ipsum dolum","lastName":"Pochiero","name":"Octavio","phone":"45678723","price":"$ 66","stars":"5","tags":["Piano"]},{"activity":"Saxo","description":"Lorem ipsum dolum","lastName":"Rodriguez","name":"Pedro","phone":"47656789","price":"$ 10","stars":"4","tags":["I don't know what to write", "asdasdasd","asdasdasdas","asdadasd"]}];
 	</script>
 </body>
 </html>

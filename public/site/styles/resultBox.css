@@ -86,10 +86,14 @@
 	font-size: 10px;
 	position: absolute;
 	bottom: 0px;
+	width: 400px;
+	height: 23px;
+	clear: both;
+	overflow: hidden;
 }
 .resultBox .tagContainer {
 	float: left;
-	margin-right: 10px;
+	margin-right: 5px;
 }
 .resultBox .tagLeftBg {
 	background-image: url(../assets/tag_sprite.png);
