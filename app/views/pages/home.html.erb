@@ -1,0 +1,98 @@
+<div id="pageSection">
+
+  <!-- Debugging box -->
+  <div id="debuggingBox">
+    <label style="color: white;">Debugging Box</label> </br>
+    <a onclick="alertSearchTerm();">Search Term to JSON</a>    </br>
+    <a onclick="left();">Previous</a> &nbsp;|&nbsp; <a onclick="right();">Next</a>    </br>
+    <a href="result_page.html">Result Page</a> </br></br>
+    <a onclick="postSearch();">Post Search</a> </br>
+  </div>
+
+  <div id="topErudioLogoContainer">
+    <div id="topErudioLogo"></div>
+  </div>
+
+
+  <div id="pageTopFrame"></div>
+
+  <div id="headerSection">
+    <div id="authenticationBox"></div>
+  </div>
+
+  <div id="welcomeSection">
+    <img id="slogan" src="assets/slogan.png"/>
+  </div>
+
+
+  <!-- Wizard and Actions Section -->
+  <div id="wizardSection">
+    <div id="selectTeacherLabelImageWrapper">
+      <img id="selectTeacherLabelImage" src="assets/images/que_profesores_label.png"></image>
+    </div>
+
+    <!-- Slider with effects -->
+    <div id="wizardSliderWrapper">
+      <div id="wizardSlider">
+
+        <!-- Activities Section -->
+        <div class="slideBox" id="slideBox1">
+          <div id="activitiesContainer">
+
+            <!-- ACTIVITIES TEMPLATE WILL BE RENDERED HERE -->
+
+          </div>
+
+          <div id="searchBoxContainer">
+
+          </div>
+        </div>
+
+
+        <div class="slideBox" id="slideBox2">BOX 2</div>
+        <div class="slideBox" id="slideBox3">BOX 3</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="howItWorksSection">
+    How it works
+  </div>
+
+  <div id="footerSection">
+    Footer
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+    _.templateSettings = {
+        interpolate: /\{\{\=(.+?)\}\}/g,
+        evaluate: /\{\{(.+?)\}\}/g
+    };
+
+    window.application.activities = [
+        {"id":"1","name":"Piano"},
+        {"id":"2","name":"Bateria"},
+        {"id":"3","name":"Guitarra"},
+        {"id":"4","name":"Ingles"},
+        {"id":"4","name":"Fisica"},
+        {"id":"5","name":"Petear"},
+        {"id": "6", "name": "Actividad 1"}
+    ];
+</script>
+
+<!-- ACTIVITIES TEMPLATE -->
+<script id="activityTemplate" type="text/template">
+
+  {{ _.each(data, function(activity) { }}
+  <div class="activityContainer">
+    <div class="activityBox" onclick="selectActivity(this);">
+      <span>{{= activity.name }}</span>
+      <input type="hidden" name="activityId" value=" {{= activity.id }}"/>
+    </div>
+  </div>
+  {{ }); }}
+</script>
