@@ -1,3 +1,8 @@
+<% content_for :head do %>
+  <script type="text/javascript"><%= render :partial => "home.js" %></script>
+  <style><!--<%= render :partial => "home.css" %>--></style>
+<% end %>
+
 <div id="pageSection">
 
   <!-- Debugging box -->
@@ -73,15 +78,7 @@
         evaluate: /\{\{(.+?)\}\}/g
     };
 
-    window.application.activities = [
-        {"id":"1","name":"Piano"},
-        {"id":"2","name":"Bateria"},
-        {"id":"3","name":"Guitarra"},
-        {"id":"4","name":"Ingles"},
-        {"id":"4","name":"Fisica"},
-        {"id":"5","name":"Petear"},
-        {"id": "6", "name": "Actividad 1"}
-    ];
+    window.application.activities = [<%=@json_init.html_safe%>];
 </script>
 
 <!-- ACTIVITIES TEMPLATE -->
