@@ -10,7 +10,7 @@
     <label style="color: white;">Debugging Box</label> </br>
     <a onclick="alertSearchTerm();">Search Term to JSON</a>    </br>
     <a onclick="left();">Previous</a> &nbsp;|&nbsp; <a onclick="right();">Next</a>    </br>
-    <a href="result_page.html">Result Page</a> </br></br>
+    <a href="<%= url_for(:action => 'result', :controller => 'pages') %>">Result Page</a> </br></br>
     <a onclick="postSearch();">Post Search</a> </br>
   </div>
 
@@ -73,10 +73,10 @@
 
 <script type="text/javascript">
 
-    _.templateSettings = {
-        interpolate: /\{\{\=(.+?)\}\}/g,
-        evaluate: /\{\{(.+?)\}\}/g
-    };
+	_.templateSettings = {
+	      evaluate : /\{\[([\s\S]+?)\]\}/g,
+	      interpolate : /\{\{([\s\S]+?)\}\}/g
+	 };
 
     window.application.activities = [<%=@json_init.html_safe%>];
 </script>
@@ -84,12 +84,12 @@
 <!-- ACTIVITIES TEMPLATE -->
 <script id="activityTemplate" type="text/template">
 
-  {{ _.each(data, function(activity) { }}
+  {[ _.each(data, function(activity) { ]}
   <div class="activityContainer">
     <div class="activityBox" onclick="selectActivity(this);">
-      <span>{{= activity.name }}</span>
-      <input type="hidden" name="activityId" value=" {{= activity.id }}"/>
+      <span>{{ activity.name }}</span>
+      <input type="hidden" name="activityId" value=" {{ activity.id }}"/>
     </div>
   </div>
-  {{ }); }}
+  {[ }); ]}
 </script>
