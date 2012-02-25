@@ -4,16 +4,8 @@
 	<script type="text/javascript"><%= render :partial => "result.js" %></script>
 	
 	<style><!--<%= render :partial => "result.css" %>--></style>
-	<style><!--<%= render :partial => "resultBox.css" %>--></style>
+	<style><!--<%= render :partial => "result_box.css" %>--></style>
 	
-	<!-- SWEET CHECKBOX	-->
-	<!--<script src="sweetCheckbox/sweetCheckbox.js"></script>	
-	<link href="sweetCheckbox/sweetCheckbox.css" rel="stylesheet" type="text/css" />
-	-->
-	
-	
-	<!-- REPLACE THIS LIBRARY WITH THE LOCAL + PRODUCTIVE ONE -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <% end %>
 	
 	
@@ -125,57 +117,62 @@
 
 </div>
 
+<script  type="text/javascript">
+_.templateSettings = {
+      evaluate : /\{\[([\s\S]+?)\]\}/g,
+      interpolate : /\{\{([\s\S]+?)\}\}/g
+ };
+</script>
 
 <!-- RESULT TEMPLATE -->
-<script id="resultTemplate" type="text/x-jquery-tmpl">
-		<% _.each(data, function(result, index){  %>
+<script id="resultTemplate" type="text/template">
+	{[ _.each(data, function(result, index) { ]}
+	
+		{[ classValue = index%2 === 0 ? "resultBoxOdd" : "resultBoxEven"; ]}
 		
-			<% classValue = index%2 === 0 ? "resultBoxOdd" : "resultBoxEven"; %>
+		<div class="resultBox {{ classValue}}">
 			
-			<div class="resultBox <%= classValue%>">
-				
-				<img src="assets/picture_thumb_example.jpg" class="resultThumbnail" alt="" />
-				
-				<div class="reputationBox">
-					<% _.each([1,2,3,4,5], function(index){ 
+			<img src="/assets/picture_thumb_example.jpg" class="resultThumbnail" alt="" />
+			
+			<div class="reputationBox">
+				{[ _.each([1,2,3,4,5], function(index){ 
+					classValue = index <= result.stars ? "teacherReputationYellowStar" : "teacherReputationBlackStar";]}
 					
-						classValue = index <= result.stars ? "teacherReputationYellowStar" : "teacherReputationBlackStar";
-					%>
-						<span class="<%=classValue%>"></span>
-					<% });%>
+					<span class="{{ classValue}}"></span>
+				{[ }); ]}
+				
+			</div>
+			
+			<div class="detailsSection">
+				
+				<div class="teacherName">
+					{{ result.name }} {{ result.lastName }}
 				</div>
 				
-				<div class="detailsSection">
-					
-					<div class="teacherName">
-						<%= result.name %> <%= result.lastName %>
-					</div>
-					
-					<div class="teacherDescription">
-						<%= result.description %>
-					</div>				
-					
-					<div class="tagsSection">
+				<div class="teacherDescription">
+					{{ result.description }}
+				</div>				
+				
+				<div class="tagsSection">
 
-						<% _.each(result.tags, function(each) {%>
+					{[ _.each(result.tags, function(each) {]}
 							<div class="tagContainer">
 								<div class="tagLeftBg"></div>
 								<div class="tagMiddleBg">
 									<span class="tagText">
-										<%= each%>
+										{{each}}
 									</span>
 								</div>
 								<div class="tagRightBg"></div>
 							</div>
-						<%});%>
-
-					</div>
-					
-					<div class="showDetails"></div>
-					
+					{[ }); ]}
 				</div>
+				
+				<div class="showDetails"></div>
+				
 			</div>
-		<% }); %>
+		</div>
+	{[ }); ]}
 </script>
 
 

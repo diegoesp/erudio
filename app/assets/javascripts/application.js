@@ -5,7 +5,8 @@
 // the compiled file.
 //
 
-//= require jquery
 //= require_self
-//= require_tree
-
+//= require jquery
+//= require jquery-ui
+//= require_tree .
+//= require sweet_checkbox
