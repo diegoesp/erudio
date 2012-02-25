@@ -178,5 +178,5 @@ _.templateSettings = {
 
 <script>
 	window.application.searchTerm = {"zone": false, "phone": true, "commute": false, "price": true, "email": false};
-	window.application.results = [{"activity":"Teatro","description":"Lorem ipsum dolum","lastName":"Chiti","name":"Rafael","phone":"46595841","price":"$ 45","stars":"2","tags":["Musico","Rockstar"]},{"activity":"Guitarra","description":"Lorem ipsum dolum","lastName":"Espada","name":"Diego","phone":"46577654","price":"$ 65","stars":"3","tags":["Rockstar","Loquito lindo","Tag very very long"]},{"activity":"Piano","description":"Lorem ipsum dolum","lastName":"Pochiero","name":"Octavio","phone":"45678723","price":"$ 66","stars":"5","tags":["Piano"]},{"activity":"Saxo","description":"Lorem ipsum dolum","lastName":"Rodriguez","name":"Pedro","phone":"47656789","price":"$ 10","stars":"4","tags":["I don't know what to write", "asdasdasd","asdasdasdas","asdadasd"]}];
+	window.application.results = [<%=@json_result.html_safe%>];
 </script>
