@@ -35,8 +35,25 @@ $(document).ready(function() {
 // this functions is triggered.
 function updateBoolFilter(checkBox, filterOption) {
 	window.application.searchTerm[filterOption] = !$(checkBox).triggerHandler('isOn');
+	executeAjaxSearch();
 }
 
+
+function executeAjaxSearch() {
+	$.ajax({
+		url: "result_search?format=json",
+		success: function(response){
+			$("#resultsColumn").children().remove();
+			var template = _.template($("#resultTemplate")[0].text, {data: response});
+			$("#resultsColumn").append(template);
+			
+		},
+		error:function (xhr, ajaxOptions, thrownError){
+			alert(xhr.status);
+			alert(thrownError);
+		}
+	});
+}
 
 // Initialize and configure the tooltips for this page (tooltipsy library)
 function initializeTooltipsy() {
