@@ -16,7 +16,7 @@
 	<!-- Debugging box -->
 	<div id="debuggingBox">
 		<label style="color: white;">Debugging Box</label> </br>
-		<a href="homePage.html">Home Page</a> </br>
+		<a href="<%= url_for(:action => 'home', :controller => 'pages') %>">Home Page</a> </br>
 		<a onclick="alertSearchTerm();">Search Term to JSON</a>	</br>
 	</div>
 
