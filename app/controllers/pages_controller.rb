@@ -59,12 +59,13 @@ class PagesController < ApplicationController
       tag3 = tags[random_number]
 
       if @json_result != ""
-		 @json_result = @json_result + ","
+        @json_result = @json_result + ","
       end
-      
-	 @json_result = @json_result + '{"activity":"' + activity + '","description":"' + description + '","lastName":"' + last_name + '","name":"' + first_name + '","phone":"' + phone + '","price":"' + price + '","stars":"' + star + '","tags":["' + tag1 + '","' + tag2 + '","' + tag3 + '"]}'
-         
+      @json_result = @json_result + '{"activity":"' + activity + '","description":"' + description + '","lastName":"' + last_name + '","name":"' + first_name + '","phone":"' + phone + '","price":"' + price + '","stars":"' + star + '","tags":["' + tag1 + '","' + tag2 + '","' + tag3 + '"]}'
+    
     end
+    
+
     @json_result = "[" + @json_result + "]"
 
     respond_with(@json_result)
