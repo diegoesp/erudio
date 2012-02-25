@@ -1,6 +1,8 @@
 Erudio::Application.routes.draw do
   root :to => 'pages#home'
   get "pages/home"
+  get "pages/jquery"
+  get "pages/search"
 
   match '/categories', :to => 'pages#categories'
 
