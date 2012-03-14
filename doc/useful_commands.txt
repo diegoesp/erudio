@@ -1,0 +1,8 @@
+# annotate model files
+bundle exec annotate --position before
+# drop all tables for regeneration
+bundle exec rake db:drop
+# migrate all tables to database
+bundle exec rake db:migrate
+# prepare test database
+bundle exec rake db:test:prepare

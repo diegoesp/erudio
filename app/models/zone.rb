@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: categories
+# Table name: zones
 #
 #  id         :integer         not null, primary key
 #  name       :string(255)
@@ -8,8 +8,8 @@
 #  updated_at :datetime
 #
 
-class Category < ActiveRecord::Base
-  has_many :activities
+class Zone < ActiveRecord::Base
+  has_many :classrooms, :dependent => :destroy
 
   attr_accessible :name
 
