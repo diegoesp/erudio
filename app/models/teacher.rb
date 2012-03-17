@@ -18,7 +18,7 @@ class Teacher < ActiveRecord::Base
   has_many :classrooms
   has_many :professorships, :dependent => :destroy
 
-  attr_accessible :last_name, :first_name, :description, :email
+  attr_accessible :last_name, :first_name, :description, :email, :cellphone
 
   validates :last_name, :presence => true
   validates :first_name, :presence => true

@@ -71,6 +71,8 @@
 
 </div>
 
+<input type="hidden" id="json_init" value='<%=@json_init%>' />
+
 <script type="text/javascript">
 
 	_.templateSettings = {
@@ -78,7 +80,7 @@
 	      interpolate : /\{\{([\s\S]+?)\}\}/g
 	 };
 
-    window.application.activities = [<%=@json_init.html_safe%>];
+    window.application.activities = document.all.json_init.value;
 </script>
 
 <!-- ACTIVITIES TEMPLATE -->

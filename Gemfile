@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
 gem 'valid_email'
+gem 'multi_json', '~> 1.1.0'
+gem "webrat", "~> 0.7.3"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,6 +24,8 @@ end
 group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', '~> 2.4.1.beta'
+  gem 'faker', '1.0.1'
+  gem "random_record", "~> 0.0.7"
 end
 
 group :test do
