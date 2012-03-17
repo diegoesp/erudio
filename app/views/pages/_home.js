@@ -1,8 +1,10 @@
 window.application = {};
 window.application.searchTerm = {};
 
+// 
+//	ON DOM READY
 //
-// Init logic after page 'loading'
+//	Init logic after page 'loading'
 //
 $(document).ready(function() {
     var template = _.template($("#activityTemplate")[0].text, {data: window.application.activities});
@@ -11,8 +13,8 @@ $(document).ready(function() {
 });
 
 
-// When the user selects an activity from the first step on the wizard
-// the searchTerm object is updated and the wizard moves to the second step.
+//	When the user selects an activity from the first step on the wizard
+//	the searchTerm object is updated and the wizard moves to the second step.
 function selectActivity(htmlContainer) {
     id = $(htmlContainer).find("input[type=hidden]").get(0).value;
     window.application.searchTerm.activityId = id;
@@ -20,36 +22,26 @@ function selectActivity(htmlContainer) {
 }
 
 
-// TODO(rafael.chiti): Remove this. Just for debugging.
-function alertSearchTerm() {
-    alert(JSON.stringify(window.application.searchTerm));
+//
+//	Unfold the section that contains more activities, in order
+//	to display the full list of activities to the user.
+//
+function unfoldActivities() {
+	$("#wizardSection").effect("size", {"to": {"height": "500px"}}, 800);
+}
+
+function foldActivities(functionToExecute) {
+	$("#wizardSection").effect("size", {"to": {"height": "300px"}}, 800);
 }
 
 
-// TODO(rafael.chiti): Remove this. Just for debugging.
-function postSearch() {
-    jqxhr = $.ajax({
-        type: 'POST',
-        url: 'http://localhost:3000/pages/testPage/home',
-        data: window.application.searchTerm,
-        success: 'postSearchSuccessCB',
-        dataType: 'json'
-    });
-    //jqxhr.error = "postSearchFailCB";
-
-}
 
 
-// TODO(rafael.chiti): Remove this. Just for debuggin (the call back function for the ajax call).
-function postSearchSuccessCB(data, textStatus, jqXHR) {
-    alert("response succeed");
-}
-// TODO(rafael.chiti): Remove this. Just for debuggin (the call back function for the ajax call).
-function postSearchFailCB() {
-    alert("request failed");
-}
-
-// SearchWizardSlider.js
+/////////////////////////////////////////
+//
+// 		SearchWizardSlider.js
+//
+/////////////////////////////////////
 
 window.application.slider = {};
 
@@ -73,10 +65,10 @@ $(document).ready(function() {
 });
 
 
-/*
-*  Recalculate the widths for the "sliding" boxes
-*
-*/
+//
+//	Recalculate the widths for the "sliding" boxes
+//
+//
 function setWidths() {
 	var slider = window.application.slider;
 
@@ -91,8 +83,16 @@ function setWidths() {
 	});
 }
 
-
+//
+//	Move the slider to the right, one step.
+//
+//
 function right() {
+
+	// TODO(rafael.chiti): This should change for something generic.
+	// When moving through the slides, firs, fold the panel. 
+	foldActivities();
+
 	var slider = window.application.slider;
 
 	slider.current++;
@@ -110,7 +110,16 @@ function right() {
 
 }
 
+//
+//	Move the slider to the left, one step.
+//
+//
 function left() {
+	// TODO(rafael.chiti): This should change for something generic.
+	// When moving through the slides, firs, fold the panel. 
+	foldActivities();
+
+
 	var slider = window.application.slider;
 
 	slider.current--;
@@ -126,5 +135,42 @@ function left() {
 	});
 
 }
+
+
+//////////////////////////////////////////////////
+//
+// 		The stuff below must be removed
+//		when release a candidate version.
+//
+//////
+
+// TODO(rafael.chiti): Remove this. Just for debugging.
+function alertSearchTerm() {
+    alert(JSON.stringify(window.application.searchTerm));
+}
+
+// TODO(rafael.chiti): Remove this. Just for debugging.
+function postSearch() {
+    jqxhr = $.ajax({
+        type: 'POST',
+        url: 'http://localhost:3000/pages/testPage/home',
+        data: window.application.searchTerm,
+        success: 'postSearchSuccessCB',
+        dataType: 'json'
+    });
+    //jqxhr.error = "postSearchFailCB";
+
+}
+
+// TODO(rafael.chiti): Remove this. Just for debuggin (the call back function for the ajax call).
+function postSearchSuccessCB(data, textStatus, jqXHR) {
+    alert("response succeed");
+}
+
+// TODO(rafael.chiti): Remove this. Just for debuggin (the call back function for the ajax call).
+function postSearchFailCB() {
+    alert("request failed");
+}
+
 
 

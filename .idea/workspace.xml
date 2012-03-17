@@ -3,16 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a9b953f3-2457-4740-b19d-f4239509bf8b" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/lib/assets/.gitkeep" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/erudio.iml" afterPath="$PROJECT_DIR$/.idea/erudio.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/class_diagram.zargo" afterPath="$PROJECT_DIR$/doc/class_diagram.zargo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pages_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/teacher.rb" afterPath="$PROJECT_DIR$/app/models/teacher.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_home.css" afterPath="$PROJECT_DIR$/app/views/pages/_home.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/_home.js" afterPath="$PROJECT_DIR$/app/views/pages/_home.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/home.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/home.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb" />
     </list>
     <ignored path="erudio.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,10 +30,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pages_controller_spec.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pages_controller_spec.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="76" selection-start="386" selection-end="386" vertical-scroll-proportion="0.4649266">
+            <state line="19" column="76" selection-start="386" selection-end="386" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -47,16 +42,16 @@
       <file leaf-file-name="home.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/pages/home.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="51" selection-start="1833" selection-end="1833" vertical-scroll-proportion="-7.6666665">
+            <state line="77" column="51" selection-start="1877" selection-end="1877" vertical-scroll-proportion="-7.6666665">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pages_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="pages_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="52" selection-start="119" selection-end="154" vertical-scroll-proportion="0.0">
+            <state line="18" column="22" selection-start="378" selection-end="378" vertical-scroll-proportion="0.45">
               <folding />
             </state>
           </provider>
@@ -90,8 +85,8 @@
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/spec/models/activity_spec.rb" />
         <option value="$PROJECT_DIR$/app/views/pages/home.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
         <option value="$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
       </list>
     </option>
   </component>
@@ -189,6 +184,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="erudio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="erudio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -716,23 +733,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
+    <entry file="file://$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="52" selection-start="119" selection-end="154" vertical-scroll-proportion="0.0">
+        <state line="19" column="76" selection-start="386" selection-end="386" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pages/home.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="51" selection-start="1833" selection-end="1833" vertical-scroll-proportion="-7.6666665">
+        <state line="77" column="51" selection-start="1877" selection-end="1877" vertical-scroll-proportion="-7.6666665">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="76" selection-start="386" selection-end="386" vertical-scroll-proportion="0.4649266">
+        <state line="18" column="22" selection-start="378" selection-end="378" vertical-scroll-proportion="0.45">
           <folding />
         </state>
       </provider>
