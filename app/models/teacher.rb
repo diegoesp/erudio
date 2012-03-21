@@ -24,4 +24,21 @@ class Teacher < ActiveRecord::Base
   validates :first_name, :presence => true
   validates :description, :presence => true
   validates :email, :presence => true, :email => true
+
+  # Looks teachers for a pupil given his preferences
+  #
+  # @param [Integer] activity_id Activity for the teacher
+  # @param [Integer] zone_id zone where the teacher can teach
+  # @param [Boolean] goes_here optional. If true, the teacher can go to this zone
+  # @param [Boolean] receives_people_here optional. If true, the teacher can receive people in this zone at home
+  # @return [Array] Teacher arrays
+  def self.find_teacher_for_pupil(activity_id, zone_id, goes_here = nil, receives_people_here = nil)
+
+    where = "professorships.activity_id = :activity_id AND classrooms.zone_id = :zone_id"
+
+    where += " AND goes_here = :goes_here" unless goes_here.nil?
+    where += " AND receives_people_here = :receives_people_here" unless receives_people_here.nil?
+
+    Teacher.joins(:professorships).joins(:classrooms).where(where, :activity_id => activity_id, :zone_id => zone_id, :goes_here => goes_here, :receives_people_here => receives_people_here)
+  end
 end

@@ -1,11 +1,13 @@
+# Old Pages Controller. Rename to PagesController to use old testing pages
 class PagesController < ApplicationController
 
   protect_from_forgery
 
   respond_to :json
 
+  # Example for putting context for a fictitious home page
   def home
-    @json_init = Activity.all.as_json.to_s.html_safe
+    @json_init = '{"id":"1","name":"Piano"},{"id":"2","name":"Bateria"},{"id":"3","name":"Guitarra"},{"id":"4","name":"Ingles"},{"id":"4","name":"Fisica"},{"id":"5","name":"Petear"},{"id": "6", "name": "Actividad 1"}'
   end
 
   # Example call for displaying how to call an AJAX function

@@ -18,3 +18,28 @@ end
 Factory.define :zone do |zone|
   zone.name "Villa Crespo"
 end
+
+Factory.define :classroom do |classroom|
+  classroom.goes_here true
+  classroom.receives_people_here true
+end
+
+Factory.define :zone2, :class => Zone do |zone|
+  zone.name "Palermo"
+end
+
+Factory.define :teacher2, :class => Teacher do |teacher|
+  teacher.first_name "Diego"
+  teacher.last_name "Espada"
+  teacher.description "A management teacher with bad attitude and a tendency for subversive behaviour."
+  teacher.email "diegoesp@gmail.com"
+end
+
+Factory.define :classroom2, :class => Classroom do |classroom|
+  classroom.goes_here false
+  classroom.receives_people_here true
+end
+
+Factory.define :professorship2, :class => Professorship do |professorship|
+  professorship.price_per_hour 50
+end

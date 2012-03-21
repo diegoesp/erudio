@@ -26,10 +26,12 @@ group :development do
   gem 'annotate', '~> 2.4.1.beta'
   gem 'faker', '1.0.1'
   gem "random_record", "~> 0.0.7"
+  gem "yard", "0.7.5"
 end
 
 group :test do
   gem 'factory_girl_rails', '1.0'
+  gem 'rack-test', '0.6.1'
 end
 
 gem 'jquery-rails'

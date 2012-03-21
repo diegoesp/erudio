@@ -20,7 +20,6 @@ describe PagesController do
       @activities = [@activity]
       response.should have_selector("input#json_init", :value => @activities.as_json.to_s)
     end
-
   end
 
 end

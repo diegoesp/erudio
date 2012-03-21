@@ -4,7 +4,7 @@ Erudio::Application.routes.draw do
 
   get "pages/home"
   get "pages/search"
-	get "pages/result"
+  get "pages/result"
   get "pages/result_search"
 
 	match '/categories', :to => 'pages#categories'
