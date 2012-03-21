@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/controllers/pages_controller_2.rb" />
+    <bookmark url="file://$PROJECT_DIR$/app/controllers/pages_controller.rb" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9b953f3-2457-4740-b19d-f4239509bf8b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/pages_controller_2.rb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/pages_controller_deprecated.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/pages/categories.html.erb" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/lib/assets/.gitkeep" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="$PROJECT_DIR$/.idea/.generators" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/erudio.iml" afterPath="$PROJECT_DIR$/.idea/erudio.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/controllers/pages_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pages_controller_deprecated.rb" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/controllers/pages_controller_2.rb" afterPath="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pages_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/teacher.rb" afterPath="$PROJECT_DIR$/app/models/teacher.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/factories.rb" afterPath="$PROJECT_DIR$/spec/factories.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/teacher_spec.rb" afterPath="$PROJECT_DIR$/spec/models/teacher_spec.rb" />
     </list>
     <ignored path="erudio.iws" />
@@ -46,80 +36,7 @@
     <favorites_list name="erudio" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="pages_controller_2.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller_2.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="22" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pages_controller.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="655" selection-end="655" vertical-scroll-proportion="0.5008347">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="19" selection-start="123" selection-end="123" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="teacher.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/teacher.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="4" selection-start="1455" selection-end="1455" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="teacher_spec.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/models/teacher_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="13" selection-start="590" selection-end="590" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="classroom.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/classroom.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="6" selection-start="444" selection-end="444" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="factories.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/factories.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pages_controller_spec.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="7" selection-start="491" selection-end="491" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -138,15 +55,15 @@
         <option value="$PROJECT_DIR$/app/controllers/pages_controller_deprecated.rb" />
         <option value="$PROJECT_DIR$/spec/models/activity_spec.rb" />
         <option value="$PROJECT_DIR$/app/views/pages/home.html.erb" />
-        <option value="$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb" />
         <option value="/Rails erudio: development" />
         <option value="$PROJECT_DIR$/app/helpers/application_helper.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/models/teacher.rb" />
-        <option value="$PROJECT_DIR$/spec/models/teacher_spec.rb" />
         <option value="$PROJECT_DIR$/spec/factories.rb" />
         <option value="$PROJECT_DIR$/app/controllers/pages_controller_2.rb" />
+        <option value="$PROJECT_DIR$/spec/models/teacher_spec.rb" />
         <option value="$PROJECT_DIR$/app/controllers/pages_controller.rb" />
+        <option value="$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
       </list>
     </option>
@@ -668,7 +585,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="734" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.4710485" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286385" sideWeight="0.49675325" order="7" side_tool="false" content_ui="tabs" />
@@ -745,11 +662,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.2-p290/gems/activerecord-3.1.3/lib/active_record/relation/query_methods.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="8" selection-start="3214" selection-end="3214" vertical-scroll-proportion="1.0196079" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="11" selection-start="168" selection-end="168" vertical-scroll-proportion="0.22058824" />
@@ -793,58 +705,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller_2.rb">
+    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="22" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/teacher.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="4" selection-start="1455" selection-end="1455" vertical-scroll-proportion="0.0">
+        <state line="68" column="0" selection-start="1562" selection-end="1562" vertical-scroll-proportion="0.86440676">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/models/teacher_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="13" selection-start="590" selection-end="590" vertical-scroll-proportion="0.0">
+        <state line="76" column="3" selection-start="2175" selection-end="2175" vertical-scroll-proportion="0.84974957">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/classroom.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller_deprecated.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="6" selection-start="444" selection-end="444" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/factories.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="7" selection-start="491" selection-end="491" vertical-scroll-proportion="0.0">
+        <state line="14" column="0" selection-start="555" selection-end="555" vertical-scroll-proportion="0.3505843">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="19" selection-start="123" selection-end="123" vertical-scroll-proportion="0.0">
+        <state line="5" column="39" selection-start="140" selection-end="140" vertical-scroll-proportion="0.12254902">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="655" selection-end="655" vertical-scroll-proportion="0.5008347">
+        <state line="7" column="0" selection-start="102" selection-end="102" vertical-scroll-proportion="0.17156863">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/controllers/pages_controller_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="2" selection-start="54" selection-end="54" vertical-scroll-proportion="0.09803922">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/factories.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="3" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.82843137">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/classroom.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="6" selection-start="444" selection-end="444" vertical-scroll-proportion="0.44117647">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/teacher.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="4" selection-start="1455" selection-end="1455" vertical-scroll-proportion="0.7712855">
           <folding />
         </state>
       </provider>

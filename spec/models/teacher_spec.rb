@@ -26,7 +26,7 @@ describe Teacher do
     @zone2 = Factory(:zone2)
     @teacher2 = Factory(:teacher2)
     @teacher2.classrooms << Factory(:classroom2, :teacher => @teacher2, :zone => @zone2)
-    @teacher2.professorships << Factory(:professorship2, :teacher => @teacher2)
+    @teacher2.professorships << Factory(:professorship2, :teacher => @teacher2, :activity => @activity)
   end
 
   it "should be able to create an instance with valid attributes" do
@@ -68,19 +68,10 @@ describe Teacher do
     @teacher.should_not be_valid
   end
 
-  describe "finders" do
-
-    before (:each) do
-      puts Teacher.all.to_json
-    end
-
-    it "should return one teacher (Octavio)" do
-      teachers = Teacher.find_teacher_for_pupil(@activity.id, @zone2.id, nil, nil)
-      teachers.length.should == 1
-      teacher = teachers[0]
-      teacher.first_name.should_be "Octavio"
-    end
-
+  it "find_teacher_for_pupil should return one teacher (Diego)" do
+    teachers = Teacher.find_teacher_for_pupil(@activity.id, @zone2.id, nil, true)
+    teachers.length.should == 1
+    teachers.first.first_name.should == "Diego"
   end
 
 end
