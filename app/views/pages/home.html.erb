@@ -74,7 +74,6 @@
 
 </div>
 
-<input type="hidden" id="json_init" value='<%=@json_init%>' />
 
 <script type="text/javascript">
 
@@ -83,7 +82,7 @@
 	      interpolate : /\{\{([\s\S]+?)\}\}/g
 	 };
 
-    window.application.activities = document.all.json_init.value;
+    window.application.activities = [<%=@json_all_activities.html_safe%>];
 </script>
 
 <!-- ACTIVITIES TEMPLATE -->
@@ -93,7 +92,7 @@
   <div class="activityContainer">
     <div class="activityBox" onclick="selectActivity(this);">
       <span>{{ activity.name }}</span>
-      <input type="hidden" name="activityId" value=" {{ activity.id }}"/>
+      <input type="hidden" name="activityId" id="activityId_{{activity.id}}" value="{{activity.id}}"/>
     </div>
   </div>
   {[ }); ]}

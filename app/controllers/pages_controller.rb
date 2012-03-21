@@ -7,7 +7,10 @@ class PagesController < ApplicationController
 
   # Example for putting context for a fictitious home page
   def home
-    @json_init = '{"id":"1","name":"Piano"},{"id":"2","name":"Bateria"},{"id":"3","name":"Guitarra"},{"id":"4","name":"Ingles"},{"id":"4","name":"Fisica"},{"id":"5","name":"Petear"},{"id": "6", "name": "Actividad 1"}'
+    @json_all_activities = '{"id":"1","name":"Piano"},{"id":"2","name":"Bateria"},{"id":"3","name":"Guitarra"},{"id":"4","name":"Ingles"},{"id":"5","name":"Fisica"},{"id":"6","name":"Petear"},{"id": "7", "name": "Actividad 1"}'
+    
+    @json_featured_activities = '{"id":"1","name":"Piano"},{"id":"2","name":"Bateria"},{"id":"3","name":"Guitarra"},{"id":"4","name":"Ingles"}'
+    
   end
 
   # Example call for displaying how to call an AJAX function
