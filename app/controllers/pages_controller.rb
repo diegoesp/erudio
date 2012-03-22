@@ -9,17 +9,22 @@ class PagesController < ApplicationController
   end
 
   def api_search_teachers
-    activity_id = params[:category_id]
-    zone_id = params[:town_id]
+    activity_id = params[:activity_id]
+    zone_id = params[:zone_id]
     goes_here = params[:goes_here]
     receives_people_here = params[:receives_people_here]
 
-    raise "activity_id must be a number" unless activity_id.is_number?
-    raise "zone_id must be a number" unless zone_id.is_number?
-    raise "goes_here must be true/false" unless (zone_id == "" or zone_id.is_boolean?)
-    raise "receives_people_here must be true/false" unless (receives_people_here == "" or receives_people_here.is_boolean?)
+    raise "must specify activity_id parameter" unless !activity_id.nil?
+    raise "must specify zone_id parameter" unless !zone_id.nil?
 
-    respond_with(@json_result)
+    raise "activity_id must be a number: " + activity_id unless activity_id.is_number?
+    raise "zone_id must be a number: " + zone_id unless zone_id.is_number?
+    raise "goes_here must be true/false: " + goes_here unless (goes_here.nil? or !goes_here.is_boolean?)
+    raise "receives_people_here must be true/false: " + receives_people_here unless (receives_people_here.nil? or !receives_people_here.is_boolean?)
+
+    teachers = Teacher.find_teacher_for_pupil(activity_id, zone_id, goes_here, receives_people_here)
+
+    respond_with(teachers)
   end
 
 end

@@ -20,8 +20,12 @@ Factory.define :zone do |zone|
 end
 
 Factory.define :classroom do |classroom|
-  classroom.goes_here true
+  classroom.goes_here false
   classroom.receives_people_here true
+end
+
+Factory.define :professorship, :class => Professorship do |professorship|
+  professorship.price_per_hour 30
 end
 
 Factory.define :zone2, :class => Zone do |zone|
