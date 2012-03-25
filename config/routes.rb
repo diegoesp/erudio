@@ -2,12 +2,10 @@ Erudio::Application.routes.draw do
 
   root :to => 'pages#home'
 
-  get "pages/home"
-  get "pages/search"
-  get "pages/result"
-  get "pages/result_search"
+  match "/home", :to => "pages#home"
+  match "/result", :to => "pages#result"
 
-	match '/categories', :to => 'pages#categories'
+  match "/api_search_teachers", :to => "pages#api_search_teachers"
 
 	# The priority is based upon order of creation:
 	# first created -> highest priority.

@@ -15,7 +15,7 @@ namespace :db do
     # Have 5 activities
     5.times do |n|
       Category.all.each do |category|
-        name = "Activity #{n+1} for category #{category.id}"
+        name = "Activity #{n+1} C#{category.id}"
         category.activities.create!(:name => name)
       end
     end

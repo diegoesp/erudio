@@ -19,3 +19,6 @@
 
 # Ignore the espresso IDE file (Rafas IDE)
 erudio.esproj/
+
+# Ignore the RubyMine IDE files (Diego IDE)
+/.idea

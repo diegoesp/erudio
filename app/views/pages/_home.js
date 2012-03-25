@@ -1,5 +1,7 @@
 window.application = {};
 window.application.searchTerm = {};
+window.application.searchTerm.activitiesIds = [];
+window.application.selectedActivities = [];
 
 // 
 //	ON DOM READY
@@ -15,10 +17,22 @@ $(document).ready(function() {
 
 //	When the user selects an activity from the first step on the wizard
 //	the searchTerm object is updated and the wizard moves to the second step.
-function selectActivity(htmlContainer) {
-    id = $(htmlContainer).find("input[type=hidden]").get(0).value;
-    window.application.searchTerm.activityId = id;
-    right();
+function selectActivity(activityBox) {
+    input = $(activityBox).find("input[type=hidden]");
+    
+    if ($(activityBox).hasClass("activitySelected")) {
+    	// UNSELECT ACTIVITY
+    	$(activityBox).removeClass("activitySelected");
+    	
+    	indexOfActivityId = window.application.searchTerm.activitiesIds.indexOf(input.attr("value"));
+    	window.application.searchTerm.activitiesIds.splice(indexOfActivityId, 1);
+    	
+    } else {
+	    // SELECT ACTIVITY
+    	$(activityBox).addClass("activitySelected");
+    	window.application.searchTerm.activitiesIds.push(input.attr("value"));
+    }
+    
 }
 
 

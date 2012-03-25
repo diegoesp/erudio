@@ -66,6 +66,7 @@
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v1.2.3, RVM: ruby-1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="valid_email (v0.0.4, RVM: ruby-1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="webrat (v0.7.3, RVM: ruby-1.9.2-p290) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="yard (v0.7.5, RVM: ruby-1.9.2-p290) [gem]" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />
