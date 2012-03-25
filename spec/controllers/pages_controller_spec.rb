@@ -19,7 +19,7 @@ describe PagesController do
     it "should include a json for a list of activities" do
       get :home
       @activities = [@activity]
-      response.should have_selector("input#json_all_activities", :value => @activities.as_json.to_s)
+      response.should contain @activities.to_json.to_s
     end
   end
 
