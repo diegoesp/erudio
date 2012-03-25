@@ -6,7 +6,7 @@ class PagesController < ApplicationController
 
   def home
     # @json_all_activities = Activity.all.as_json.to_s.html_safe
-    @json_all_activities = '[{"id":"1","name":"Piano"},{"id":"2","name":"Bateria"},{"id":"3","name":"Guitarra"},{"id":"4","name":"Ingles"},{"id":"5","name":"Fisica"},{"id":"6","name":"Petear"},{"id": "7", "name": "Actividad 1"}]'
+    @json_all_activities = '[{"id":"1","name":"Piano"},{"id":"2","name":"Bateria"},{"id":"3","name":"Guitarra"},{"id":"4","name":"Ingles"},{"id":"4","name":"Fisica"},{"id":"5","name":"Petear"},{"id": "6", "name": "Actividad 1"}]'
     @json_featured_activities = '[{"id":"1","name":"Piano"},{"id":"2","name":"Bateria"},{"id":"3","name":"Guitarra"},{"id":"4","name":"Ingles"}]'
   end
 
