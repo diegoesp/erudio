@@ -6,6 +6,7 @@ end
 
 Factory.define :activity do |activity|
   activity.name "Guitar"
+  activity.featured true
   activity.association :category
 end
 
