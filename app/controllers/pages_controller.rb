@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PagesController < ApplicationController
 
   protect_from_forgery
@@ -6,8 +7,7 @@ class PagesController < ApplicationController
 
   def home
     @json_all_activities = Activity.all.to_json
-    # @json_all_activities = '{"id":1,"name":"Piano"},{"id":"2","name":"Bateria"},{"id":"3","name":"Guitarra"},{"id":"4","name":"Ingles"},{"id":"4","name":"Fisica"},{"id":"5","name":"Petear"},{"id": "6", "name": "Actividad 1"}'
-    # @json_featured_activities = '{"id":"1","name":"Piano"},{"id":"2","name":"Bateria"},{"id":"3","name":"Guitarra"},{"id":"4","name":"Ingles"}'
+    @json_featured_activities = Activity.find_all_by_featured(true).to_json
   end
 
   def api_search_teachers

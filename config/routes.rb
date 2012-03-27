@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Erudio::Application.routes.draw do
 
   root :to => 'pages#home'

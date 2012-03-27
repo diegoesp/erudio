@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Extends string class
 class String
 

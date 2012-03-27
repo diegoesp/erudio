@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # == Schema Information
 #
 # Table name: zones
@@ -11,7 +12,7 @@
 class Zone < ActiveRecord::Base
   has_many :classrooms, :dependent => :destroy
 
-  attr_accessible :name
+  attr_accessible :name, :featured
 
   validates :name, :presence => true
 end

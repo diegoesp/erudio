@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # == Schema Information
 #
 # Table name: activities
@@ -12,7 +13,7 @@
 class Activity < ActiveRecord::Base
   belongs_to :category
 
-  attr_accessible :name
+  attr_accessible :name, :featured
 
   validates :name, :presence => true
   validates :category, :presence => true

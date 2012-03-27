@@ -27,6 +27,7 @@ group :development do
   gem 'faker', '1.0.1'
   gem "random_record", "~> 0.0.7"
   gem "yard", "0.7.5"
+  gem "magic_encoding", "~> 0.0.2"
 end
 
 group :test do

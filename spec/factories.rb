@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # By using the symbol ':category', we get Factory Girl to simulate the Category model.
 Factory.define :category do |category|
   category.name "Music"
