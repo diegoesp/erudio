@@ -2,216 +2,181 @@
 
 /*	Remove this! */
 body {
-    font-family: "Century Gothic", "Geneva";
-    color: #777777;
-    margin: 0px;
+	font-family: "Century Gothic", "Geneva";
+	color: #777777;
+	margin: 0px;
 }
-
 #debuggingBox {
-    position: fixed;
-    top: 30px;
-    left: 15px;
-    color: rgba(255, 255, 255, .6);
-    font-size: small;
-    background-color: rgba(41, 41, 41, .2);
-    border: 1px dashed gray;
-    width: 200px;
-    height: 60px;
-    z-index: 100;
+	position: fixed;
+	top: 30px;
+	left: 15px;
+	color: rgba(255, 255, 255, .6);
+	font-size: small;
+	background-color: rgba(41, 41, 41, .2);
+	border: 1px dashed gray;
+	width: 200px;
+	height: 60px;
+	z-index: 100;
 }
-
 #debuggingBox a {
-    cursor: pointer;
+	cursor: pointer;
 }
-
 #pageSection {
-    width: 100%;
-    height: 100%;
-    min-width: 1100px;
-    background-image: url(/assets/background_pattern.png);
+	width: 100%;
+	height: 100%;
+	min-width: 1100px;
+	background-image: url(/assets/background_pattern.png);
 }
-
 /* Header and top section */
 #headerSection {
-    width: 100%;
-    height: 120px;
-    position: relative;
+	width: 100%;
+	height: 120px;
+	position: relative;
 }
-
 #pageTopFrame {
-    background-repeat: repeat-x;
-    background-image: url(/assets/top_frame.png);
-    width: 100%;
-    height: 37px; /* Height of the image */
+	background-repeat: repeat-x;
+	background-image: url(/assets/top_frame.png);
+	width: 100%;
+	height: 37px; /* Height of the image */
 }
-
 #topErudioLogoContainer {
-    width: 100%;
-    height: 112px;
-    float: left;
+	width: 100%;
+	height: 112px;
+	float: left;
 }
-
 #topErudioLogo {
-    width: 147px;
-    height: 112px;
-    background-image: url(/assets/top_logo.png);
-    margin: auto;
+	width: 147px;
+	height: 112px;
+	background-image: url(/assets/top_logo.png);
+	margin: auto;
 }
-
 #authenticationBox {
-    width: 200px;
-    height: 50px;
-    background-color: #a9a9a9;
-    position: absolute;
-    right: 30px;
-    top: 50px;
+	width: 200px;
+	height: 50px;
+	background-color: #a9a9a9;
+	position: absolute;
+	right: 30px;
+	top: 50px;
 }
-
 /* Results Section */
 #resultSection {
-    width: 1000px;
-    margin: auto;
+	width: 1000px;
+	margin: auto;
 }
-
 #resultsColumn {
-    float: left;
-    width: 650px;
-    height: 100%;
-
+	float: left;
+	width: 650px;
+	height: 100%;
 }
-
 #filterColumn {
-    float: left;
-    width: 300px;
-    height: 300px;
+	float: left;
+	width: 300px;
+	height: 300px;
 }
-
 /* Footer layout */
 #footerSection {
-    color: #fafafa;
-    background-color: #3c3c3c;
-    width: 100%;
-    height: 400px;
-    clear: left;
+	color: #fafafa;
+	background-color: #3c3c3c;
+	width: 100%;
+	height: 400px;
+	clear: left;
 }
-
 /* @end */
 
 /* @group Filter common styles */
 .filterChildRowContainerCommon {
-    width: 100%;
-    height: 50px;
-    position: relative;
+	width: 100%;
+	height: 50px;
+	position: relative;
 }
-
 .filterRowLeftCommon {
-    width: 8px;
-    height: 61px;
-    background-repeat: no-repeat;
-    position: absolute;
-    left: 0px;
-    top: 0px;
+	width: 8px;
+	height: 61px;
+	background-repeat: no-repeat;
+	position: absolute;
+	left: 0px;
+	top: 0px;
 }
-
 .filterRowMiddleCommon {
-    width: 1px;
-    height: 61px;
-    width: 284px;
-    background-repeat: repeat-x;
-    position: absolute;
-    left: 8px;
-    top: 0px;
+	width: 1px;
+	height: 61px;
+	width: 284px;
+	background-repeat: repeat-x;
+	position: absolute;
+	left: 8px;
+	top: 0px;
 }
-
 .filterRowRightCommon {
-    width: 8px;
-    height: 61px;
-    background-repeat: no-repeat;
-    position: absolute;
-    right: 0px;
-    top: 0px;
+	width: 8px;
+	height: 61px;
+	background-repeat: no-repeat;
+	position: absolute;
+	right: 0px;
+	top: 0px;
 }
-
 /* @end */
 
 /* @group Filter Header */
 .filterHeaderRowContainer {
-    width: 100%;
-    height: 61px;
-    position: relative;
+	width: 100%;
+	height: 61px;
+	position: relative;
 }
-
 .filterHeaderLeftCorner {
-    background-image: url(/assets/filterBox/filter_header_left_corner.png);
-
+	background-image: url(/assets/filterBox/filter_header_left_corner.png);
 }
-
 .filterHeaderLeftMiddle {
-    background-image: url(/assets/filterBox/filter_header_middle.png);
-
+	background-image: url(/assets/filterBox/filter_header_middle.png);
 }
-
 .filterHeaderRightCorner {
-    background-image: url(/assets/filterBox/filter_header_right_corner.png);
-
+	background-image: url(/assets/filterBox/filter_header_right_corner.png);
 }
-
 .filterHeaderTitle {
-    position: absolute;
-    left: 20px;
-    top: 20px;
+	position: absolute;
+	left: 20px;
+	top: 20px;
 }
-
 /* @end */
 
 /* @group Filter Odd Row */
 .filterOddRowLeft {
-    background-image: url(/assets/filterBox/odd_row_left.png);
+	background-image: url(/assets/filterBox/odd_row_left.png);
 }
-
 .filterOddRowMiddle {
-    background-image: url(/assets/filterBox/odd_row_middle.png);
+	background-image: url(/assets/filterBox/odd_row_middle.png);
 }
-
 .filterOddRowRight {
-    background-image: url(/assets/filterBox/odd_row_right.png);
+	background-image: url(/assets/filterBox/odd_row_right.png);
 }
-
 .filterOddRowContent {
-    width: 260px;
-    position: absolute;
-    left: 10px;
-    top: 16px;
+	width: 260px;
+	position: absolute;
+	left: 10px;
+	top: 16px;
 }
-
 /* @end */
 
 /* @group Filter Even Row */
 .filterEvenRowLeft {
-    background-image: url(/assets/filterBox/even_row_left.png);
+	background-image: url(/assets/filterBox/even_row_left.png);
 }
-
 .filterEvenRowMiddle {
-    background-image: url(/assets/filterBox/even_row_middle.png);
+	background-image: url(/assets/filterBox/even_row_middle.png);
 }
-
 .filterEvenRowRight {
-    background-image: url(/assets/filterBox/even_row_right.png);
+	background-image: url(/assets/filterBox/even_row_right.png);
 }
-
 .filterEvenRowContent {
-    width: 260px;
-    position: absolute;
-    left: 10px;
-    top: 16px;
+	width: 260px;
+	position: absolute;
+	left: 10px;
+	top: 16px;
 }
-
 /* @end */
 
 /* @group Results */
 .resultBox {
-    margin-bottom: 14px;
+	margin-bottom: 14px;
 }
-
 /* @end */
 
