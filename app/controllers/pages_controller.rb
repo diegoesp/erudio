@@ -5,11 +5,19 @@ class PagesController < ApplicationController
 
   respond_to :json
 
+  # Displays the homepage
   def home
     @json_all_activities = Activity.all.to_json
     @json_featured_activities = Activity.find_all_by_featured(true).to_json
   end
 
+  # API for searching teachers
+  #
+  # @param [String] activity_id activity id for the teacher to match
+  # @param [String] zone_id zone id for the teacher to match
+  # @param [String] goes_here a boolean string
+  # @param [String] receives_people_here a boolean string
+  # @return [String] JSON with a list of teachers
   def api_search_teachers
     activity_id = params[:activity_id]
     zone_id = params[:zone_id]
