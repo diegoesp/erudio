@@ -6,7 +6,10 @@ Erudio::Application.routes.draw do
   match "/home", :to => "pages#home"
   match "/result", :to => "pages#result"
 
+  # APIs for the web application
   match "/api_search_teachers", :to => "pages#api_search_teachers"
+  match "/api_login", :to => "sessions#api_login"
+  match "/api_logout", :to => "sessions#api_logout"
 
 	# The priority is based upon order of creation:
 	# first created -> highest priority.
