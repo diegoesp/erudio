@@ -46,16 +46,28 @@
 
         <!-- Activities Section -->
         <div class="slideBox" id="slideBox1">
-          <div id="activitiesContainer">
 
-            <!-- ACTIVITIES TEMPLATE WILL BE RENDERED HERE -->
+          <div id="activitiesSection">
+            
+            <div id="featuredActivitiesContainerWrapper" class="">  
+            	<div id="featuredActivitiesContainer">            
+	            	<!-- ACTIVITIES TEMPLATE WILL BE RENDERED HERE -->
+	            </div>  
+            </div>  
+            
+            <div id="allActivitiesContainerWrapper" class="allActivitiesContainerWrapperHide">  
+				<div id="allActivitiesContainer">
+					<!-- ACTIVITIES TEMPLATE WILL BE RENDERED HERE -->
+				</div>  
+			</div>
 
           </div>
-
-          <div id="seeMoreActivities" onclick="unfoldActivities()">Ver mas actividades</div>
-          
+		  
+		  <div id="seeMoreActivities" onclick="seeMoreActivities(this);">
+		  	Ver Mas!...
+		  </div>
+		  
         </div>
-
 
         <div class="slideBox" id="slideBox2">BOX 2</div>
         <div class="slideBox" id="slideBox3">BOX 3</div>
@@ -82,18 +94,20 @@
 	      interpolate : /\{\{([\s\S]+?)\}\}/g
 	 };
 
-    window.application.activities = <%=@json_featured_activities.html_safe%>;
+    window.application.featuredActivities = <%=@json_featured_activities.html_safe%>;
+    window.application.allActivities = <%=@json_all_activities.html_safe%>;
 </script>
 
 <!-- ACTIVITIES TEMPLATE -->
 <script id="activityTemplate" type="text/template">
+	{[ _.each(data, function(activity) { ]}
 
-  {[ _.each(data, function(activity) { ]}
-  <div class="activityContainer">
-    <div class="activityBox" onclick="selectActivity(this);">
-      <span>{{ activity.name }}</span>
-      <input type="hidden" name="activityId" id="activityId_{{activity.id}}" value="{{activity.id}}"/>
-    </div>
-  </div>
-  {[ }); ]}
+		<div class="{{featured === true ? "featuredActivityContainer" : "allActivityContainer"}}">
+		    <div class="activityBox activityBox_{{activity.id}}" onclick="selectActivity(this, {{featured}});">
+	    		<span>{{ activity.name }}</span>
+	      		<input type="hidden" name="activityId" id="{{featured === true ? 'featured_' : ''}}activityId_{{activity.id}}" value="{{activity.id}}"/>
+		    </div>
+	  	</div>
+  	
+  	{[ }); ]}
 </script>

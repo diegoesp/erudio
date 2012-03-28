@@ -9,45 +9,58 @@ window.application.selectedActivities = [];
 //	Init logic after page 'loading'
 //
 $(document).ready(function() {
-    var template = _.template($("#activityTemplate")[0].text, {data: window.application.activities});
-    $("#activitiesContainer").html(template);
+    var template = _.template($("#activityTemplate")[0].text, {data: window.application.featuredActivities, featured: true});
+    $("#featuredActivitiesContainer").html(template);
+
+	var template = _.template($("#activityTemplate")[0].text, {data: window.application.allActivities, featured: false});
+	$("#allActivitiesContainer").html(template);
 
 });
 
 
 //	When the user selects an activity from the first step on the wizard
 //	the searchTerm object is updated and the wizard moves to the second step.
-function selectActivity(activityBox) {
-    input = $(activityBox).find("input[type=hidden]");
+function selectActivity(activityBox, isFeatured) {
+    hiddenInput = $(activityBox).find("input[type=hidden]");
+    activityId = hiddenInput.attr("value");
     
-    if ($(activityBox).hasClass("activitySelected")) {
-    	// UNSELECT ACTIVITY
-    	$(activityBox).removeClass("activitySelected");
-    	
-    	indexOfActivityId = window.application.searchTerm.activitiesIds.indexOf(input.attr("value"));
-    	window.application.searchTerm.activitiesIds.splice(indexOfActivityId, 1);
-    	
-    } else {
-	    // SELECT ACTIVITY
-    	$(activityBox).addClass("activitySelected");
-    	window.application.searchTerm.activitiesIds.push(input.attr("value"));
-    }
+	
+   	$("#activitiesSection").find(".activityBox_" + activityId).each(function(index, activityBox){
+
+		if ($(activityBox).hasClass("activitySelected")) {
+			// UNSELECT ACTIVITY
+			$(activityBox).removeClass("activitySelected");
+			
+			indexOfActivityId = window.application.searchTerm.activitiesIds.indexOf(activityId);
+
+			if (index === 0) {
+				window.application.searchTerm.activitiesIds.splice(indexOfActivityId, 1);
+			}
+			
+		} else {
+		    // SELECT ACTIVITY
+			$(activityBox).addClass("activitySelected");
+			
+			if (index === 0) {
+				window.application.searchTerm.activitiesIds.push(activityId);
+			}
+		}
+    });
     
 }
 
 
 //
-//	Unfold the section that contains more activities, in order
-//	to display the full list of activities to the user.
+// Show all the activities
 //
-function unfoldActivities() {
-	$("#wizardSection").effect("size", {"to": {"height": "500px"}}, 800);
+function seeMoreActivities(seeMoreDiv) {
+	$('#featuredActivitiesContainerWrapper').hide("fade", {}, 500, function() {
+		$('#allActivitiesContainerWrapper').show('fade', {}, 500);
+	});
+	
+	
+	$(seeMoreDiv).fadeOut('slow');
 }
-
-function foldActivities(functionToExecute) {
-	$("#wizardSection").effect("size", {"to": {"height": "300px"}}, 800);
-}
-
 
 
 
@@ -103,10 +116,6 @@ function setWidths() {
 //
 function right() {
 
-	// TODO(rafael.chiti): This should change for something generic.
-	// When moving through the slides, firs, fold the panel. 
-	foldActivities();
-
 	var slider = window.application.slider;
 
 	slider.current++;
@@ -129,10 +138,6 @@ function right() {
 //
 //
 function left() {
-	// TODO(rafael.chiti): This should change for something generic.
-	// When moving through the slides, firs, fold the panel. 
-	foldActivities();
-
 
 	var slider = window.application.slider;
 
@@ -153,8 +158,8 @@ function left() {
 
 //////////////////////////////////////////////////
 //
-// 		The stuff below must be removed
-//		when release a candidate version.
+// 		The stuff below must be removed 
+//		when releasing a candidate version.
 //
 //////
 
@@ -162,7 +167,6 @@ function left() {
 function alertSearchTerm() {
     alert(JSON.stringify(window.application.searchTerm));
 }
-
 // TODO(rafael.chiti): Remove this. Just for debugging.
 function postSearch() {
     jqxhr = $.ajax({
@@ -175,7 +179,6 @@ function postSearch() {
     //jqxhr.error = "postSearchFailCB";
 
 }
-
 // TODO(rafael.chiti): Remove this. Just for debuggin (the call back function for the ajax call).
 function postSearchSuccessCB(data, textStatus, jqXHR) {
     alert("response succeed");
