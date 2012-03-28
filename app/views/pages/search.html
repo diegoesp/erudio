@@ -1,21 +1,21 @@
 <script language="javascript">
 
     $.ajax({
-      url: "search",
-      data: {name: "john"},
-      success: function(data) {
-        window.var1 = data;
-        alert("success");
-      },
-      error: function (xhr, ajaxOptions, thrownError){
-          alert(xhr.status);
-          alert(thrownError);
-          alert(xhr.responseText);
-       },
-        complete: function() {
-        alert("complete");
-      },
-      type: 'GET'
+        url:"search",
+        data:{name:"john"},
+        success:function (data) {
+            window.var1 = data;
+            alert("success");
+        },
+        error:function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+            alert(xhr.responseText);
+        },
+        complete:function () {
+            alert("complete");
+        },
+        type:'GET'
     });
 
 </script>

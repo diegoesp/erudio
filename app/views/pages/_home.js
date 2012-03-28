@@ -8,12 +8,12 @@ window.application.selectedActivities = [];
 //
 //	Init logic after page 'loading'
 //
-$(document).ready(function() {
-    var template = _.template($("#activityTemplate")[0].text, {data: window.application.featuredActivities, featured: true});
+$(document).ready(function () {
+    var template = _.template($("#activityTemplate")[0].text, {data:window.application.featuredActivities, featured:true});
     $("#featuredActivitiesContainer").html(template);
 
-	var template = _.template($("#activityTemplate")[0].text, {data: window.application.allActivities, featured: false});
-	$("#allActivitiesContainer").html(template);
+    var template = _.template($("#activityTemplate")[0].text, {data:window.application.allActivities, featured:false});
+    $("#allActivitiesContainer").html(template);
 
 });
 
@@ -23,30 +23,30 @@ $(document).ready(function() {
 function selectActivity(activityBox, isFeatured) {
     hiddenInput = $(activityBox).find("input[type=hidden]");
     activityId = hiddenInput.attr("value");
-    
-	
-   	$("#activitiesSection").find(".activityBox_" + activityId).each(function(index, activityBox){
 
-		if ($(activityBox).hasClass("activitySelected")) {
-			// UNSELECT ACTIVITY
-			$(activityBox).removeClass("activitySelected");
-			
-			indexOfActivityId = window.application.searchTerm.activitiesIds.indexOf(activityId);
 
-			if (index === 0) {
-				window.application.searchTerm.activitiesIds.splice(indexOfActivityId, 1);
-			}
-			
-		} else {
-		    // SELECT ACTIVITY
-			$(activityBox).addClass("activitySelected");
-			
-			if (index === 0) {
-				window.application.searchTerm.activitiesIds.push(activityId);
-			}
-		}
+    $("#activitiesSection").find(".activityBox_" + activityId).each(function (index, activityBox) {
+
+        if ($(activityBox).hasClass("activitySelected")) {
+            // UNSELECT ACTIVITY
+            $(activityBox).removeClass("activitySelected");
+
+            indexOfActivityId = window.application.searchTerm.activitiesIds.indexOf(activityId);
+
+            if (index === 0) {
+                window.application.searchTerm.activitiesIds.splice(indexOfActivityId, 1);
+            }
+
+        } else {
+            // SELECT ACTIVITY
+            $(activityBox).addClass("activitySelected");
+
+            if (index === 0) {
+                window.application.searchTerm.activitiesIds.push(activityId);
+            }
+        }
     });
-    
+
 }
 
 
@@ -54,14 +54,13 @@ function selectActivity(activityBox, isFeatured) {
 // Show all the activities
 //
 function seeMoreActivities(seeMoreDiv) {
-	$('#featuredActivitiesContainerWrapper').hide("fade", {}, 500, function() {
-		$('#allActivitiesContainerWrapper').show('fade', {}, 500);
-	});
-	
-	
-	$(seeMoreDiv).fadeOut('slow');
-}
+    $('#featuredActivitiesContainerWrapper').hide("fade", {}, 500, function () {
+        $('#allActivitiesContainerWrapper').show('fade', {}, 500);
+    });
 
+
+    $(seeMoreDiv).fadeOut('slow');
+}
 
 
 /////////////////////////////////////////
@@ -72,22 +71,22 @@ function seeMoreActivities(seeMoreDiv) {
 
 window.application.slider = {};
 
-$(document).ready(function() {
-	var slider = window.application.slider;
-	slider.current = 0;
+$(document).ready(function () {
+    var slider = window.application.slider;
+    slider.current = 0;
 
-	setWidths();
+    setWidths();
 
-	// Bind the window resize "recalc"
-	$(window).resize(function(){
-		setWidths();
+    // Bind the window resize "recalc"
+    $(window).resize(function () {
+        setWidths();
 
-		valueToMove = parseInt(- slider.sectionWidth * slider.current)
-		$('#wizardSlider').stop().animate({
-			left: valueToMove + 'px',
-		}, 650, function() {
-		});
-	});
+        valueToMove = parseInt(-slider.sectionWidth * slider.current)
+        $('#wizardSlider').stop().animate({
+            left:valueToMove + 'px',
+        }, 650, function () {
+        });
+    });
 
 });
 
@@ -97,17 +96,17 @@ $(document).ready(function() {
 //
 //
 function setWidths() {
-	var slider = window.application.slider;
+    var slider = window.application.slider;
 
-	slider.totalBoxes = $('#wizardSlider .slideBox').length;
-	slider.sectionWidth = $('#wizardSliderWrapper').width();
-	slider.boxesTotalWidth = slider.sectionWidth * slider.totalBoxes;
+    slider.totalBoxes = $('#wizardSlider .slideBox').length;
+    slider.sectionWidth = $('#wizardSliderWrapper').width();
+    slider.boxesTotalWidth = slider.sectionWidth * slider.totalBoxes;
 
-	$('#wizardSlider').width(slider.boxesTotalWidth);
+    $('#wizardSlider').width(slider.boxesTotalWidth);
 
-	$("#wizardSlider .slideBox").each(function(){
-		$(this).width(slider.sectionWidth);
-	});
+    $("#wizardSlider .slideBox").each(function () {
+        $(this).width(slider.sectionWidth);
+    });
 }
 
 //
@@ -116,20 +115,20 @@ function setWidths() {
 //
 function right() {
 
-	var slider = window.application.slider;
+    var slider = window.application.slider;
 
-	slider.current++;
+    slider.current++;
 
-	if (slider.current >= slider.totalBoxes) {
-		slider.current = 0;
-	}
+    if (slider.current >= slider.totalBoxes) {
+        slider.current = 0;
+    }
 
-	valueToMove = parseInt( - slider.sectionWidth * slider.current)
+    valueToMove = parseInt(-slider.sectionWidth * slider.current)
 
-	$('#wizardSlider').stop().animate({
-		left: valueToMove + 'px',
-	}, 650, function() {
-	});
+    $('#wizardSlider').stop().animate({
+        left:valueToMove + 'px',
+    }, 650, function () {
+    });
 
 }
 
@@ -139,19 +138,19 @@ function right() {
 //
 function left() {
 
-	var slider = window.application.slider;
+    var slider = window.application.slider;
 
-	slider.current--;
-	if (slider.current < 0) {
-		slider.current = slider.totalBoxes - 1;
-	}
+    slider.current--;
+    if (slider.current < 0) {
+        slider.current = slider.totalBoxes - 1;
+    }
 
-	valueToMove = parseInt(- slider.sectionWidth * slider.current)
+    valueToMove = parseInt(-slider.sectionWidth * slider.current)
 
-	$('#wizardSlider').stop().animate({
-		left: valueToMove + 'px',
-	}, 650, function() {
-	});
+    $('#wizardSlider').stop().animate({
+        left:valueToMove + 'px',
+    }, 650, function () {
+    });
 
 }
 
@@ -170,11 +169,11 @@ function alertSearchTerm() {
 // TODO(rafael.chiti): Remove this. Just for debugging.
 function postSearch() {
     jqxhr = $.ajax({
-        type: 'POST',
-        url: 'http://localhost:3000/pages/testPage/home',
-        data: window.application.searchTerm,
-        success: 'postSearchSuccessCB',
-        dataType: 'json'
+        type:'POST',
+        url:'http://localhost:3000/pages/testPage/home',
+        data:window.application.searchTerm,
+        success:'postSearchSuccessCB',
+        dataType:'json'
     });
     //jqxhr.error = "postSearchFailCB";
 

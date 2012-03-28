@@ -2,13 +2,13 @@
 <% content_for :head do %>
 
 	<script type="text/javascript"><%= render :partial => "result.js" %></script>
-	
+
 	<style><!--<%= render :partial => "result.css" %>--></style>
 	<style><!--<%= render :partial => "result_box.css" %>--></style>
-	
+
 <% end %>
-	
-	
+
+
 <!-- BODY SECTION -->
 
 
@@ -32,7 +32,7 @@
 	<div id="resultSection">
 		<div id="resultsColumn">
 		</div>
-		
+
 		<!-- [START] FILTER SECTION - ACOMODAR!!!! -->
 		<div id="filterColumn">
 			<div class="filterHeaderRowContainer">
@@ -52,9 +52,9 @@
 					<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
 						<div class="sweetCheckbox" title="zone" onclick="updateBoolFilter(this, this.title)"></div>
 					</div>
-				</div>				
+				</div>
 			</div>
-			
+
 			<!-- PHONE -->
 			<div class="filterChildRowContainerCommon">
 				<div class="filterRowLeftCommon filterEvenRowLeft"></div>
@@ -65,7 +65,7 @@
 					<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
 						<div class="sweetCheckbox" title="phone" onclick="updateBoolFilter(this, this.title)"></div>
 					</div>
-				</div>				
+				</div>
 			</div>
 
 			<!-- EMAIL -->
@@ -78,7 +78,7 @@
 					<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" class="hasTooltipsy" style="float: right;">
 						<div class="sweetCheckbox" title="email"  onclick="updateBoolFilter(this, this.title)"></div>
 					</div>
-				</div>				
+				</div>
 			</div>
 
 			<!-- COMMUTE -->
@@ -91,9 +91,9 @@
 					<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
 						<div class="sweetCheckbox" title="commute" onclick="updateBoolFilter(this, this.title)"></div>
 					</div>
-				</div>				
+				</div>
 			</div>
-			
+
 			<!-- HAS PRICE -->
 			<div class="filterChildRowContainerCommon">
 				<div class="filterRowLeftCommon filterOddRowLeft"></div>
@@ -104,13 +104,13 @@
 					<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
 						<div class="sweetCheckbox" title="price" onclick="updateBoolFilter(this, this.title)"></div>
 					</div>
-				</div>				
+				</div>
 			</div>
 		</div>
 		<!-- [END] FILTER SECTION -->
 	</div>
-	
-	<div id="footerSection">		
+
+	<div id="footerSection">
 		Footer
 	</div>
 
@@ -126,32 +126,32 @@ _.templateSettings = {
 <!-- RESULT TEMPLATE -->
 <script id="resultTemplate" type="text/template">
 	{[ _.each(data, function(result, index) { ]}
-	
+
 		{[ classValue = index%2 === 0 ? "resultBoxOdd" : "resultBoxEven"; ]}
-		
+
 		<div class="resultBox {{ classValue}}">
-			
+
 			<img src="/assets/picture_thumb_example.jpg" class="resultThumbnail" alt="" />
-			
+
 			<div class="reputationBox">
-				{[ _.each([1,2,3,4,5], function(index){ 
+				{[ _.each([1,2,3,4,5], function(index){
 					classValue = index <= result.stars ? "teacherReputationYellowStar" : "teacherReputationBlackStar";]}
-					
+
 					<span class="{{ classValue}}"></span>
 				{[ }); ]}
-				
+
 			</div>
-			
+
 			<div class="detailsSection">
-				
+
 				<div class="teacherName">
 					{{ result.name }} {{ result.lastName }}
 				</div>
-				
+
 				<div class="teacherDescription">
 					{{ result.description }}
-				</div>				
-				
+				</div>
+
 				<div class="tagsSection">
 
 					{[ _.each(result.tags, function(each) {]}
@@ -166,9 +166,9 @@ _.templateSettings = {
 							</div>
 					{[ }); ]}
 				</div>
-				
+
 				<div class="showDetails"></div>
-				
+
 			</div>
 		</div>
 	{[ }); ]}
