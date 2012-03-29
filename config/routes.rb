@@ -4,6 +4,8 @@ Erudio::Application.routes.draw do
   root :to => 'pages#home'
 
   match "/home", :to => "pages#home"
+  match "/zone", :to => "pages#zone"
+  # Deprecated. Should be erased when the real result page is implemented
   match "/result", :to => "pages#result"
 
   # APIs for the web application

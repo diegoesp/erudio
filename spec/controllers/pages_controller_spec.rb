@@ -8,6 +8,7 @@ describe PagesController do
   before(:each) do
     @category = Factory(:category)
     @activity = Factory(:activity)
+    @zone = Factory(:zone)
   end
 
   describe "GET 'home'" do
@@ -23,6 +24,21 @@ describe PagesController do
       response.should contain @activities.to_json.to_s
     end
   end
+
+  describe "GET 'zone'" do
+
+    it "should be successful" do
+    get :zone
+      response.should be_success
+    end
+
+    it "should include a json for a list of zones" do
+      get :zone
+      @zone = [@zone]
+      response.should contain @zone.to_json.to_s
+    end
+  end
+
 
   describe "API testing", :type => :api do
 
