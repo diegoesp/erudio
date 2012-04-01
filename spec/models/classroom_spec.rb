@@ -24,6 +24,10 @@ describe Classroom do
     @classroom = @teacher.classrooms.build(@attr)
   end
 
+  it "should be valid" do
+      @classroom.should be_valid
+  end
+
   it "should be able to create an instance with valid attributes" do
     @classroom.save!
   end

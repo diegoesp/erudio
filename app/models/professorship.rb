@@ -15,5 +15,8 @@ class Professorship < ActiveRecord::Base
   belongs_to :activity
   belongs_to :teacher
 
+  validates :teacher, :presence => true
+  validates :activity, :presence => true
+
   validates :price_per_hour, :presence => true
 end

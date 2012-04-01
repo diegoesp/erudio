@@ -90,13 +90,27 @@ namespace :db do
     Zone.create!(:name => "Villa Talar")
     Zone.create!(:name => "Villa Urquiza")
 
+    # Users
+    50.times do
+      first_name = Faker::Name.first_name
+      last_name = Faker::Name.last_name
+      email = Faker::Internet.free_email
+      cellphone = Faker::PhoneNumber.phone_number
+      password = "password"
+      password_confirmation = "password"
+      User.create!(:first_name => first_name, :last_name => last_name, :email => email, :cellphone => cellphone, :password => password, :password_confirmation => password_confirmation)
+    end
+
+    # Teachers
     50.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       description = Faker::Lorem.paragraph
       email = Faker::Internet.free_email
       cellphone = Faker::PhoneNumber.phone_number
-      teacher = Teacher.create!(:first_name => first_name, :last_name => last_name, :description => description, :email =>email, :cellphone => cellphone)
+      password = "password"
+      password_confirmation = "password"
+      teacher = Teacher.create!(:first_name => first_name, :last_name => last_name, :description => description, :email => email, :cellphone => cellphone, :password => password, :password_confirmation => password_confirmation)
 
       # Add a classroom
       zone = Zone.random
@@ -111,6 +125,15 @@ namespace :db do
       activity = Activity.random
       price_per_hour = Random.new.rand(15..50)
       teacher.professorships.create!(:activity_id => activity.id, :price_per_hour => price_per_hour)
+
+      # Add some random ratings to each teacher.
+      user = User.random
+      Random.new.rand(1..5).times do
+        rating = Random.new.rand(1..5)
+        user = User.random while user.has_rated_teacher?(true)
+        teacher.ratings.create(:user_id => user.id, :rating => rating, :comment => Faker::Lorem.paragraph)
+      end
+
     end
 
   end

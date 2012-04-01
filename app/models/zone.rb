@@ -7,6 +7,7 @@
 #  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  featured   :boolean         default(FALSE)
 #
 
 class Zone < ActiveRecord::Base

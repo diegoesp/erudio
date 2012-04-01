@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+# Controller that provides general APIs for Logging it / Logging out users
 class SessionsController < ApplicationController
   protect_from_forgery
 

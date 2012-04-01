@@ -8,6 +8,7 @@
 #  category_id :integer
 #  created_at  :datetime
 #  updated_at  :datetime
+#  featured    :boolean         default(FALSE)
 #
 
 class Activity < ActiveRecord::Base

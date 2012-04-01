@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
+# Controller that works with general purpose pages (home, about us) and most importantly with the wizard flow!
+# Sets initial contexts and provides APIs for associated pages
 class PagesController < ApplicationController
 
   protect_from_forgery
-
   respond_to :json
 
   # Displays the homepage

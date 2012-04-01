@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                 :integer         not null, primary key
+#  last_name          :string(255)
+#  first_name         :string(255)
+#  email              :string(255)
+#  cellphone          :string(255)
+#  description        :string(255)
+#  type               :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#
+
 class User < ActiveRecord::Base
 
   require 'valid_email'
@@ -11,6 +28,8 @@ class User < ActiveRecord::Base
   validates :password, :confirmation => true, :presence => true, :length => {:minimum => 5}
 
   before_save :encrypt_password
+
+  has_many :ratings, :dependent => :destroy
 
   # Return true if the user's password matches the submitted password
   #
@@ -41,6 +60,27 @@ class User < ActiveRecord::Base
     (user && user.salt == salt) ? user : nil
   end
 
+  # Present user rates a given teacher
+  #
+  # @param [Integer] a Teacher id to rate
+  # @param [Integer] a Rating, from 1 to 5
+  # @param [String] a comment for the rating
+  # @return [Rating] The rating just created
+  # @raise [Error] an error if any of the validations fail when creating the rating
+  def rate_a_teacher(teacher_id, rating, comment)
+    @attr = {:teacher_id => teacher_id, :rating => rating, :comment => comment}
+    self.ratings.create!(@attr)
+  end
+
+  # True if the user has rated a given teacher
+  #
+  # @param [Teacher] a teacher
+  # @return true if the user rated this teacher
+  def has_rated_teacher?(teacher)
+    rating = Rating.find_by_user_id_and_teacher_id(self.id, teacher.id)
+    (!rating.nil?)
+  end
+
   private
 
   # Takes the password present in the class and encrypts it, assigning it to the class variable encrypted password
@@ -68,5 +108,4 @@ class User < ActiveRecord::Base
   def secure_hash(string)
     Digest::SHA2.hexdigest(string)
   end
-
 end

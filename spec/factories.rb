@@ -44,6 +44,14 @@ Factory.define :zone2, :class => Zone do |zone|
 	zone.name "Palermo"
 end
 
+Factory.define :user2, :class => User do |user|
+	user.first_name "Elvio"
+	user.last_name "Lento"
+	user.email "elviolento@hotmail.com"
+	user.password "palabraclave"
+	user.password_confirmation "palabraclave"
+end
+
 Factory.define :teacher2, :class => Teacher do |teacher|
 	teacher.first_name "Diego"
 	teacher.last_name "Espada"
@@ -60,4 +68,12 @@ end
 
 Factory.define :professorship2, :class => Professorship do |professorship|
 	professorship.price_per_hour 50
+end
+
+Factory.define :user3, :class => User do |user|
+	user.first_name "Miguel"
+	user.last_name "Corleone"
+	user.email "miguelcorleone@yahoo.com"
+	user.password "doncorleone"
+	user.password_confirmation "doncorleone"
 end

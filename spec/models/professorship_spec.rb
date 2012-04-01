@@ -23,6 +23,10 @@ describe Professorship do
     @professorship = @teacher.professorships.build(@attr)
   end
 
+  it "should be valid" do
+    @professorship.should be_valid
+  end
+
   it "should be able to create an instance with valid attributes" do
     @professorship.save!
   end

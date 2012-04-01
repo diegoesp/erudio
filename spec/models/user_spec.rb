@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                 :integer         not null, primary key
+#  last_name          :string(255)
+#  first_name         :string(255)
+#  email              :string(255)
+#  cellphone          :string(255)
+#  description        :string(255)
+#  type               :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#
+
 require 'spec_helper'
 
 describe User do
@@ -102,6 +119,26 @@ describe User do
         matching_user = User.authenticate_with_salt(@user.id, @user.salt)
         matching_user.should == @user
       end
+    end
+
+    describe "ratings" do
+
+      it "should return the teacher is rated" do
+        teacher = Factory(:teacher)
+
+        @user.rate_a_teacher(teacher.id, 5, "a great teacher!")
+        @user.has_rated_teacher?(teacher).should be_true
+      end
+
+      it "should return the teacher is NOT rated" do
+
+        teacher = Factory(:teacher)
+        teacher2 = Factory(:teacher2)
+
+        @user.rate_a_teacher(teacher2.id, 1, "A bad teacher")
+        @user.has_rated_teacher?(teacher).should be_false
+      end
+
     end
 
   end
