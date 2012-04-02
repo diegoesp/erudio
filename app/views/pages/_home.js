@@ -133,27 +133,6 @@ function seeMoreActivities(seeMoreDiv) {
 window.app.wizard = {};
 window.app.wizard.slider = {};
 
-
-window.app.wizard.initialize = function() {
-
-	var slider = window.app.wizard.slider;
-	slider.current = 0;
-
-	window.app.wizard.setWidths();
-
-	// Bind the window resize "recalc"
-	$(window).resize(function() {
-		setWidths();
-
-		valueToMove = parseInt(-slider.sectionWidth * slider.current)
-		$('#wizardSlider').stop().animate({
-			left : valueToMove + 'px',
-		}, 650, function() {
-		});
-	});
-
-}
-
 //
 // Recalculate the widths for the "sliding" boxes
 //
@@ -171,6 +150,29 @@ window.app.wizard.setWidths = function() {
 		$(this).width(slider.sectionWidth);
 	});
 }
+
+
+window.app.wizard.initialize = function() {
+
+	var slider = window.app.wizard.slider;
+	slider.current = 0;
+
+	window.app.wizard.setWidths();
+
+	// Bind the window resize "recalc"
+	$(window).resize(function() {
+		window.app.wizard.setWidths();
+
+		valueToMove = parseInt(-slider.sectionWidth * slider.current)
+		$('#wizardSlider').stop().animate({
+			left : valueToMove + 'px',
+		}, 650, function() {
+		});
+	});
+
+}
+
+
 
 //
 // Move the slider to the right, one step.
