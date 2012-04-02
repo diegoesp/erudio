@@ -9,7 +9,7 @@
 <div id="pageSection">
 	<!-- Debugging box -->
 	<div id="debuggingBox">
-		<label style="color: white;">Debugging Box</label> </br> <a onclick="alertSearchTerm();">Search Term to JSON</a> </br> <a onclick="left();">Previous</a> &nbsp;|&nbsp; <a onclick="right();">Next</a> </br> <a href="<%= url_for(:action => 'result', :controller => 'pages') %>">Result Page</a> </br></br> <a onclick="postSearch();">Post Search</a> </br>
+		<label style="color: white;">Debugging Box</label> </br> <a onclick="alertSearchTerm();">Search Term to JSON</a> </br> <a onclick="window.app.wizard.back();">Previous</a> &nbsp;|&nbsp; <a onclick="window.app.wizard.next();">Next</a> </br> <a href="<%= url_for(:action => 'result', :controller => 'pages') %>">Result Page</a> </br></br> <a onclick="postSearch();">Post Search</a> </br>
 	</div>
 	
 	<div id="topErudioLogoContainer">
@@ -49,7 +49,12 @@
 							</div>
 						</div>
 					</div>
-					<div id="seeMoreActivities" onclick="seeMoreActivities(this);"></div>
+					
+					<div id="activitiesWizardNextButton" class="wizardNextButton wizardNextButtonDisabled"></div>
+					
+					<div id="seeMoreActivitiesWrapper">
+						<div id="seeMoreActivities" class="seeMore" onclick="seeMoreActivities(this);"></div>
+					</div>				
 				</div>
 				
 				<div class="slideBox" id="slideBox2">
@@ -80,8 +85,8 @@
 	interpolate:/\{\{([\s\S]+?)\}\}/g
 	};
 
-	window.application.featuredActivities =<%= @json_featured_activities.html_safe%>;
-	window.application.allActivities = <%= @json_all_activities.html_safe%>;</script>
+	window.app.featuredActivities =<%= @json_featured_activities.html_safe%>;
+	window.app.allActivities = <%= @json_all_activities.html_safe%>;</script>
 
 	<!-- ACTIVITIES TEMPLATE -->
 	<script id="activityTemplate" type="text/template">

@@ -1,7 +1,16 @@
-window.application = {};
-window.application.searchTerm = {};
-window.application.searchTerm.activitiesIds = [];
-window.application.selectedActivities = [];
+// Create an initial context.
+window.app = {};
+
+// Initialize the Search Term object. This object is going to be used
+// to execute the final search query.
+window.app.searchTerm = {};
+window.app.searchTerm.activitiesIds = [];
+
+// Object to store all the related information to the activities section
+window.app.activitiesContext = {};
+window.app.activitiesContext.moreActivitiesDisplayed = false;
+
+
 
 // 
 // ON DOM READY
@@ -9,18 +18,26 @@ window.application.selectedActivities = [];
 // Init logic after page 'loading'
 //
 $(document).ready(function() {
+	
+	// Render the activities (featured activities and all activities).
 	var template = _.template($("#activityTemplate")[0].text, {
-		data : window.application.featuredActivities,
+		data : window.app.featuredActivities,
 		featured : true
 	});
 	$("#featuredActivitiesContainer").html(template);
 
 	var template = _.template($("#activityTemplate")[0].text, {
-		data : window.application.allActivities,
+		data : window.app.allActivities,
 		featured : false
 	});
 	$("#allActivitiesContainer").html(template);
 
+	// Initialize the Wizard component
+	window.app.wizard.initialize();
+	
+	
+	// Load the next button from the wizard
+	window.app.activitiesContext.activitiesWizardNextButton = $("#activitiesWizardNextButton");
 });
 
 //
@@ -41,11 +58,11 @@ function selectActivity(activityBox, isFeatured) {
 							// UNSELECT ACTIVITY
 							$(activityBox).removeClass("activitySelected");
 
-							indexOfActivityId = window.application.searchTerm.activitiesIds
+							indexOfActivityId = window.app.searchTerm.activitiesIds
 									.indexOf(activityId);
 
 							if (index === 0) {
-								window.application.searchTerm.activitiesIds
+								window.app.searchTerm.activitiesIds
 										.splice(indexOfActivityId, 1);
 							}
 
@@ -54,24 +71,57 @@ function selectActivity(activityBox, isFeatured) {
 							$(activityBox).addClass("activitySelected");
 
 							if (index === 0) {
-								window.application.searchTerm.activitiesIds
+								window.app.searchTerm.activitiesIds
 										.push(activityId);
 							}
 						}
 					});
-
+					
+	// TODO(rafael.chiti): This should not be here. I need to find a place to put all this logic together.
+	// Having observers ont he objects would be a nice solution. I need to research if underscore has any
+	// usefull utility or if we need to add any other framework.				
+	if (window.app.searchTerm.activitiesIds.length > 0) {
+		window.app.activitiesContext.activitiesWizardNextButton.removeClass("wizardNextButtonDisabled");
+		window.app.activitiesContext.activitiesWizardNextButton.attr('onclick', 'window.app.wizard.next()');
+	} else {
+		window.app.activitiesContext.activitiesWizardNextButton.addClass("wizardNextButtonDisabled");
+		window.app.activitiesContext.activitiesWizardNextButton.attr('onclick', '');
+	}
 }
 
 //
-// Show all the activities
+// Show all the activities / hide all the activities
 //
 function seeMoreActivities(seeMoreDiv) {
-	$('#featuredActivitiesContainerWrapper').hide("fade", {}, 500, function() {
-		$('#allActivitiesContainerWrapper').show('fade', {}, 500);
-	});
+	
+	if (window.app.activitiesContext.moreActivitiesDisplayed === false) {
+		
+		$('#featuredActivitiesContainerWrapper').hide("fade", {}, 500, function() {
+			$('#allActivitiesContainerWrapper').show('fade', {}, 500);
+		});
+		window.app.activitiesContext.moreActivitiesDisplayed = true;
+		$('#seeMoreActivities').switchClass('seeMore','seeLess','normal');
 
-	$(seeMoreDiv).fadeOut('slow');
+	} else {
+		
+		$('#allActivitiesContainerWrapper').hide("fade", {}, 500, function() {
+			$('#featuredActivitiesContainerWrapper').show('fade', {}, 500);
+		});
+		window.app.activitiesContext.moreActivitiesDisplayed = false;	
+		$('#seeMoreActivities').switchClass('seeLess','seeMore','normal');
+		
+	}
+
 }
+
+
+
+
+
+
+
+
+
 
 // ///////////////////////////////////////
 //
@@ -79,13 +129,17 @@ function seeMoreActivities(seeMoreDiv) {
 //
 // ///////////////////////////////////
 
-window.application.slider = {};
+// Wizard object
+window.app.wizard = {};
+window.app.wizard.slider = {};
 
-$(document).ready(function() {
-	var slider = window.application.slider;
+
+window.app.wizard.initialize = function() {
+
+	var slider = window.app.wizard.slider;
 	slider.current = 0;
 
-	setWidths();
+	window.app.wizard.setWidths();
 
 	// Bind the window resize "recalc"
 	$(window).resize(function() {
@@ -98,14 +152,14 @@ $(document).ready(function() {
 		});
 	});
 
-});
+}
 
 //
 // Recalculate the widths for the "sliding" boxes
 //
 //
-function setWidths() {
-	var slider = window.application.slider;
+window.app.wizard.setWidths = function() {
+	var slider = window.app.wizard.slider;
 
 	slider.totalBoxes = $('#wizardSlider .slideBox').length;
 	slider.sectionWidth = $('#wizardSliderWrapper').width();
@@ -122,9 +176,9 @@ function setWidths() {
 // Move the slider to the right, one step.
 //
 //
-function right() {
+window.app.wizard.next = function() {
 
-	var slider = window.application.slider;
+	var slider = window.app.wizard.slider;
 
 	slider.current++;
 
@@ -145,9 +199,9 @@ function right() {
 // Move the slider to the left, one step.
 //
 //
-function left() {
+window.app.wizard.back = function() {
 
-	var slider = window.application.slider;
+	var slider = window.app.wizard.slider;
 
 	slider.current--;
 	if (slider.current < 0) {
@@ -172,14 +226,14 @@ function left() {
 
 // TODO(rafael.chiti): Remove this. Just for debugging.
 function alertSearchTerm() {
-	alert(JSON.stringify(window.application.searchTerm));
+	alert(JSON.stringify(window.app.searchTerm));
 }
 // TODO(rafael.chiti): Remove this. Just for debugging.
 function postSearch() {
 	jqxhr = $.ajax({
 		type : 'POST',
 		url : 'http://localhost:3000/pages/testPage/home',
-		data : window.application.searchTerm,
+		data : window.app.searchTerm,
 		success : 'postSearchSuccessCB',
 		dataType : 'json'
 	});
