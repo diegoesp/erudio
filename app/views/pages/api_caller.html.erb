@@ -1,0 +1,50 @@
+<% content_for :head do %>
+	<script type="text/javascript"><%= render :partial => "api_caller.js" %></script>
+	<style><!--
+	<%= render :partial => "api_caller.css" %>
+	--></style>
+<% end %>
+
+<div align="center">
+
+  <table width="50%">
+	<tr>
+	  <td width="15%" align="right">
+		API
+	  </td>
+	  <td width="35%">
+		<select id="api_select" onchange="api_select_on_change()">
+		  <option id="1" selected="selected">api_search_teachers</option>
+		  <option id="2">api_login</option>
+		  <option id="3">api_logout</option>
+		  <option id="4">api_rate_a_teacher</option>
+		  <option id="5">api_get_teacher_rating</option>
+		  <option id="9999">custom</option>
+		</select>
+	  </td>
+	  <td width="15%" align="right">
+		API URL
+	  </td>
+	  <td width="35%">
+		<input type="text" id="api_url_text" disabled="disabled" size="45"/>
+	  </td>
+	</tr>
+	<tr>
+	  <td colspan="4" align="right">
+		<input type="button" value="Execute" onclick="execute_ajax_search()"/>
+	  </td>
+	</tr>
+	<tr>
+	  <td colspan="2" align="center">Parameters</td>
+	  <td colspan="2" align="center">Result</td>
+	</tr>
+	<tr>
+	  <td colspan="2" align="center"><textarea id="parameters_textarea" cols="40" rows="35"></textarea></td>
+	  <td colspan="2" align="center"><textarea id="result_textarea" cols="40" rows="35" disabled="disabled"></textarea>
+	  </td>
+	</tr>
+  </table>
+
+</div>
+
+<script type="text/javascript">api_select_on_change();</script>

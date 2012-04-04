@@ -4,9 +4,10 @@ Erudio::Application.routes.draw do
   root :to => 'pages#home'
 
   match "/home", :to => "pages#home"
-  match "/zone", :to => "pages#zone"
   # Deprecated. Should be erased when the real result page is implemented
   match "/result", :to => "pages#result"
+  # API caller for testing different APIs
+  match "/api_caller", :to => "pages#api_caller"
 
   # APIs for the web application
   match "/api_search_teachers", :to => "pages#api_search_teachers"
@@ -14,6 +15,7 @@ Erudio::Application.routes.draw do
   match "/api_logout", :to => "sessions#api_logout"
   match "/api_rate_a_teacher", :to => "users#api_rate_a_teacher"
   match "/api_get_teacher_rating", :to => "users#api_get_teacher_rating"
+
   # Deprecated. Should be erased when the real result page is implemented
   match "/result_search", :to => "pages#result_search"
 

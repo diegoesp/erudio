@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   protect_from_forgery
   respond_to :json
 
-  # Displays the homepage
+  # Displays the homepage (that contains the wizard)
   def home
     @json_all_activities = Activity.all.to_json
     @json_featured_activities = Activity.find_all_by_featured(true).to_json
@@ -94,6 +94,10 @@ class PagesController < ApplicationController
     @json_result = "[" + @json_result + "]"
 
     respond_with(@json_result)
+  end
+
+  # Displays the API caller testing page
+  def api_caller
   end
 
 end

@@ -25,21 +25,6 @@ describe PagesController do
     end
   end
 
-  describe "GET 'zone'" do
-
-    it "should be successful" do
-    get :zone
-      response.should be_success
-    end
-
-    it "should include a json for a list of zones" do
-      get :zone
-      @zone = [@zone]
-      response.should contain @zone.to_json.to_s
-    end
-  end
-
-
   describe "API testing", :type => :api do
 
     before(:each) do

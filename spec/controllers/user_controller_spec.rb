@@ -10,10 +10,10 @@ describe UsersController do
   describe "API testing", :type => :api do
 
     it "should raise an error because i'm not authenticated'" do
-
-      lambda do
-        get "api_rate_a_teacher", :format => "json", :teacher_id => @teacher.id, :rating => 2, :comment => "A questionable quality teacher"
-      end.should raise_error()
+      get "api_rate_a_teacher", :format => "json", :teacher_id => @teacher.id, :rating => 2, :comment => "A questionable quality teacher"
+      response.status.should == 402
+      json_data = JSON.parse(response.body, :object_class => Hash)
+      json_data["message"].should == "a user must be logged to rate a teacher"
     end
 
     describe "authenticated tests" do
