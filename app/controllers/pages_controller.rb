@@ -10,12 +10,9 @@ class PagesController < ApplicationController
   def home
     @json_all_activities = Activity.all.to_json
     @json_featured_activities = Activity.find_all_by_featured(true).to_json
-  end
-
-  # Displays the Zone selection page
-  def zone
     @json_all_zones = Zone.all.to_json
     @json_featured_zones = Zone.find_all_by_featured(true).to_json
+
   end
 
   # API for searching teachers
