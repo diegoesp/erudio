@@ -19,7 +19,6 @@ Erudio::Application.routes.draw do
   # Deprecated. Should be erased when the real result page is implemented
   match "/result_search", :to => "pages#result_search"
 
-
 	# The priority is based upon order of creation:
 	# first created -> highest priority.
 	

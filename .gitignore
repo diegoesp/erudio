@@ -22,3 +22,6 @@ erudio.esproj/
 
 # Ignore the RubyMine IDE files (Diego IDE)
 /.idea
+
+# Ignore assets generation for asset pipeline
+/public/assets

@@ -11,6 +11,8 @@ gem 'therubyracer'
 gem 'valid_email'
 gem 'multi_json', '~> 1.1.0'
 gem "webrat", "~> 0.7.3"
+gem 'faker', '1.0.1'                        # For sample_data.rake script
+gem "random_record", "~> 0.0.7"             # For sample_data.rake script
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,8 +26,6 @@ end
 group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', '~> 2.4.1.beta'
-  gem 'faker', '1.0.1'
-  gem "random_record", "~> 0.0.7"
   gem "yard", "0.7.5"
   gem "magic_encoding", "~> 0.0.2"
 end
