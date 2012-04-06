@@ -20,4 +20,16 @@ class ApplicationController < ActionController::Base
 
   end
 
+  before_filter :require_login
+
+  private
+
+  # Raises an exception if the user is not logged in the app
+  # @raise [Error] An error if the user is not logged in
+  def require_login
+
+    raise "a user must be logged to execute this action" unless signed_in?
+
+  end
+
 end
