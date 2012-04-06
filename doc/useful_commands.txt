@@ -1,8 +1,20 @@
 # annotate model files
 bundle exec annotate --position before
+
 # drop all tables for regeneration
 bundle exec rake db:drop
-# migrate all tables to database
+
+# migrate all tables to database (add RAILS_ENV=production to migrate tables to production database)
 bundle exec rake db:migrate
+
+# Create data using the rails data script in lib/tasks/sample_data.rake (You can use RAILS_ENV also)
+bundle exec rake db:populate
+
 # prepare test database
 bundle exec rake db:test:prepare
+
+# Precompile assets for the asset pipeline. They are deployed on public/assets by default
+bundle exec rake assets:precompile
+
+# Switch -e starts the rails server into a determined mode (production|staging|development|test). In this case, production.
+rails server -e production

@@ -6,4 +6,7 @@
  *= require_tree .
 */
 
-//= require sweet_checkbox
+/* ...
+*= require sweet_checkbox
+*= require_tree .
+*/

@@ -130,7 +130,7 @@ namespace :db do
       user = User.random
       Random.new.rand(1..5).times do
         rating = Random.new.rand(1..5)
-        user = User.random while user.has_rated_teacher?(true)
+        user = User.random while user.has_rated_teacher?(teacher)
         teacher.ratings.create(:user_id => user.id, :rating => rating, :comment => Faker::Lorem.paragraph)
       end
 
