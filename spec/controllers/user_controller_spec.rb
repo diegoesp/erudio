@@ -11,7 +11,7 @@ describe UsersController do
 
     it "should raise an error because i'm not authenticated'" do
       get "api_rate_a_teacher", :format => "json", :teacher_id => @teacher.id, :rating => 2, :comment => "A questionable quality teacher"
-      response.status.should == 402
+      response.status.should == 406
       json_data = JSON.parse(response.body, :object_class => Hash)
       json_data["message"].should == "a user must be logged to rate a teacher"
     end
