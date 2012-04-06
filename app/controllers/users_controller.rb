@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   protect_from_forgery
   respond_to :json
+  skip_before_filter :require_login, :only => [:api_get_teacher_rating]
 
   # API that allows the user currently logged to rate a teacher
   #
@@ -20,8 +21,6 @@ class UsersController < ApplicationController
     raise "must specify teacher_id parameter" unless !teacher_id.nil?
     raise "must specify rating parameter" unless !rating.nil?
     raise "must specify comment parameter" unless !comment.nil?
-
-    raise "a user must be logged to rate a teacher" unless signed_in?
 
     rating = current_user.rate_a_teacher(teacher_id, rating, comment)
 

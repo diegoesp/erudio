@@ -5,6 +5,8 @@ class SessionsController < ApplicationController
 
   respond_to :json
 
+  skip_before_filter :require_login, :only => [:api_login]
+
   # Logs the user into the application
   #
   # @param [String] email User email used as username
