@@ -1,0 +1,104 @@
+.resultBox {
+	width: 620px;
+	height: 108px;
+	border: 1px solid #c0bdb0;
+	position: relative;
+	border-radius: 5px;
+}
+.resultBoxOdd {
+	background-color: #fdfbe9;
+}
+.resultBoxEven {
+	background-color: #fefefe;
+}
+.resultBox .resultThumbnail {
+	margin-left: 20px;
+	margin-top: 12px;
+	outline: 1px solid #dad8c9;
+	padding: 2px;
+	background-color: white;
+	width: 64px;
+	height: 54px;
+}
+.resultBox .reputationBox {
+	margin-left: 15px;
+	margin-top: 5px;
+	width: 80px;
+	height: 20px;
+}
+.resultBox .reputationBox span {
+	width: 16px;
+	height: 17px;
+	display: block;
+	float: left;
+}
+.resultBox .teacherReputationYellowStar {
+	background: url(/assets/result_item_sprite.png) no-repeat -89px -41px;
+}
+.resultBox .teacherReputationBlackStar {
+	background: url(/assets/result_item_sprite.png) no-repeat -107px -41px;
+}
+.resultBox .detailsSection {
+	width: 500px;
+	height: 84px;
+	position: absolute;
+	right: 10px;
+	top: 13px;
+	text-shadow: 0 0 2px #dadada;;
+}
+.resultBox .teacherName {
+	color: #766958;
+	font-size: 13px;
+}
+.resultBox .teacherDescription {
+	color: #766958;
+	font-size: 13px;
+}
+.resultBox .showDetails {
+	cursor: pointer;
+	background: url(/assets/result_item_sprite.png) no-repeat 0px -4px;
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+.resultBox .tagsSection {
+	font-size: 10px;
+	position: absolute;
+	bottom: 0px;
+	width: 400px;
+	height: 23px;
+	clear: both;
+	overflow: hidden;
+}
+.resultBox .tagContainer {
+	float: left;
+	margin-right: 5px;
+}
+.resultBox .tagLeftBg {
+	background: url(/assets/tag_sprite.png) no-repeat 0px 0px;
+	width: 14px;
+	height: 22px;
+	float: left;
+}
+.resultBox .tagMiddleBg {
+	background: url(/assets/tag_sprite.png) repeat-x 0px -25px;
+	height: 22px;
+	float: left;
+}
+.resultBox .tagText {
+	position: relative;
+	top: 5px;
+	/* There is a little trick here that makes some especial
+	 behavior on the tag and allow us to have spaces on the left and right*/
+	left: 3px;
+	margin-right: 10px;
+}
+.resultBox .tagRightBg {
+	background: url(/assets/tag_sprite.png) no-repeat -19px 0px;
+	height: 22px;
+	width: 2px;
+	float: left;
+}
+
