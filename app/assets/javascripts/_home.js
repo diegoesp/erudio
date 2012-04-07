@@ -1,44 +1,14 @@
-// Create an initial context.
-window.app = {};
+// Context for the home page.
+app.home = {};
 
 // Initialize the Search Term object. This object is going to be used
 // to execute the final search query.
-window.app.searchTerm = {};
-window.app.searchTerm.activitiesIds = [];
+app.home.searchTerm = {};
+app.home.searchTerm.activitiesIds = [];
 
 // Object to store all the related information to the activities section
-window.app.activitiesContext = {};
-window.app.activitiesContext.moreActivitiesDisplayed = false;
-
-
-
-// 
-// ON DOM READY
-//
-// Init logic after page 'loading'
-//
-$(document).ready(function() {
-	
-	// Render the activities (featured activities and all activities).
-	var template = _.template($("#activityTemplate")[0].text, {
-		data : window.app.featuredActivities,
-		featured : true
-	});
-	$("#featuredActivitiesContainer").html(template);
-
-	var template = _.template($("#activityTemplate")[0].text, {
-		data : window.app.allActivities,
-		featured : false
-	});
-	$("#allActivitiesContainer").html(template);
-
-	// Initialize the Wizard component
-	window.app.wizard.initialize();
-	
-	
-	// Load the next button from the wizard
-	window.app.activitiesContext.activitiesWizardNextButton = $("#activitiesWizardNextButton");
-});
+app.home.activitiesContext = {};
+app.home.activitiesContext.moreActivitiesDisplayed = false;
 
 //
 // A few dirty things are being done here in order to select an activity
@@ -46,7 +16,7 @@ $(document).ready(function() {
 // When the user selects an activity from the first step on the wizard
 // the searchTerm object is updated.
 //
-function selectActivity(activityBox, isFeatured) {
+app.home.selectActivity = function(activityBox, isFeatured) {
 	activityId = $(activityBox).find("input[type=hidden]").attr("value");
 
 	$("#activitiesSection")
@@ -58,11 +28,11 @@ function selectActivity(activityBox, isFeatured) {
 							// UNSELECT ACTIVITY
 							$(activityBox).removeClass("activitySelected");
 
-							indexOfActivityId = window.app.searchTerm.activitiesIds
+							indexOfActivityId = app.home.searchTerm.activitiesIds
 									.indexOf(activityId);
 
 							if (index === 0) {
-								window.app.searchTerm.activitiesIds
+								app.home.searchTerm.activitiesIds
 										.splice(indexOfActivityId, 1);
 							}
 
@@ -71,7 +41,7 @@ function selectActivity(activityBox, isFeatured) {
 							$(activityBox).addClass("activitySelected");
 
 							if (index === 0) {
-								window.app.searchTerm.activitiesIds
+								app.home.searchTerm.activitiesIds
 										.push(activityId);
 							}
 						}
@@ -80,26 +50,26 @@ function selectActivity(activityBox, isFeatured) {
 	// TODO(rafael.chiti): This should not be here. I need to find a place to put all this logic together.
 	// Having observers ont he objects would be a nice solution. I need to research if underscore has any
 	// usefull utility or if we need to add any other framework.				
-	if (window.app.searchTerm.activitiesIds.length > 0) {
-		window.app.activitiesContext.activitiesWizardNextButton.removeClass("wizardNextButtonDisabled");
-		window.app.activitiesContext.activitiesWizardNextButton.attr('onclick', 'window.app.wizard.next()');
+	if (app.home.searchTerm.activitiesIds.length > 0) {
+		app.home.activitiesContext.activitiesWizardNextButton.removeClass("wizardNextButtonDisabled");
+		app.home.activitiesContext.activitiesWizardNextButton.attr('onclick', 'app.home.wizard.next()');
 	} else {
-		window.app.activitiesContext.activitiesWizardNextButton.addClass("wizardNextButtonDisabled");
-		window.app.activitiesContext.activitiesWizardNextButton.attr('onclick', '');
+		app.home.activitiesContext.activitiesWizardNextButton.addClass("wizardNextButtonDisabled");
+		app.home.activitiesContext.activitiesWizardNextButton.attr('onclick', '');
 	}
 }
 
 //
 // Show all the activities / hide all the activities
 //
-function seeMoreActivities(seeMoreDiv) {
+app.home.seeMoreActivities = function(seeMoreDiv) {
 	
-	if (window.app.activitiesContext.moreActivitiesDisplayed === false) {
+	if (app.home.activitiesContext.moreActivitiesDisplayed === false) {
 		
 		$('#featuredActivitiesContainerWrapper').hide("fade", {}, 500, function() {
 			$('#allActivitiesContainerWrapper').show('fade', {}, 500);
 		});
-		window.app.activitiesContext.moreActivitiesDisplayed = true;
+		app.home.activitiesContext.moreActivitiesDisplayed = true;
 		$('#seeMoreActivities').switchClass('seeMore','seeLess','normal');
 
 	} else {
@@ -107,7 +77,7 @@ function seeMoreActivities(seeMoreDiv) {
 		$('#allActivitiesContainerWrapper').hide("fade", {}, 500, function() {
 			$('#featuredActivitiesContainerWrapper').show('fade', {}, 500);
 		});
-		window.app.activitiesContext.moreActivitiesDisplayed = false;	
+		app.home.activitiesContext.moreActivitiesDisplayed = false;	
 		$('#seeMoreActivities').switchClass('seeLess','seeMore','normal');
 		
 	}
@@ -130,15 +100,15 @@ function seeMoreActivities(seeMoreDiv) {
 // ///////////////////////////////////
 
 // Wizard object
-window.app.wizard = {};
-window.app.wizard.slider = {};
+app.home.wizard = {};
+app.home.wizard.slider = {};
 
 //
 // Recalculate the widths for the "sliding" boxes
 //
 //
-window.app.wizard.setWidths = function() {
-	var slider = window.app.wizard.slider;
+app.home.wizard.setWidths = function() {
+	var slider = app.home.wizard.slider;
 
 	slider.totalBoxes = $('#wizardSlider .slideBox').length;
 	slider.sectionWidth = $('#wizardSliderWrapper').width();
@@ -152,16 +122,16 @@ window.app.wizard.setWidths = function() {
 }
 
 
-window.app.wizard.initialize = function() {
+app.home.wizard.initialize = function() {
 
-	var slider = window.app.wizard.slider;
+	var slider = app.home.wizard.slider;
 	slider.current = 0;
 
-	window.app.wizard.setWidths();
+	app.home.wizard.setWidths();
 
 	// Bind the window resize "recalc"
 	$(window).resize(function() {
-		window.app.wizard.setWidths();
+		app.home.wizard.setWidths();
 
 		valueToMove = parseInt(-slider.sectionWidth * slider.current)
 		$('#wizardSlider').stop().animate({
@@ -178,9 +148,9 @@ window.app.wizard.initialize = function() {
 // Move the slider to the right, one step.
 //
 //
-window.app.wizard.next = function() {
+app.home.wizard.next = function() {
 
-	var slider = window.app.wizard.slider;
+	var slider = app.home.wizard.slider;
 
 	slider.current++;
 
@@ -201,9 +171,9 @@ window.app.wizard.next = function() {
 // Move the slider to the left, one step.
 //
 //
-window.app.wizard.back = function() {
+app.home.wizard.back = function() {
 
-	var slider = window.app.wizard.slider;
+	var slider = app.home.wizard.slider;
 
 	slider.current--;
 	if (slider.current < 0) {
@@ -227,29 +197,7 @@ window.app.wizard.back = function() {
 // ////
 
 // TODO(rafael.chiti): Remove this. Just for debugging.
-function alertSearchTerm() {
-	alert(JSON.stringify(window.app.searchTerm));
-}
-// TODO(rafael.chiti): Remove this. Just for debugging.
-function postSearch() {
-	jqxhr = $.ajax({
-		type : 'POST',
-		url : 'http://localhost:3000/pages/testPage/home',
-		data : window.app.searchTerm,
-		success : 'postSearchSuccessCB',
-		dataType : 'json'
-	});
-	// jqxhr.error = "postSearchFailCB";
-
-}
-// TODO(rafael.chiti): Remove this. Just for debuggin (the call back function
-// for the ajax call).
-function postSearchSuccessCB(data, textStatus, jqXHR) {
-	alert("response succeed");
+app.home.alertSearchTerm = function() {
+	alert(JSON.stringify(app.home.searchTerm));
 }
 
-// TODO(rafael.chiti): Remove this. Just for debuggin (the call back function
-// for the ajax call).
-function postSearchFailCB() {
-	alert("request failed");
-}

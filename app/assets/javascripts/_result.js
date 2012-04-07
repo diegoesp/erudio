@@ -1,49 +1,21 @@
-window.application = {};
-window.application.searchTerm = {};
+// Initial context for the Result page.
+app.result = {};
 
-//
-// DOCUMENT READY
-//
-// Init logic after page 'loading'
-//
-$(document).ready(function() {
+app.result.searchTerm = {};
 
-	// Initialize the SweetCheckboxes by calling the config method from the
-	// library
-	configureSweetCheckboxes();
 
-	// Bind the "results" JSON object to the template and render it.
-	var template = _.template($("#resultTemplate")[0].text, {
-		data : window.application.results
-	});
-	$("#resultsColumn").append(template);
-
-	// Load all the checkboxes from the filter section and
-	// synch them with the search term status from the server.
-	// TODO(rafael.chiti) This logic should be on the server, changing the
-	// status of the chekboxes after loading the page is not "nice".
-	$(".sweetCheckbox").each(function(index) {
-		if (window.application.searchTerm[this.title] === true) {
-			$(this).trigger('turnOn');
-		}
-	});
-
-	// Configure the ToolTipsy tool.
-	initializeTooltipsy();
-
-});
 
 // Update the searchTerm JSON object based on the state of the 'clicked'
 // checkbox.
 // Each time the user clicks any of the options from the filter
 // this functions is triggered.
-function updateBoolFilter(checkBox, filterOption) {
-	window.application.searchTerm[filterOption] = !$(checkBox).triggerHandler(
+app.result.updateBoolFilter = function(checkBox, filterOption) {
+	app.result.searchTerm[filterOption] = !$(checkBox).triggerHandler(
 			'isOn');
-	executeAjaxSearch();
+	app.result.executeAjaxSearch();
 }
 
-function executeAjaxSearch() {
+app.result.executeAjaxSearch = function() {
 	$.ajax({
 		url : "result_search?format=json",
 		success : function(response) {
@@ -62,7 +34,7 @@ function executeAjaxSearch() {
 }
 
 // Initialize and configure the tooltips for this page (tooltipsy library)
-function initializeTooltipsy() {
+app.result.initializeTooltipsy = function() {
 	$('.hasTooltipsy').tooltipsy({
 		offset : [ -10, 0 ],
 		css : {
@@ -86,7 +58,7 @@ function initializeTooltipsy() {
 // ////////////////////////////////////////////////////////////
 
 // TODO(rafael.chiti): Remove this. Just for debugging.
-function alertSearchTerm() {
+app.result.alertSearchTerm = function() {
 
-	alert(JSON.stringify(window.application.searchTerm));
+	alert(JSON.stringify(app.result.searchTerm));
 }

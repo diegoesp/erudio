@@ -1,11 +1,43 @@
 <% content_for :head do %>
-<script type="text/javascript"><%= render :partial => "home.js" %></script>
+<script type="text/javascript">
+
+	// 
+	// ON DOM READY
+	//
+	// Init logic after page 'loading'
+	//
+	$(document).ready(function() {
+		
+		// Render the activities (featured activities and all activities).
+		var template = _.template($("#activityTemplate")[0].text, {
+			data : app.home.featuredActivities,
+			featured : true
+		});
+		$("#featuredActivitiesContainer").html(template);
+	
+		var template = _.template($("#activityTemplate")[0].text, {
+			data : app.home.allActivities,
+			featured : false
+		});
+		$("#allActivitiesContainer").html(template);
+	
+		// Initialize the Wizard component
+		app.home.wizard.initialize();
+		
+		
+		// Load the next button from the wizard
+		app.home.activitiesContext.activitiesWizardNextButton = $("#activitiesWizardNextButton");
+	});
+
+
+</script>
 <% end %>
+
 
 <div id="pageSection">
 	<!-- Debugging box -->
 	<div id="debuggingBox">
-		<label style="color: white;">Debugging Box</label> </br> <a onclick="alertSearchTerm();">Search Term to JSON</a> </br> <a onclick="window.app.wizard.back();">Previous</a> &nbsp;|&nbsp; <a onclick="window.app.wizard.next();">Next</a> </br> <a href="<%= url_for(:action => 'result', :controller => 'pages') %>">Result Page</a> </br></br> <a onclick="postSearch();">Post Search</a> </br>
+		<label style="color: white;">Debugging Box</label> </br> <a onclick="app.home.alertSearchTerm();">Search Term to JSON</a> </br> <a onclick="app.home.wizard.back();">Previous</a> &nbsp;|&nbsp; <a onclick="app.home.wizard.next();">Next</a> </br> <a href="<%= url_for(:action => 'result', :controller => 'pages') %>">Result Page</a> </br></br> <a onclick="postSearch();">Post Search</a> </br>
 	</div>
 	
 	<div id="topErudioLogoContainer">
@@ -49,7 +81,7 @@
 					<div id="activitiesWizardNextButton" class="wizardNextButton wizardNextButtonDisabled"></div>
 					
 					<div id="seeMoreActivitiesWrapper">
-						<div id="seeMoreActivities" class="seeMore" onclick="seeMoreActivities(this);"></div>
+						<div id="seeMoreActivities" class="seeMore" onclick="app.home.seeMoreActivities(this);"></div>
 					</div>				
 				</div>
 				
@@ -81,15 +113,15 @@
 	interpolate:/\{\{([\s\S]+?)\}\}/g
 	};
 
-	window.app.featuredActivities =<%= @json_featured_activities.html_safe%>;
-	window.app.allActivities = <%= @json_all_activities.html_safe%>;</script>
+	app.home.featuredActivities =<%= @json_featured_activities.html_safe%>;
+	app.home.allActivities = <%= @json_all_activities.html_safe%>;</script>
 
 	<!-- ACTIVITIES TEMPLATE -->
 	<script id="activityTemplate" type="text/template">
 		{[ _.each(data, function(activity) { ]}
 	
 			<div class="{{featured === true ? "featuredActivityContainer" : "allActivityContainer"}}">
-				<div class="activityBox activityBox_{{activity.id}}" onclick="selectActivity(this, {{featured}});">
+				<div class="activityBox activityBox_{{activity.id}}" onclick="app.home.selectActivity(this, {{featured}});">
 					<span>{{ activity.name }}</span>
 					<input type="hidden" name="activityId" id="{{featured === true ? 'featured_' : ''}}activityId_{{activity.id}}" value="{{activity.id}}"/>
 				</div>

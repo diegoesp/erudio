@@ -5,7 +5,14 @@
 // the compiled file.
 //
 
+//= require_self
 //= require jquery
 //= require jquery-ui
-//= require_tree .
 //= require sweet_checkbox
+//= require tooltipsy
+//= require underscore
+//= require_tree .
+
+// Create the initial context. All the functions, page related objects, etc
+// are going to be stored inside this object.
+window.app = {};
