@@ -1,0 +1,53 @@
+#pageSection {
+	width: 100%;
+	height: 100%;
+	min-width: 1100px;
+	background-image: url(/assets/background_pattern.png);
+}
+
+/* Header and top section */
+#headerSection {
+	width: 100%;
+	height: 120px;
+	position: relative;
+}
+
+#pageTopFrame {
+	background-repeat: repeat-x;
+	background-image: url(/assets/top_frame.png);
+	width: 100%;
+	height: 37px; /* Height of the image */
+}
+
+#topErudioLogoContainer {
+	width: 100%;
+	height: 112px;
+	float: left;
+}
+
+#topErudioLogo {
+	width: 147px;
+	height: 112px;
+	background-image: url(/assets/top_logo.png);
+	margin: auto;
+}
+
+#authenticationBox {
+	width: 200px;
+	height: 50px;
+	background-color: #a9a9a9;
+	position: absolute;
+	right: 30px;
+	top: 50px;
+}
+
+/* Footer layout */
+#footerSection {
+	color: #fafafa;
+	background-color: #3c3c3c;
+	width: 100%;
+	height: 400px;
+	clear: left;
+}
+
+

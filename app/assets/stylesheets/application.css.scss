@@ -1,0 +1,37 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+*/
+
+/* 
+/* We need the reset file first.
+*= require reset
+*= require_self
+*= require_tree .
+*= require sweet_checkbox
+*/
+
+/*	Remove this! (debug box) */
+#debuggingBox {
+	position: fixed;
+	top: 30px;
+	left: 15px;
+	color: rgba(255, 255, 255, .6);
+	font-size: small;
+	background-color: rgba(41, 41, 41, .2);
+	border: 1px dashed gray;
+	width: 200px;
+	height: 60px;
+	z-index: 100;
+}
+
+#debuggingBox a {
+	cursor: pointer;
+}
+
+body {
+	font-family: "Century Gothic", "Geneva", "Helvetica";
+	color: #777777;
+	margin: 0px;
+}

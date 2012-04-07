@@ -1,0 +1,36 @@
+#searchWizardSection {
+
+	position: relative;
+	width: 100%;
+	height: 300px;
+	clear: left;
+	background-color: #f4f4f4;
+	padding-top: 50px;
+	
+	#wizardSliderWrapper {
+		height: 100%;
+		position: relative;
+		
+		#wizardSlider {
+			position: absolute;
+			clear: both;
+			height: 100%;
+		
+		
+			.slideBox {
+				height: 100%;
+				text-align: center;
+				float: left;
+				position: relative;
+			}
+			#slideBox2 {
+				background-color: rgba(10, 10, 10, .3);
+			}
+			#slideBox3 {
+				background-color: rgba(200, 5, 66, .3);
+			}	
+		}
+	}
+	
+}
+

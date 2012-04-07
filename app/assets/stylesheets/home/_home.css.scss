@@ -1,0 +1,58 @@
+/* Welcome section */
+
+#welcomeSection {
+	width: 100%;
+	height: 180px;
+	
+	#slogan {
+		margin: auto;
+		display: block;
+	}
+}
+
+#selectTeacherLabelImageWrapper {
+	width: 100%;
+	height: 80px;
+	position: absolute;
+	top: 310px;
+	z-index: 1;
+	
+	#selectTeacherLabelImage {
+		display: block;
+		margin: auto;
+	}
+}
+
+
+/* Wizard Button */
+
+@mixin wizardButtonCommon {
+	width: 120px;
+	height: 120px;
+	background: url(/assets/next_back_sprite.png) no-repeat;
+	position: absolute;
+	top: 50px;
+	cursor: pointer;
+}
+
+#searchWizardSection {
+
+	.wizardNextButton {
+		@include wizardButtonCommon;
+		background-position: 0px 0px;
+		right: 70px;
+	}
+	.wizardNextButtonDisabled {
+		background-position: 0px -240px;
+	}
+	
+	.wizardBackButton {
+		@include wizardButtonCommon;
+		background-position: 0px -120px;
+		left: 70px;
+	}
+	.wizardBackButtonDisabled {
+		background-position: 0px -360px;
+	}
+	
+}
