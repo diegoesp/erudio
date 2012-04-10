@@ -1,117 +1,138 @@
 <!-- HEAD SECTION -->
 <% content_for :head do %>
-
-	<script type="text/javascript"><%= render :partial => "result.js" %></script>
-
+<script type="text/javascript">
+	//
+	// DOCUMENT READY
+	//
+	// Init logic after page 'loading'
+	//
+	$(document).ready(function() {
+	
+		// Initialize the SweetCheckboxes by calling the config method from the
+		// library
+		configureSweetCheckboxes();
+	
+		// Bind the "results" JSON object to the template and render it.
+		var template = _.template($("#resultTemplate")[0].text, {
+			data : app.result.results
+		});
+		$("section#results").append(template);
+	
+		// Load all the checkboxes from the filter section and
+		// synch them with the search term status from the server.
+		// TODO(rafael.chiti) This logic should be on the server, changing the
+		// status of the chekboxes after loading the page is not "nice".
+		$(".sweetCheckbox").each(function(index) {
+			if (app.result.searchTerm[this.title] === true) {
+				$(this).trigger('turnOn');
+			}
+		});
+	
+		// Configure the ToolTipsy tool.
+		app.result.initializeTooltipsy();
+	
+	});
+</script>
 <% end %>
 
 
-<!-- BODY SECTION -->
-
-
-<div id="pageSection">
-	<!-- Debugging box -->
+<!-- Remove this, just the debug box -->
+<% content_for :debug_box do %>
 	<div id="debuggingBox">
 		<label style="color: white;">Debugging Box</label> </br>
 		<a href="<%= url_for(:action => 'home', :controller => 'pages') %>">Home Page</a> </br>
-		<a onclick="alertSearchTerm();">Search Term to JSON</a>	</br>
+		<a onclick="app.result.alertSearchTerm();">Search Term to JSON</a>	</br>
 	</div>
+<% end %>
 
-	<div id="topErudioLogoContainer">
-		<div id="topErudioLogo"></div>
-	</div>
-	<div id="pageTopFrame"></div>
+<% content_for :body_class do %>
+	class="result_page"
+<% end %>
 
-	<div id="headerSection">
-		<div id="authenticationBox"></div>
-	</div>
+<section id="main_content">
 
-	<div id="resultSection">
-		<div id="resultsColumn">
-		</div>
 
-		<!-- [START] FILTER SECTION - ACOMODAR!!!! -->
-		<div id="filterColumn">
-			<div class="filterHeaderRowContainer">
-				<div class="filterRowLeftCommon filterHeaderLeftCorner"></div>
-				<div class="filterRowMiddleCommon filterHeaderLeftMiddle"></div>
-				<div class="filterRowRightCommon filterHeaderRightCorner"></div>
-				<div class="filterHeaderTitle">Filtrar Resultados</div>
-			</div>
-
-			<!-- ZONE -->
-			<div class="filterChildRowContainerCommon">
-				<div class="filterRowLeftCommon filterOddRowLeft"></div>
-				<div class="filterRowMiddleCommon filterOddRowMiddle"></div>
-				<div class="filterRowRightCommon filterOddRowRight"></div>
-				<div class="filterOddRowContent">
-					<div style="float: left;">Zona</div>
-					<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
-						<div class="sweetCheckbox" title="zone" onclick="updateBoolFilter(this, this.title)"></div>
+			<section id="results">
+			</section>
+	
+			<!-- [START] FILTER SECTION - ACOMODAR!!!! -->
+			<section id="filters">
+				<div class="filterHeaderRowContainer">
+					<div class="filterRowLeftCommon filterHeaderLeftCorner"></div>
+					<div class="filterRowMiddleCommon filterHeaderLeftMiddle"></div>
+					<div class="filterRowRightCommon filterHeaderRightCorner"></div>
+					<div class="filterHeaderTitle">Filtrar Resultados</div>
+				</div>
+	
+				<!-- ZONE -->
+				<div class="filterChildRowContainerCommon">
+					<div class="filterRowLeftCommon filterOddRowLeft"></div>
+					<div class="filterRowMiddleCommon filterOddRowMiddle"></div>
+					<div class="filterRowRightCommon filterOddRowRight"></div>
+					<div class="filterOddRowContent">
+						<div style="float: left;">Zona</div>
+						<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
+							<div class="sweetCheckbox" title="zone" onclick="app.result.updateBoolFilter(this, this.title)"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<!-- PHONE -->
-			<div class="filterChildRowContainerCommon">
-				<div class="filterRowLeftCommon filterEvenRowLeft"></div>
-				<div class="filterRowMiddleCommon filterEvenRowMiddle"></div>
-				<div class="filterRowRightCommon filterEvenRowRight"></div>
-				<div class="filterEvenRowContent">
-					<div style="float: left;">Telefono</div>
-					<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
-						<div class="sweetCheckbox" title="phone" onclick="updateBoolFilter(this, this.title)"></div>
+	
+				<!-- PHONE -->
+				<div class="filterChildRowContainerCommon">
+					<div class="filterRowLeftCommon filterEvenRowLeft"></div>
+					<div class="filterRowMiddleCommon filterEvenRowMiddle"></div>
+					<div class="filterRowRightCommon filterEvenRowRight"></div>
+					<div class="filterEvenRowContent">
+						<div style="float: left;">Telefono</div>
+						<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
+							<div class="sweetCheckbox" title="phone" onclick="app.result.updateBoolFilter(this, this.title)"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<!-- EMAIL -->
-			<div class="filterChildRowContainerCommon">
-				<div class="filterRowLeftCommon filterOddRowLeft"></div>
-				<div class="filterRowMiddleCommon filterOddRowMiddle"></div>
-				<div class="filterRowRightCommon filterOddRowRight"></div>
-				<div class="filterOddRowContent">
-					<div style="float: left;">Mail</div>
-					<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" class="hasTooltipsy" style="float: right;">
-						<div class="sweetCheckbox" title="email"  onclick="updateBoolFilter(this, this.title)"></div>
+	
+				<!-- EMAIL -->
+				<div class="filterChildRowContainerCommon">
+					<div class="filterRowLeftCommon filterOddRowLeft"></div>
+					<div class="filterRowMiddleCommon filterOddRowMiddle"></div>
+					<div class="filterRowRightCommon filterOddRowRight"></div>
+					<div class="filterOddRowContent">
+						<div style="float: left;">Mail</div>
+						<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" class="hasTooltipsy" style="float: right;">
+							<div class="sweetCheckbox" title="email"  onclick="app.result.updateBoolFilter(this, this.title)"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<!-- COMMUTE -->
-			<div class="filterChildRowContainerCommon">
-				<div class="filterRowLeftCommon filterEvenRowLeft"></div>
-				<div class="filterRowMiddleCommon filterEvenRowMiddle"></div>
-				<div class="filterRowRightCommon filterEvenRowRight"></div>
-				<div class="filterEvenRowContent">
-					<div style="float: left;">A Domicilio</div>
-					<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
-						<div class="sweetCheckbox" title="commute" onclick="updateBoolFilter(this, this.title)"></div>
+	
+				<!-- COMMUTE -->
+				<div class="filterChildRowContainerCommon">
+					<div class="filterRowLeftCommon filterEvenRowLeft"></div>
+					<div class="filterRowMiddleCommon filterEvenRowMiddle"></div>
+					<div class="filterRowRightCommon filterEvenRowRight"></div>
+					<div class="filterEvenRowContent">
+						<div style="float: left;">A Domicilio</div>
+						<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
+							<div class="sweetCheckbox" title="commute" onclick="app.result.updateBoolFilter(this, this.title)"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<!-- HAS PRICE -->
-			<div class="filterChildRowContainerCommon">
-				<div class="filterRowLeftCommon filterOddRowLeft"></div>
-				<div class="filterRowMiddleCommon filterOddRowMiddle"></div>
-				<div class="filterRowRightCommon filterOddRowRight"></div>
-				<div class="filterOddRowContent">
-					<div style="float: left;">Tiene Precio</div>
-					<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
-						<div class="sweetCheckbox" title="price" onclick="updateBoolFilter(this, this.title)"></div>
+	
+				<!-- HAS PRICE -->
+				<div class="filterChildRowContainerCommon">
+					<div class="filterRowLeftCommon filterOddRowLeft"></div>
+					<div class="filterRowMiddleCommon filterOddRowMiddle"></div>
+					<div class="filterRowRightCommon filterOddRowRight"></div>
+					<div class="filterOddRowContent">
+						<div style="float: left;">Tiene Precio</div>
+						<div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
+							<div class="sweetCheckbox" title="price" onclick="app.result.updateBoolFilter(this, this.title)"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<!-- [END] FILTER SECTION -->
-	</div>
+				
+			</section>
+			<!-- [END] FILTER SECTION -->
 
-	<div id="footerSection">
-		Footer
-	</div>
-
-</div>
+</section>
 
 <script  type="text/javascript">
 _.templateSettings = {
@@ -173,6 +194,6 @@ _.templateSettings = {
 
 
 <script>
-	window.application.searchTerm = {"zone": false, "phone": true, "commute": false, "price": true, "email": false};
-	window.application.results = [<%=@json_result.html_safe%>];
+	app.result.searchTerm = {"zone": false, "phone": true, "commute": false, "price": true, "email": false};
+	app.result.results = [<%=@json_result.html_safe%>];
 </script>

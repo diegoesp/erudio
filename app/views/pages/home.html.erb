@@ -1,95 +1,125 @@
 <% content_for :head do %>
-<script type="text/javascript"><%= render :partial => "home.js" %></script>
+<script type="text/javascript">
+
+	// 
+	// ON DOM READY
+	//
+	// Init logic after page 'loading'
+	//
+	$(document).ready(function() {
+		
+		// Render the activities (featured activities and all activities).
+		var template = _.template($("#activityTemplate")[0].text, {
+			data : app.home.featuredActivities,
+			featured : true
+		});
+		$("#featuredActivitiesContainer").html(template);
+	
+		var template = _.template($("#activityTemplate")[0].text, {
+			data : app.home.allActivities,
+			featured : false
+		});
+		$("#allActivitiesContainer").html(template);
+	
+		// Initialize the Wizard component
+		app.home.wizard.initialize();
+		
+		
+		// Load the next button from the wizard
+		app.home.activitiesContext.activitiesWizardNextButton = $("#activitiesWizardNextButton");
+	});
+
+
+</script>
 <% end %>
 
-<div id="pageSection">
-	<!-- Debugging box -->
+<!-- Remove this, just the debug box -->
+<% content_for :debug_box do %>
 	<div id="debuggingBox">
-		<label style="color: white;">Debugging Box</label> </br> <a onclick="alertSearchTerm();">Search Term to JSON</a> </br> <a onclick="window.app.wizard.back();">Previous</a> &nbsp;|&nbsp; <a onclick="window.app.wizard.next();">Next</a> </br> <a href="<%= url_for(:action => 'result', :controller => 'pages') %>">Result Page</a> </br></br> <a onclick="postSearch();">Post Search</a> </br>
+		<label style="color: white;">Debugging Box</label> </br> <a onclick="app.home.alertSearchTerm();">Search Term to JSON</a> </br> <a onclick="app.home.wizard.back();">Previous</a> &nbsp;|&nbsp; <a onclick="app.home.wizard.next();">Next</a> </br> <a href="<%= url_for(:action => 'result', :controller => 'pages') %>">Result Page</a> </br></br> <a onclick="postSearch();">Post Search</a> </br>
 	</div>
-	
-	<div id="topErudioLogoContainer">
-		<div id="topErudioLogo"></div>
-	</div>
-	
-	<div id="pageTopFrame"></div>
-	<div id="headerSection">
-		<div id="authenticationBox"></div>
-	</div>
-	
-	<div id="welcomeSection">
+<% end %>
+
+<% content_for :body_class  do %>
+	class="home_page"
+<% end  %>
+
+<section id="welcome">
+
+	<div id="sloganWrapper">
 		<img id="slogan" src="/assets/slogan.png"/>
 	</div>
 	
-	<div id="selectTeacherLabelImageWrapper">
-		<img id="selectTeacherLabelImage" src="/assets/que_profesores_label.png"></image>
+	<div id="selectTeacherLabelWrapper">
+		<img id="selectTeacherLabel" src="/assets/que_profesores_label.png"></image>
 	</div>
-	
-	<!-- Wizard and Actions Section -->
-	<div id="wizardSection">
-		<!-- Slider with effects -->
-		<div id="wizardSliderWrapper">
-			<div id="wizardSlider">
+
+</section>
+
+
+<section id="wizard">
+	<div id="sliderWrapper">
+		<div id="slider">
+			
+			<!-- ACTIVITIES	-->
+			<div class="slideBox" id="slideBox1">
 				
-				<!-- Activities Section -->
-				<div class="slideBox" id="slideBox1">
-					<div id="activitiesSection">
-						<div id="featuredActivitiesContainerWrapper" class="">
-							<div id="featuredActivitiesContainer">
-								<!-- ACTIVITIES TEMPLATE WILL BE RENDERED HERE -->
-							</div>
-						</div>
-						<div id="allActivitiesContainerWrapper" class="allActivitiesContainerWrapperHide">
-							<div id="allActivitiesContainer">
-								<!-- ACTIVITIES TEMPLATE WILL BE RENDERED HERE -->
-							</div>
+				<section id="activities">
+					<div id="featuredActivitiesContainerWrapper" class="">
+						<div id="featuredActivitiesContainer">
+							<!-- ACTIVITIES TEMPLATE WILL BE RENDERED HERE -->
 						</div>
 					</div>
-					
-					<div id="activitiesWizardNextButton" class="wizardNextButton wizardNextButtonDisabled"></div>
-					
-					<div id="seeMoreActivitiesWrapper">
-						<div id="seeMoreActivities" class="seeMore" onclick="seeMoreActivities(this);"></div>
-					</div>				
-				</div>
+					<div id="allActivitiesContainerWrapper" class="allActivitiesContainerWrapperHide">
+						<div id="allActivitiesContainer">
+							<!-- ACTIVITIES TEMPLATE WILL BE RENDERED HERE -->
+						</div>
+					</div>
+				</section>
 				
-				<div class="slideBox" id="slideBox2">
-					BOX 2
-				</div>
-				
-				<div class="slideBox" id="slideBox3">
-					BOX 3
-				</div>
+				<div id="activitiesWizardNextButton" class="wizardNextButton wizardNextButtonDisabled"></div>
+				<div id="seeMoreActivitiesWrapper">
+					<div id="seeMoreActivities" class="seeMore" onclick="app.home.seeMoreActivities(this);"></div>
+				</div>			
 			</div>
+			
+			<!-- IN HOUSE / NOT	-->
+			<div class="slideBox" id="slideBox2">
+				BOX 2
+			</div>
+			
+			<!-- ZONES -->
+			<div class="slideBox" id="slideBox3">
+				BOX 3
+			</div>
+			
+			
 		</div>
 	</div>
-	
-	<div id="howItWorksSection">
-		How it works
-	</div>
-	
-	<div id="footerSection">
-		Footer
-	</div>
+</section>
 
-</div>
+<section id="howItWorks">
+	How it works
+</section>
+
+
 
 <script type="text/javascript">
-
 	_.templateSettings = {
 	evaluate:/\{\[([\s\S]+?)\]\}/g,
 	interpolate:/\{\{([\s\S]+?)\}\}/g
 	};
 
-	window.app.featuredActivities =<%= @json_featured_activities.html_safe%>;
-	window.app.allActivities = <%= @json_all_activities.html_safe%>;</script>
+	app.home.featuredActivities =<%= @json_featured_activities.html_safe%>;
+	app.home.allActivities = <%= @json_all_activities.html_safe%>;
+</script>
 
 	<!-- ACTIVITIES TEMPLATE -->
 	<script id="activityTemplate" type="text/template">
 		{[ _.each(data, function(activity) { ]}
 	
 			<div class="{{featured === true ? "featuredActivityContainer" : "allActivityContainer"}}">
-				<div class="activityBox activityBox_{{activity.id}}" onclick="selectActivity(this, {{featured}});">
+				<div class="activityBox activityBox_{{activity.id}}" onclick="app.home.selectActivity(this, {{featured}});">
 					<span>{{ activity.name }}</span>
 					<input type="hidden" name="activityId" id="{{featured === true ? 'featured_' : ''}}activityId_{{activity.id}}" value="{{activity.id}}"/>
 				</div>
