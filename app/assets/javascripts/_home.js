@@ -19,7 +19,7 @@ app.home.activitiesContext.moreActivitiesDisplayed = false;
 app.home.selectActivity = function(activityBox, isFeatured) {
 	activityId = $(activityBox).find("input[type=hidden]").attr("value");
 
-	$("#activitiesSection")
+	$("section#activities")
 			.find(".activityBox_" + activityId)
 			.each(
 					function(index, activityBox) {
@@ -110,13 +110,13 @@ app.home.wizard.slider = {};
 app.home.wizard.setWidths = function() {
 	var slider = app.home.wizard.slider;
 
-	slider.totalBoxes = $('#wizardSlider .slideBox').length;
-	slider.sectionWidth = $('#wizardSliderWrapper').width();
+	slider.totalBoxes = $('section#wizard #slider .slideBox').length;
+	slider.sectionWidth = $('section#wizard #sliderWrapper').width();
 	slider.boxesTotalWidth = slider.sectionWidth * slider.totalBoxes;
 
-	$('#wizardSlider').width(slider.boxesTotalWidth);
+	$('section#wizard #slider').width(slider.boxesTotalWidth);
 
-	$("#wizardSlider .slideBox").each(function() {
+	$("section#wizard #slider .slideBox").each(function() {
 		$(this).width(slider.sectionWidth);
 	});
 }
@@ -134,7 +134,7 @@ app.home.wizard.initialize = function() {
 		app.home.wizard.setWidths();
 
 		valueToMove = parseInt(-slider.sectionWidth * slider.current)
-		$('#wizardSlider').stop().animate({
+		$('section#wizard #slider').stop().animate({
 			left : valueToMove + 'px',
 		}, 650, function() {
 		});
@@ -160,7 +160,7 @@ app.home.wizard.next = function() {
 
 	valueToMove = parseInt(-slider.sectionWidth * slider.current)
 
-	$('#wizardSlider').stop().animate({
+	$('section#wizard #slider').stop().animate({
 		left : valueToMove + 'px',
 	}, 650, function() {
 	});
@@ -182,7 +182,7 @@ app.home.wizard.back = function() {
 
 	valueToMove = parseInt(-slider.sectionWidth * slider.current)
 
-	$('#wizardSlider').stop().animate({
+	$('section#wizard #slider').stop().animate({
 		left : valueToMove + 'px',
 	}, 650, function() {
 	});

@@ -1,31 +1,40 @@
-#activitiesSection {
+section#activities {
 	margin: auto;
 	width: 800px;
 	height: 80%;
 	position: relative;
 	font-size: 12px;
+	
+
 }
 
 
-#featuredActivitiesContainer , #allActivitiesContainer {
-	margin: auto;
-	width: 600px;
+section#activities {
+	
+	.allActivitiesContainerWrapperHide , .featuredActivitiesContainerWrapperHide {
+		display: none;
+	}
+	
+	#featuredActivitiesContainerWrapper , #allActivitiesContainerWrapper {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		
+		#featuredActivitiesContainer , #allActivitiesContainer {
+			margin: auto;
+			width: 600px;
+			
+			.featuredActivityContainer , .allActivityContainer {
+				width: 150px;
+				float: left;
+			}	
+		}
+	}
 }
 
-#featuredActivitiesContainerWrapper , #allActivitiesContainerWrapper {
-	position: absolute;
-	top: 0;
-	height: 100%;
-	width: 100%;
-}
 
-.featuredActivityContainer , .allActivityContainer {
-	width: 150px;
-	float: left;
-}
-
-
-@mixin activityBoxCommon {
+@mixin activityBoxDefaults {
 	margin: auto;
 	margin-top: 10px;	
 	background-color: #fefefe;
@@ -49,7 +58,7 @@
 
 .featuredActivityContainer .activityBox {
 	/* Add common properties to this selector and the inner span*/
-	@include activityBoxCommon; 
+	@include activityBoxDefaults; 
 	height: 86px;
 	width: 140px;
 	
@@ -62,7 +71,7 @@
  
 .allActivityContainer .activityBox {
 	/* Add common properties to this selector and the inner span*/
-	@include activityBoxCommon;
+	@include activityBoxDefaults;
 	height: 30px;
 	width: 100px;
 	
@@ -81,9 +90,7 @@
 	background-color: #b9dc71 !important;
 	color: #fcfffe;
 }
-.allActivitiesContainerWrapperHide , .featuredActivitiesContainerWrapperHide {
-	display: none;
-}
+
 
 #seeMoreActivitiesWrapper {
 	width: 95px;
@@ -91,18 +98,21 @@
 	position: relative;	
 	z-index: 40;
 	margin: auto;
-}
-#seeMoreActivities {
-	width: 95px;
-	height: 95px;
-	cursor: pointer;
-	position: absolute;
-	top: -4px;
-}
-
-#seeMoreActivities.seeMore {
-	background: url(/assets/see_more_sprite.png) no-repeat 0px 0px;
-}
-#seeMoreActivities.seeLess {
-	background: url(/assets/see_more_sprite.png) no-repeat 0px -95px;
+	
+	#seeMoreActivities {
+		width: 95px;
+		height: 95px;
+		cursor: pointer;
+		position: absolute;
+		top: -4px;
+		
+	}
+	
+	#seeMoreActivities.seeMore {
+		background: url(/assets/see_more_sprite.png) no-repeat 0px 0px;
+	}
+	
+	#seeMoreActivities.seeLess {
+		background: url(/assets/see_more_sprite.png) no-repeat 0px -95px;
+	}
 }

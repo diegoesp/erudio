@@ -1,0 +1,62 @@
+header#page_header {
+
+	width: 100%;
+
+	#topFrame {
+		background-repeat: repeat-x;
+		background-image: url(/assets/top_frame.png);
+		width: 100%;
+		height: 37px; /* Height of the image */
+		position: absolute;
+	}
+	
+}
+
+
+header#page_header {
+	
+	#logoWrapper {
+		width: 100%;
+		height: 112px;
+		position: absolute;
+		z-index: 10;
+	
+		#logo {
+			width: 147px;
+			height: 112px;
+			background-image: url(/assets/top_logo.png);
+			margin: auto;
+		}	
+	}
+}
+
+header#page_header {
+	#authenticationBox {
+		width: 200px;
+		height: 50px;
+		background-color: #a9a9a9;
+		position: absolute;
+		right: 30px;
+		top: 100px;
+	}
+}
+
+
+
+/*	Remove this! (debug box) */
+
+#debuggingBox {
+	
+	position: fixed;
+	top: 50px;
+	left: 15px;
+	color: rgba(255, 255, 255, .9);
+	font-size: small;
+	background-color: rgba(41, 41, 41, .2);
+	outline: 2px dashed #1d8f3c;
+	z-index: 100;
+	padding: 10px;
+	a {
+		cursor: pointer;
+	}
+}

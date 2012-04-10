@@ -12,24 +12,6 @@
 *= require sweet_checkbox
 */
 
-/*	Remove this! (debug box) */
-#debuggingBox {
-	position: fixed;
-	top: 30px;
-	left: 15px;
-	color: rgba(255, 255, 255, .6);
-	font-size: small;
-	background-color: rgba(41, 41, 41, .2);
-	border: 1px dashed gray;
-	width: 200px;
-	height: 60px;
-	z-index: 100;
-}
-
-#debuggingBox a {
-	cursor: pointer;
-}
-
 body {
 	font-family: "Century Gothic", "Geneva", "Helvetica";
 	color: #777777;

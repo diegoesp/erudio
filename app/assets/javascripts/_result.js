@@ -19,11 +19,11 @@ app.result.executeAjaxSearch = function() {
 	$.ajax({
 		url : "result_search?format=json",
 		success : function(response) {
-			$("#resultsColumn").children().remove();
+			$("section#results").children().remove();
 			var template = _.template($("#resultTemplate")[0].text, {
 				data : response
 			});
-			$("#resultsColumn").append(template);
+			$("section#results").append(template);
 
 		},
 		error : function(xhr, ajaxOptions, thrownError) {
