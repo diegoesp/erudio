@@ -36,14 +36,14 @@ describe PagesController do
     end
 
     it "should call api_search_teachers and receive no result" do
-          get "api_search_teachers", :format => "json", :activity_id => @activity.id, :zone_id => @zone.id, :goes_here => "true"
+          get "api_search_teachers", :format => "json", :activity_id => @activity.id, :zone_id_csv => @zone.id, :goes_here => "true"
           response.status.should == 200
           teachers = JSON.parse(response.body, :object_class => Teacher)
           teachers.length.should == 0
     end
 
     it "should call api_search_teachers and receive only one result: Octavio" do
-      get "api_search_teachers", :format => "json", :activity_id => @activity.id, :zone_id => @zone.id
+      get "api_search_teachers", :format => "json", :activity_id => @activity.id, :zone_id_csv => @zone.id
       response.status.should == 200
       teachers = JSON.parse(response.body, :object_class => Teacher)
       teachers.length.should == 1

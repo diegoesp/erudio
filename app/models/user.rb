@@ -20,13 +20,13 @@ class User < ActiveRecord::Base
   require 'valid_email'
 
   attr_accessor :password
-  attr_accessible :last_name, :first_name, :description, :email, :cellphone, :password, :password_confirmation
+  attr_accessible :last_name, :first_name, :description, :email, :cellphone, :password, :password_confirmation, :avatar
 
   validates :last_name, :presence => true
   validates :first_name, :presence => true
   validates :email, :presence => true, :email => true
   validates :password, :confirmation => true, :presence => true, :length => {:minimum => 5}
-
+  validates :avatar,  :format => { :allow_nil => true, :with => /[\w\d\-_]*\.(jpg|gif|png)/ }, :length => { :maximum => 255 }
   before_save :encrypt_password
 
   has_many :ratings, :dependent => :destroy

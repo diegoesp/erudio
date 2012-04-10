@@ -16,6 +16,7 @@ Factory.define :user do |user|
 	user.email "monicagalindo@gmail.com"
 	user.password "password"
 	user.password_confirmation "password"
+	user.avatar "avatar_1.jpg"
 end
 
 Factory.define :teacher do |teacher|
@@ -25,6 +26,7 @@ Factory.define :teacher do |teacher|
 	teacher.email "opochiero@gmail.com"
 	teacher.password "password"
 	teacher.password_confirmation "password"
+	teacher.avatar "avatar_2.jpg"
 end
 
 Factory.define :zone do |zone|
@@ -50,6 +52,7 @@ Factory.define :user2, :class => User do |user|
 	user.email "elviolento@hotmail.com"
 	user.password "palabraclave"
 	user.password_confirmation "palabraclave"
+	user.avatar "avatar_3.jpg"
 end
 
 Factory.define :teacher2, :class => Teacher do |teacher|
@@ -59,6 +62,7 @@ Factory.define :teacher2, :class => Teacher do |teacher|
 	teacher.email "diegoesp@gmail.com"
 	teacher.password "password"
 	teacher.password_confirmation "password"
+	teacher.avatar "avatar_1.jpg"
 end
 
 Factory.define :classroom2, :class => Classroom do |classroom|
@@ -76,4 +80,5 @@ Factory.define :user3, :class => User do |user|
 	user.email "miguelcorleone@yahoo.com"
 	user.password "doncorleone"
 	user.password_confirmation "doncorleone"
+	user.avatar "avatar_3.jpg"
 end

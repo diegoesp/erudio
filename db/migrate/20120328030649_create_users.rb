@@ -9,7 +9,8 @@ class CreateUsers < ActiveRecord::Migration
 						t.string :cellphone
 						t.string :description
 						t.string :type
-
+						t.string :avatar
+						
 						t.timestamps
 				end
 		end

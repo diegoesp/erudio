@@ -98,7 +98,8 @@ namespace :db do
       cellphone = Faker::PhoneNumber.phone_number
       password = "password"
       password_confirmation = "password"
-      User.create!(:first_name => first_name, :last_name => last_name, :email => email, :cellphone => cellphone, :password => password, :password_confirmation => password_confirmation)
+      avatar = ["avatar_1.jpg", "avatar_2.gif", "avatar_3.png"][Random.new.rand(0..2)]      
+      User.create!(:first_name => first_name, :last_name => last_name, :email => email, :cellphone => cellphone, :password => password, :password_confirmation => password_confirmation, :avatar => avatar)
     end
 
     # Teachers
@@ -110,7 +111,8 @@ namespace :db do
       cellphone = Faker::PhoneNumber.phone_number
       password = "password"
       password_confirmation = "password"
-      teacher = Teacher.create!(:first_name => first_name, :last_name => last_name, :description => description, :email => email, :cellphone => cellphone, :password => password, :password_confirmation => password_confirmation)
+      avatar = ["avatar_1.jpg", "avatar_2.gif", "avatar_3.png"][Random.new.rand(0..2)]
+      teacher = Teacher.create!(:first_name => first_name, :last_name => last_name, :description => description, :email => email, :cellphone => cellphone, :password => password, :password_confirmation => password_confirmation, :avatar => avatar)
 
       # Add a classroom
       zone = Zone.random

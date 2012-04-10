@@ -47,7 +47,7 @@ describe Teacher do
   end
 
   it "find_teacher_for_pupil should return one teacher (Diego)" do
-    teachers = Teacher.find_teacher_for_pupil(@activity.id, @zone2.id, nil, true)
+    teachers = Teacher.find_teacher_for_pupil(@activity.id, [@zone2.id], nil, true)
     teachers.length.should == 1
     teachers.first.first_name.should == "Diego"
   end
@@ -71,6 +71,13 @@ describe Teacher do
     it "should return zero when no ratings exists" do
       @teacher.get_rating().should == 0
     end
-
+    
+    it "should rate and then get the rating through the search" do
+      @teacher2.ratings.create(:user_id => @user.id, :rating => 1, :comment => "This teacher really sucks")
+      teachers = Teacher.find_teacher_for_pupil(@activity.id, [@zone2.id], nil, true)
+      teachers.length.should == 1      
+      teachers.first.get_rating.should == 1
+    end
+    
   end
 end

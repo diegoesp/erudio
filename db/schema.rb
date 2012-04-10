@@ -53,16 +53,6 @@ ActiveRecord::Schema.define(:version => 20120330030205) do
     t.datetime "updated_at"
   end
 
-  create_table "teachers", :force => true do |t|
-    t.string   "last_name"
-    t.string   "first_name"
-    t.string   "description"
-    t.string   "email"
-    t.string   "cellphone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", :force => true do |t|
     t.string   "last_name"
     t.string   "first_name"
@@ -70,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20120330030205) do
     t.string   "cellphone"
     t.string   "description"
     t.string   "type"
+    t.string   "avatar"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "encrypted_password"

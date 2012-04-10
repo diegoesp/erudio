@@ -52,6 +52,16 @@ describe User do
     @user.should_not be_valid
   end
 
+  it "should not validate an invalid avatar image" do
+    @user.avatar = "invalid_image.tif"
+    @user.should_not be_valid
+  end
+
+  it "should accept an empty avatar image" do
+    @user.avatar = nil
+    @user.should be_valid
+  end
+
   describe "password validations" do
 
     it "should require a password" do
