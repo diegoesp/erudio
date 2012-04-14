@@ -18,7 +18,10 @@
 .DS_Store
 
 # Ignore the RubyMine IDE files (Diego IDE)
-/.idea
+.idea
+
+# Ignore the Espresso IDE files (Rafa IDE)
+*.esproj
 
 # Ignore assets generation for asset pipeline
 /public/assets
