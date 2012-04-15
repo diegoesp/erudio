@@ -106,19 +106,18 @@
 		}
 		
 		.activityLeftIndicator {
-			width: 12px;
-			height: 12px;
+			width: 16px;
+			height: 16px;
 			position: absolute;
 			top: 1px;
-			border: 1px dashed $activitiesSoftGreen;
-			@include border_radius(4px);
-			@include shadow(white, 10px, 1px, 1px);
+			background: url(/assets/wizard_check_unchecked.png) no-repeat;		
 		}
 		
 		&.activitySelected {
 			
 			.activityLeftIndicator {
 				background-color: rgb(133, 190, 52);				
+				background: url(/assets/wizard_check_checked.png) no-repeat;		
 			}
 		}
 	}
