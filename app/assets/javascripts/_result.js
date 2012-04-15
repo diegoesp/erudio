@@ -3,7 +3,33 @@ app.result = {};
 
 app.result.searchTerm = {};
 
+//
+// Initialization (called on DOM ready)
+//
+app.result.initialize = function() {
+	// Initialize the SweetCheckboxes by calling the config method from the
+	// library
+	configureSweetCheckboxes();
 
+	// Bind the "results" JSON object to the template and render it.
+	var template = _.template($("#resultTemplate")[0].text, {
+		data : app.result.results
+	});
+	$("section#results").append(template);
+
+	// Load all the checkboxes from the filter section and
+	// synch them with the search term status from the server.
+	// TODO(rafael.chiti) This logic should be on the server, changing the
+	// status of the chekboxes after loading the page is not "nice".
+	$(".sweetCheckbox").each(function(index) {
+		if (app.result.searchTerm[this.title] === true) {
+			$(this).trigger('turnOn');
+		}
+	});
+
+	// Configure the ToolTipsy tool.
+	app.result.initializeTooltipsy();
+}
 
 // Update the searchTerm JSON object based on the state of the 'clicked'
 // checkbox.

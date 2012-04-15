@@ -4,11 +4,41 @@ app.home = {};
 // Initialize the Search Term object. This object is going to be used
 // to execute the final search query.
 app.home.searchTerm = {};
-app.home.searchTerm.activitiesIds = [];
+app.home.searchTerm.activityId = undefined;
+
+app.home.activitySelected = false;
+app.home.activityModeSelected = false;
+app.home.zoneSelected = false;
 
 // Object to store all the related information to the activities section
 app.home.activitiesContext = {};
 app.home.activitiesContext.moreActivitiesDisplayed = false;
+
+//
+// This method will be called on DOM ready.
+//
+app.home.initialize = function() {
+
+	// Render the activities (featured activities and all activities).
+	var template = _.template($("#activityTemplate")[0].text, {
+		data : app.home.featuredActivities,
+		featured : true
+	});
+	$("#featuredActivitiesContainer").html(template);
+
+	var template = _.template($("#activityTemplate")[0].text, {
+		data : app.home.allActivities,
+		featured : false
+	});
+	$("#allActivitiesContainer").html(template);
+
+	// Initialize the Wizard component
+	app.home.wizard.initialize();
+	
+	// Bind some events required by this page.
+	app.eventHolder.on('activityClicked', app.home.EVENT_activityClicked);
+	app.eventHolder.on('activityModeClicked', app.home.EVENT_activityModeClicked);
+}
 
 //
 // A few dirty things are being done here in order to select an activity
@@ -16,47 +46,37 @@ app.home.activitiesContext.moreActivitiesDisplayed = false;
 // When the user selects an activity from the first step on the wizard
 // the searchTerm object is updated.
 //
-app.home.selectActivity = function(activityBox, isFeatured) {
-	activityId = $(activityBox).find("input[type=hidden]").attr("value");
+app.home.selectActivity = function(activityBox) {
+	activityId = activityBox.find("input[type=hidden]").attr("value");
 
-	$("section#activities")
-			.find(".activityBox_" + activityId)
-			.each(
-					function(index, activityBox) {
-
-						if ($(activityBox).hasClass("activitySelected")) {
-							// UNSELECT ACTIVITY
-							$(activityBox).removeClass("activitySelected");
-
-							indexOfActivityId = app.home.searchTerm.activitiesIds
-									.indexOf(activityId);
-
-							if (index === 0) {
-								app.home.searchTerm.activitiesIds
-										.splice(indexOfActivityId, 1);
-							}
-
-						} else {
-							// SELECT ACTIVITY
-							$(activityBox).addClass("activitySelected");
-
-							if (index === 0) {
-								app.home.searchTerm.activitiesIds
-										.push(activityId);
-							}
-						}
-					});
-					
-	// TODO(rafael.chiti): This should not be here. I need to find a place to put all this logic together.
-	// Having observers ont he objects would be a nice solution. I need to research if underscore has any
-	// usefull utility or if we need to add any other framework.				
-	if (app.home.searchTerm.activitiesIds.length > 0) {
-		app.home.activitiesContext.activitiesWizardNextButton.removeClass("wizardNextButtonDisabled");
-		app.home.activitiesContext.activitiesWizardNextButton.attr('onclick', 'app.home.wizard.next()');
-	} else {
-		app.home.activitiesContext.activitiesWizardNextButton.addClass("wizardNextButtonDisabled");
-		app.home.activitiesContext.activitiesWizardNextButton.attr('onclick', '');
+	// If the user clicked the activity that was already selected then just 
+	// end this call.
+	if (activityBox.hasClass("js-selected")) {
+		return;
 	}
+
+
+	// Search for all the activities and "unselect" the one that was selected
+	// and then select the one that the user clicked.
+	$("section#activities .js-selected").each(function(index, each) {
+		$(each).removeClass("activitySelected js-selected");
+		app.home.activityId = undefined;
+	});
+
+	// Select the one clicked by the user
+	$("section#activities .js-activityBox_" + activityId).each(function(index, each) {
+		$(each).addClass("activitySelected js-selected");	
+	});
+	app.home.searchTerm.activityId = activityId;
+
+					
+	if(app.home.searchTerm.activityId) {
+		app.home.activitySelected = true;
+	} else {
+		app.home.activitySelected = false;	
+	}
+	
+	app.eventHolder.triggerHandler('activityClicked');
 }
 
 //
@@ -84,109 +104,83 @@ app.home.seeMoreActivities = function(seeMoreDiv) {
 
 }
 
-
-
-
-
-
-
-
-
-
-// ///////////////////////////////////////
 //
-// SearchWizardSlider.js
+// Select the kind of class. Store the string representation
+// on the search term.
 //
-// ///////////////////////////////////
+app.home.selectActivityMode = function(button, type) {
 
-// Wizard object
-app.home.wizard = {};
-app.home.wizard.slider = {};
-
-//
-// Recalculate the widths for the "sliding" boxes
-//
-//
-app.home.wizard.setWidths = function() {
-	var slider = app.home.wizard.slider;
-
-	slider.totalBoxes = $('section#wizard #slider .slideBox').length;
-	slider.sectionWidth = $('section#wizard #sliderWrapper').width();
-	slider.boxesTotalWidth = slider.sectionWidth * slider.totalBoxes;
-
-	$('section#wizard #slider').width(slider.boxesTotalWidth);
-
-	$("section#wizard #slider .slideBox").each(function() {
-		$(this).width(slider.sectionWidth);
-	});
-}
-
-
-app.home.wizard.initialize = function() {
-
-	var slider = app.home.wizard.slider;
-	slider.current = 0;
-
-	app.home.wizard.setWidths();
-
-	// Bind the window resize "recalc"
-	$(window).resize(function() {
-		app.home.wizard.setWidths();
-
-		valueToMove = parseInt(-slider.sectionWidth * slider.current)
-		$('section#wizard #slider').stop().animate({
-			left : valueToMove + 'px',
-		}, 650, function() {
-		});
-	});
-
-}
-
-
-
-//
-// Move the slider to the right, one step.
-//
-//
-app.home.wizard.next = function() {
-
-	var slider = app.home.wizard.slider;
-
-	slider.current++;
-
-	if (slider.current >= slider.totalBoxes) {
-		slider.current = 0;
+	if (button.hasClass("js-selected")) {
+		return;
 	}
-
-	valueToMove = parseInt(-slider.sectionWidth * slider.current)
-
-	$('section#wizard #slider').stop().animate({
-		left : valueToMove + 'px',
-	}, 650, function() {
+	
+	$("section.js-wizard .js-activityMode").each(function(index, each){
+		$(each).removeClass("js-selected activityModeButtonSelected");
 	});
+	
+	button.addClass("js-selected activityModeButtonSelected");
+
+	app.home.searchTerm.activityMode = type;
+	
+	// Its an option component so as soon as the user clicks on one
+	// of the optiones the 'selected' state will be true until the user
+	// leaves the page.
+	app.home.activityModeSelected = true;
+	
+	app.eventHolder.triggerHandler('activityModeClicked');
 
 }
 
-//
-// Move the slider to the left, one step.
-//
-//
-app.home.wizard.back = function() {
 
-	var slider = app.home.wizard.slider;
 
-	slider.current--;
-	if (slider.current < 0) {
-		slider.current = slider.totalBoxes - 1;
+//
+// HOME EVENTS
+//
+app.home.EVENT_activityClicked = function () {
+	if (app.home.activitySelected === true) {
+		app.home.wizard.enableNextButton();	
+	} else {
+		app.home.wizard.disableNextButton();	
 	}
+}
+app.home.EVENT_activityModeClicked = function() {
+	if (app.home.activityModeSelected === true) {
+		app.home.wizard.enableNextButton();	
+	} else {
+		app.home.wizard.disableNextButton();	
+	}
+}
 
-	valueToMove = parseInt(-slider.sectionWidth * slider.current)
+//
+// Wizard Events
+// 
+app.home.EVENT_wizardInitialized = function() {
+	app.home.wizard.enableBackButton();
+	app.home.wizard.hideBackButton();
+	app.home.wizard.disableNextButton();
+}
 
-	$('section#wizard #slider').stop().animate({
-		left : valueToMove + 'px',
-	}, 650, function() {
-	});
+app.home.EVENT_wizardMoved = function() {
+	currentStep = app.home.wizard.slider.current;
 
+	if (currentStep === 0) {
+		app.home.wizard.hideBackButton();
+		
+		app.home.activitySelected === true ? app.home.wizard.enableNextButton() :
+			app.home.wizard.disableNextButton();
+	}	
+	
+	if (currentStep === 1) {
+		app.home.wizard.showBackButton();	
+		
+		app.home.activityModeSelected === true ? app.home.wizard.enableNextButton() :
+			app.home.wizard.disableNextButton();		
+	}
+	
+	if (currentStep === 2) {
+		app.home.wizard.disableNextButton();
+	}	
+	
 }
 
 // ////////////////////////////////////////////////

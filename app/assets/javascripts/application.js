@@ -5,8 +5,8 @@
 // the compiled file.
 //
 
-//= require_self
 //= require jquery
+//= require_self
 //= require jquery-ui
 //= require sweet_checkbox
 //= require tooltipsy
@@ -16,3 +16,7 @@
 // Create the initial context. All the functions, page related objects, etc
 // are going to be stored inside this object.
 window.app = {};
+
+// This object will be used to store jQuery events (binded with '$.on()').
+// More references using jQuery 'on' here: http://api.jquery.com/on/
+window.app.eventHolder = $({});

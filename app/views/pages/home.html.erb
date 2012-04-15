@@ -1,32 +1,9 @@
 <% content_for :head do %>
 	<script type="text/javascript">
 	
-		// 
-		// ON DOM READY
-		//
-		// Init logic after page 'loading'
-		//
+		// Initialize the js for this particular page when the DOM is ready.
 		$(document).ready(function() {
-			
-			// Render the activities (featured activities and all activities).
-			var template = _.template($("#activityTemplate")[0].text, {
-				data : app.home.featuredActivities,
-				featured : true
-			});
-			$("#featuredActivitiesContainer").html(template);
-		
-			var template = _.template($("#activityTemplate")[0].text, {
-				data : app.home.allActivities,
-				featured : false
-			});
-			$("#allActivitiesContainer").html(template);
-		
-			// Initialize the Wizard component
-			app.home.wizard.initialize();
-			
-			
-			// Load the next button from the wizard
-			app.home.activitiesContext.activitiesWizardNextButton = $("#activitiesWizardNextButton");
+			app.home.initialize();
 		});
 	
 	
@@ -58,8 +35,13 @@
 </section>
 	
 	
-<section id="wizard">
+<section id="wizard" class="js-wizard">
 	<div id="sliderWrapper">
+	
+		<div id="wizardBackButton" class="js-wizardBackButton">
+			<span>&lt;</span>
+		</div>
+				
 		<div id="slider">
 			
 			<!-- ACTIVITIES	-->
@@ -71,7 +53,9 @@
 			
 			<!-- IN HOUSE / NOT	-->
 			<div class="slideBox" id="slideBox2">
-				BOX 2
+				
+				<%= render 'home_activity_mode' %>
+				
 			</div>
 			
 			<!-- ZONES -->
@@ -80,6 +64,10 @@
 			</div>
 			
 			
+		</div>
+		
+		<div id="wizardNextButton" class="js-wizardNextButton">
+			<span>&gt;</span>
 		</div>
 	</div>
 </section>
@@ -99,14 +87,3 @@
 	app.home.allActivities = <%= @json_all_activities.html_safe%>;
 </script>
 
-<!-- ACTIVITIES TEMPLATE -->
-<script id="activityTemplate" type="text/template">
-	{[ _.each(data, function(activity) { ]}
-		<div class="{{featured === true ? "featuredActivityContainer" : "allActivityContainer"}}">
-			<div class="activityBox activityBox_{{activity.id}}" onclick="app.home.selectActivity(this, {{featured}});">
-				<span>{{ activity.name }}</span>
-				<input type="hidden" name="activityId" id="{{featured === true ? 'featured_' : ''}}activityId_{{activity.id}}" value="{{activity.id}}"/>
-			</div>
-		</div>
-	{[ }); ]}
-</script>
