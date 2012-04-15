@@ -1,44 +1,46 @@
-
-section#welcome {
-	height: 300px;
-	background-image: url(/assets/background_pattern.png);
-
-	#sloganWrapper {
-		width: 100%;
-		height: 180px;
-		top: 130px;
-		position: relative;
-		
-		#slogan {
-			margin: auto;
-			display: block;
-		}
-	}
-	
-	#selectTeacherLabelWrapper {
-		width: 100%;
-		height: 80px;
-		position: absolute;
-		top: 275px;
-		z-index: 1;
-		
-		#selectTeacherLabel {
-			display: block;
-			margin: auto;
-		}
-	}
-}
-
-
-/* How it works box */
-section#howItWorks {
-	width: 100%;
-	height: 200px;
-	background-image: url(/assets/background_pattern.png);
-}
-
-
-body.home_page {
+body#home_page {
 	overflow: hidden;
 	overflow-y: scroll;
 }
+
+#home_page {
+	
+	section#welcome {
+		height: 300px;
+		background-image: url(/assets/background_pattern.png);
+	
+		#sloganWrapper {
+			width: 100%;
+			height: 180px;
+			top: 130px;
+			position: relative;
+			
+			#slogan {
+				margin: auto;
+				display: block;
+			}
+		}
+		
+		#selectTeacherLabelWrapper {
+			width: 100%;
+			height: 80px;
+			position: absolute;
+			top: 275px;
+			z-index: 1;
+			
+			#selectTeacherLabel {
+				display: block;
+				margin: auto;
+			}
+		}
+	}
+	
+	
+	/* How it works box */
+	section#howItWorks {
+		width: 100%;
+		height: 200px;
+		background-image: url(/assets/background_pattern.png);
+	}
+}
+

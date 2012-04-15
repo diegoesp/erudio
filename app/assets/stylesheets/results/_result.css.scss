@@ -1,3 +1,7 @@
+body#result_page {
+	background-image: url(/assets/background_pattern.png);
+}
+
 section#main_content {
 	width: 1000px;
 	margin: auto;
@@ -16,10 +20,6 @@ section#filters {
 	width: 295px;
 	top:  180px;
 	right: 0px;
-}
-
-body.result_page {
-	background-image: url(/assets/background_pattern.png);
 }
 
 /* @group Filter common styles */

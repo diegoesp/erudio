@@ -1,0 +1,32 @@
+<section id="activities">
+	<div id="featuredActivitiesContainerWrapper" class="">
+		<div id="featuredActivitiesContainer">
+			<!-- ACTIVITIES TEMPLATE WILL BE RENDERED HERE -->
+		</div>
+	</div>
+	<div id="allActivitiesContainerWrapper" class="allActivitiesContainerWrapperHide">
+		<div id="allActivitiesContainer">
+			<!-- ACTIVITIES TEMPLATE WILL BE RENDERED HERE -->
+		</div>
+	</div>
+</section>
+
+<div id="seeMoreActivitiesWrapper">
+	<div id="seeMoreActivities" class="seeMore" onclick="app.home.seeMoreActivities(this);"></div>
+</div>
+
+
+
+<!-- ACTIVITIES TEMPLATE -->
+<script id="activityTemplate" type="text/template">
+	{[ _.each(data, function(activity) { ]}
+		<div class="{{featured === true ? "featuredActivityContainer" : "allActivityContainer"}}">
+			<div class="activityBox js-activityBox_{{activity.id}}" onclick="app.home.selectActivity($(this), {{featured}});">
+				
+				<span>{{ activity.name }}</span>
+				
+				<input type="hidden" name="activityId" id="{{featured === true ? 'featured_' : ''}}activityId_{{activity.id}}" value="{{activity.id}}"/>
+			</div>
+		</div>
+	{[ }); ]}
+</script>

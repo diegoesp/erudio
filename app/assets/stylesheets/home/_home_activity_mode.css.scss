@@ -1,0 +1,49 @@
+#home_page section#wizard {
+
+	.activityModeContent {
+		margin: auto;
+		width: 620px;
+		height: 200px;
+		position: relative;
+		top: 50px;
+	
+	
+		.activityModeButton {
+			cursor: pointer;
+			float: left;
+			width: 290px;
+			height: 80px;
+			background-color: #fefefe;
+			-moz-box-shadow: 1px 2px 3px #cfcfcf;
+			-webkit-box-shadow: 1px 2px 3px #cfcfcf;
+			box-shadow: 1px 2px 3px #cfcfcf;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+			margin: 0px;
+			padding: 0px;
+			margin-right: 10px;	
+			border: 1px solid #cfcfcf;
+									
+			&:last-child {
+				margin-right: 0px;
+	
+			}
+			
+			span {
+				padding-right: 5px;
+				padding-left: 5px;
+				display: table-cell;
+				vertical-align: middle;
+				height: inherit;
+				width: inherit;
+				text-align: center;
+			}
+		}
+		
+		.activityModeButtonSelected {
+			background-color: #b9dc71;
+		}
+		
+	}
+}
