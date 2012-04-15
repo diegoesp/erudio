@@ -1,14 +1,13 @@
+@import "mixins";
+
 @mixin activityBoxDefaults {
 	margin: auto;
 	margin-top: 10px;	
 	background-color: #fefefe;
 	border: 1px solid #b4b5b4;
-	-moz-box-shadow: 0 2px 4px #b9b9b9;
-	-webkit-box-shadow: 0 2px 4px #b9b9b9;
-	box-shadow: 0 2px 4px #b9b9b9;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+
+	@include shadow(#b9b9b9, 4px, 0px, 2px);
+	@include border_radius(3px);
 	
 	span {
 		display: table-cell;
@@ -20,14 +19,13 @@
 }
 
 #home_page section#wizard {
+	
 	section#activities {
 		margin: auto;
 		width: 800px;
 		height: 80%;
 		position: relative;
 		font-size: 12px;
-		
-	
 	}
 	
 	
@@ -39,7 +37,7 @@
 		
 		#featuredActivitiesContainerWrapper , #allActivitiesContainerWrapper {
 			position: absolute;
-			top: 0;
+			top: 50px;
 			height: 100%;
 			width: 100%;
 			
@@ -55,18 +53,37 @@
 		}
 	}
 	
-
 	
 	.featuredActivityContainer .activityBox {
 		/* Add common properties to this selector and the inner span*/
 		@include activityBoxDefaults; 
+		@include gradient(#ffffff,#f8f8f8);
+				
 		height: 86px;
 		width: 140px;
+		position: relative;
 		
 		span {	
 			height: 86px;
 			width: 140px;
-		}		
+		}
+		
+		&.activitySelected {
+			background-color: #8bbb55;
+			border: 1px solid #79a948;
+			color: white;
+			@include gradient(#a7d24d,#76b935);
+			
+			.activitySelectedImage {
+				width: 29px;
+				height: 29px;
+				background: url(/assets/wizard_button_selected.png) no-repeat;
+				position: absolute;
+				top:  29px;
+				left: 2px;
+				
+			}
+		}
 	}
 	
 	 
@@ -82,15 +99,6 @@
 		}
 	}
 	
-	.activitySelected {
-		/*
-		 The important field is required because the background color
-		 is previously set with a selector using hierarchy and that is 
-		 weighter than this selector.
-		 */
-		background-color: #b9dc71 !important;
-		color: #fcfffe;
-	}
 	
 	
 	#seeMoreActivitiesWrapper {
