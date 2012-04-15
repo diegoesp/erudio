@@ -1,6 +1,6 @@
 @import "mixins";
 
-@mixin activityBoxDefaults {
+@mixin featuredActivityBox {
 	margin: auto;
 	margin-top: 10px;	
 	background-color: #fefefe;
@@ -45,9 +45,15 @@
 				margin: auto;
 				width: 600px;
 				
-				.featuredActivityContainer , .allActivityContainer {
+				.featuredActivityContainer {
 					width: 150px;
 					float: left;
+				}
+				.allActivityContainer {
+					width: 180px;
+					height: 20px;
+					float: left;
+					margin-bottom: 10px;
 				}	
 			}
 		}
@@ -56,7 +62,7 @@
 	
 	.featuredActivityContainer .activityBox {
 		/* Add common properties to this selector and the inner span*/
-		@include activityBoxDefaults; 
+		@include featuredActivityBox; 
 		@include gradient(#ffffff,#f8f8f8);
 				
 		height: 86px;
@@ -69,12 +75,11 @@
 		}
 		
 		&.activitySelected {
-			background-color: #8bbb55;
 			border: 1px solid #79a948;
 			color: white;
-			@include gradient(#a7d24d,#76b935);
+			@include gradient($activitiesSoftGreen, $activitiesDarkerGreen);
 			
-			.activitySelectedImage {
+			.activityLeftIndicator {
 				width: 29px;
 				height: 29px;
 				background: url(/assets/wizard_button_selected.png) no-repeat;
@@ -88,14 +93,33 @@
 	
 	 
 	.allActivityContainer .activityBox {
-		/* Add common properties to this selector and the inner span*/
-		@include activityBoxDefaults;
-		height: 30px;
-		width: 100px;
+		position: relative;
+		cursor: pointer;
 		
 		span {
-			height: 30px;
-			width: 100px;		
+			text-align: left;
+			display: block;
+			position: absolute;
+			left: 20px;
+			top: 0px;
+			font-size: 15px;	
+		}
+		
+		.activityLeftIndicator {
+			width: 12px;
+			height: 12px;
+			position: absolute;
+			top: 1px;
+			border: 1px dashed $activitiesSoftGreen;
+			@include border_radius(4px);
+			@include shadow(white, 10px, 1px, 1px);
+		}
+		
+		&.activitySelected {
+			
+			.activityLeftIndicator {
+				background-color: rgb(133, 190, 52);				
+			}
 		}
 	}
 	

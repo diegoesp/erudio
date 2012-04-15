@@ -23,7 +23,7 @@
 	{[ _.each(data, function(activity) { ]}
 		<div class="{{featured === true ? "featuredActivityContainer" : "allActivityContainer"}}">
 			<div class="activityBox js-activityBox_{{activity.id}}" onclick="app.home.selectActivity($(this), {{featured}});">
-				<div class="activitySelectedImage"></div>
+				<div class="activityLeftIndicator"></div>
 				<span>{{ activity.name }}</span>
 				
 				<input type="hidden" name="activityId" id="{{featured === true ? 'featured_' : ''}}activityId_{{activity.id}}" value="{{activity.id}}"/>

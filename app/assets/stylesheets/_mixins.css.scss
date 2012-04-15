@@ -1,3 +1,6 @@
+$activitiesSoftGreen: #a7d24d;
+$activitiesDarkerGreen: #76b935;
+
 @mixin gradient($start_color, $end_color)  {
 	background: $start_color; /* Old browsers */
 	background: -moz-linear-gradient(top, $start_color 0%, $end_color 100%); /* FF3.6+ */

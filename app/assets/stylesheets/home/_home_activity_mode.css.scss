@@ -31,18 +31,30 @@
 			
 			span {
 				padding-right: 5px;
-				padding-left: 5px;
+				padding-left: 22px;
 				display: table-cell;
 				vertical-align: middle;
 				height: inherit;
 				width: inherit;
 				text-align: center;
 			}
+			
 		}
 		
 		.activityModeButtonSelected {
-			@include gradient(#a7d24d,#76b935);
+			@include gradient($activitiesSoftGreen, $activitiesDarkerGreen);
 			color: white;
+			position: relative;
+			
+			.selectedIndicator {
+				width: 22px;
+				height: 22px;
+				position: absolute;
+				top: 30px;
+				left: 4px;
+				background-color: red;
+				background: url(/assets/wizard_button_selected_small.png) no-repeat;	
+			}
 		}
 		
 	}
