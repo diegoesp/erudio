@@ -1,4 +1,5 @@
 <section id="activities">
+	<h2 class="wizard">Que clase queres tomar?</h2>
 	<div id="featuredActivitiesContainerWrapper" class="">
 		<div id="featuredActivitiesContainer">
 			<!-- ACTIVITIES TEMPLATE WILL BE RENDERED HERE -->
@@ -22,7 +23,7 @@
 	{[ _.each(data, function(activity) { ]}
 		<div class="{{featured === true ? "featuredActivityContainer" : "allActivityContainer"}}">
 			<div class="activityBox js-activityBox_{{activity.id}}" onclick="app.home.selectActivity($(this), {{featured}});">
-				
+				<div class="activitySelectedImage"></div>
 				<span>{{ activity.name }}</span>
 				
 				<input type="hidden" name="activityId" id="{{featured === true ? 'featured_' : ''}}activityId_{{activity.id}}" value="{{activity.id}}"/>
