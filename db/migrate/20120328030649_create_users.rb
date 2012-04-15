@@ -6,10 +6,12 @@ class CreateUsers < ActiveRecord::Migration
 						t.string :last_name
 						t.string :first_name
 						t.string :email
-						t.string :cellphone
+						t.string :phone
 						t.string :description
-						t.string :type
 						t.string :avatar
+						t.boolean :publish_email
+						t.boolean :publish_phone
+						t.string :type
 						
 						t.timestamps
 				end

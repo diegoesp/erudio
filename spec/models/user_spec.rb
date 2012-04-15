@@ -6,8 +6,11 @@
 #  last_name          :string(255)
 #  first_name         :string(255)
 #  email              :string(255)
-#  cellphone          :string(255)
+#  phone              :string(255)
 #  description        :string(255)
+#  avatar             :string(255)
+#  publish_email      :boolean
+#  publish_phone      :boolean
 #  type               :string(255)
 #  created_at         :datetime
 #  updated_at         :datetime
@@ -60,6 +63,10 @@ describe User do
   it "should accept an empty avatar image" do
     @user.avatar = nil
     @user.should be_valid
+  end
+
+  it "should not respond to teacher attributes publish_email, publish_phone and description" do
+    @teacher.should_not respond_to(:publish_email, :publish_phone, :description)
   end
 
   describe "password validations" do

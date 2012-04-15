@@ -7,8 +7,11 @@
 #  last_name          :string(255)
 #  first_name         :string(255)
 #  email              :string(255)
-#  cellphone          :string(255)
+#  phone              :string(255)
 #  description        :string(255)
+#  avatar             :string(255)
+#  publish_email      :boolean
+#  publish_phone      :boolean
 #  type               :string(255)
 #  created_at         :datetime
 #  updated_at         :datetime
@@ -26,17 +29,26 @@ describe Teacher do
     @teacher = Factory(:teacher)
     @zone = Factory(:zone)
     @teacher.classrooms << Factory(:classroom, :teacher => @teacher, :zone => @zone)
-
+    @teacher.professorships << Factory(:professorship3, :teacher => @teacher, :activity => @activity)
+    
     @zone2 = Factory(:zone2)
     @teacher2 = Factory(:teacher2)
     @teacher2.classrooms << Factory(:classroom2, :teacher => @teacher2, :zone => @zone2)
     @teacher2.professorships << Factory(:professorship2, :teacher => @teacher2, :activity => @activity)
+    
+    @teacher3 = Factory(:teacher3)
+    @teacher3.classrooms << Factory(:classroom3, :teacher => @teacher3, :zone => @zone)
+    @teacher3.professorships << Factory(:professorship3, :teacher => @teacher3, :activity => @activity)
   end
 
   it "should be able to create an instance with valid attributes" do
     @teacher.should be_valid
   end
 
+  it "should respond to attributes publish_email, publish_phone and description" do
+    @teacher.should respond_to(:publish_email, :publish_phone, :description)
+  end
+  
   it "should validate factory girl instance" do
     @teacher.should be_valid
   end
@@ -47,11 +59,64 @@ describe Teacher do
   end
 
   it "find_teacher_for_pupil should return one teacher (Diego)" do
-    teachers = Teacher.find_teacher_for_pupil(@activity.id, [@zone2.id], nil, true)
+    teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone2.id], :receives_people_here => true
     teachers.length.should == 1
     teachers.first.first_name.should == "Diego"
   end
 
+  it "find_teacher_for_pupil using phone should return Diego" do
+    teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone2.id], :must_have_phone =>true
+    teachers.first.first_name.should == "Diego"
+  end
+
+  it "find_teacher_for_pupil using email should return Diego" do
+    teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone2.id], :must_have_email =>true
+    teachers.first.first_name.should == "Diego"
+  end
+
+  it "find_teacher_for_pupil using maximum price should return Diego" do
+    teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone2.id], :maximum_price_per_hour => 100
+    teachers.first.first_name.should == "Diego"
+  end
+
+  it "find_teacher_for_pupil using order_by should return first Pacino and then Pochiero" do
+    teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone.id], :order_by => "last_name"
+    teachers.length.should == 2
+    teachers.first.first_name.should == "Al"
+  end
+
+  it "calling find_teacher_for_pupil with only page_size and no page_number should return an error" do
+    lambda do
+      Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone.id], :page_size => 1
+    end.should raise_error()
+  end
+  
+  it "calling find_teacher_for_pupil with only page_number and no page_size should return an error" do
+    lambda do
+      Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone.id], :page_number => 1
+    end.should raise_error()
+  end
+  
+  it "find_teacher_for_pupil using @activity and @zone should return 2 records" do
+    teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone.id]
+    teachers.length.should == 2 
+  end
+  
+  it "find_teacher_for_pupil using page_size and page_number should return only one record" do
+    teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone.id], :page_size => 1, :page_number => 1
+    teachers.length.should == 1    
+  end
+
+  it "find_teacher_for_pupil using page_size 2 and page_number 1 should return two records" do
+    teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone.id], :page_size => 2, :page_number => 1
+    teachers.length.should == 2 
+  end
+  
+  it "find_teacher_for_pupil using page_size 1 and page_number 2 should return only one record" do
+    teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone.id], :page_size => 1, :page_number => 2
+    teachers.length.should == 1
+  end
+  
   describe "test rating system for teacher" do
 
     before(:each) do
@@ -74,7 +139,7 @@ describe Teacher do
     
     it "should rate and then get the rating through the search" do
       @teacher2.ratings.create(:user_id => @user.id, :rating => 1, :comment => "This teacher really sucks")
-      teachers = Teacher.find_teacher_for_pupil(@activity.id, [@zone2.id], nil, true)
+      teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone2.id], :receives_people_here => true
       teachers.length.should == 1      
       teachers.first.get_rating.should == 1
     end

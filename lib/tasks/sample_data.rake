@@ -112,6 +112,8 @@ namespace :db do
       password = "password"
       password_confirmation = "password"
       avatar = ["avatar_1.jpg", "avatar_2.gif", "avatar_3.png"][Random.new.rand(0..2)]
+      publish_email = [true, false][Random.new.rand(0..1)]
+      publish_phone = [true, false][Random.new.rand(0..1)]
       teacher = Teacher.create!(:first_name => first_name, :last_name => last_name, :description => description, :email => email, :cellphone => cellphone, :password => password, :password_confirmation => password_confirmation, :avatar => avatar)
 
       # Add a classroom

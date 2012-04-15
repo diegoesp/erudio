@@ -6,8 +6,11 @@
 #  last_name          :string(255)
 #  first_name         :string(255)
 #  email              :string(255)
-#  cellphone          :string(255)
+#  phone              :string(255)
 #  description        :string(255)
+#  avatar             :string(255)
+#  publish_email      :boolean
+#  publish_phone      :boolean
 #  type               :string(255)
 #  created_at         :datetime
 #  updated_at         :datetime
@@ -20,7 +23,7 @@ class User < ActiveRecord::Base
   require 'valid_email'
 
   attr_accessor :password
-  attr_accessible :last_name, :first_name, :description, :email, :cellphone, :password, :password_confirmation, :avatar
+  attr_accessible :last_name, :first_name, :email, :phone, :password, :password_confirmation, :avatar
 
   validates :last_name, :presence => true
   validates :first_name, :presence => true
