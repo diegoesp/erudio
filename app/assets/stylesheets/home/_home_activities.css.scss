@@ -23,7 +23,7 @@
 	section#activities {
 		margin: auto;
 		width: 800px;
-		height: 80%;
+		height: 250px;
 		position: relative;
 		font-size: 12px;
 	}
@@ -136,8 +136,7 @@
 			height: 95px;
 			cursor: pointer;
 			position: absolute;
-			top: -4px;
-			
+			bottom: 10px;
 		}
 		
 		#seeMoreActivities.seeMore {
