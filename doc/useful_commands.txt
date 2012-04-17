@@ -18,3 +18,23 @@ bundle exec rake assets:precompile
 
 # Switch -e starts the rails server into a determined mode (production|staging|development|test). In this case, production.
 rails server -e production
+
+#######
+Controller
+#######
+
+# Generates a controller named ZoneController with an action "get_all_zones"
+rails generate controller Zone get_all_zones
+
+#######
+Model
+#######
+
+# Generate a new model
+rails generate model Product name:string description:text
+
+# Add a column
+rails generate migration AddPartNumberToProducts part_number:string
+
+# Remove a column
+rails generate migration RemovePartNumberFromProducts part_number:string

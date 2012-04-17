@@ -16,6 +16,7 @@ describe Zone do
 
   before(:each) do
     @attr = {:name => "Almagro"}
+    @zone3 = Factory(:zone3)
   end
 
   it "should be able to create an instance with valid attributes" do
@@ -26,4 +27,10 @@ describe Zone do
     zone_without_name = Zone.create({:name => ""})
     zone_without_name.should_not be_valid
   end
+  
+  it "must include only the contiguous zone for Villa Crespo" do
+    @zone3.contiguous_zones.length.should == 1
+    @zone3.contiguous_zones.first.name.should == "Palermo"
+  end
+  
 end

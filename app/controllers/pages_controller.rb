@@ -3,9 +3,6 @@
 # Sets initial contexts and provides APIs for associated pages
 class PagesController < ApplicationController
 
-  protect_from_forgery
-  respond_to :json
-
   skip_before_filter :require_login, :only => [:home, :api_search_teachers, :result, :result_search, :api_caller]
 
   # Displays the homepage (that contains the wizard)
