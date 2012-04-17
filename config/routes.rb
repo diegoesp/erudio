@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 Erudio::Application.routes.draw do
-
+  
   root :to => 'pages#home'
 
   match "/home", :to => "pages#home"
@@ -15,6 +15,7 @@ Erudio::Application.routes.draw do
   match "/api_logout", :to => "sessions#api_logout"
   match "/api_rate_a_teacher", :to => "users#api_rate_a_teacher"
   match "/api_get_teacher_rating", :to => "users#api_get_teacher_rating"
+  match "/api_get_contiguous_zones", :to => "zones#api_get_contiguous_zones"
 
   # Deprecated. Should be erased when the real result page is implemented
   match "/result_search", :to => "pages#result_search"

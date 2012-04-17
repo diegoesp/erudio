@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120330030205) do
+ActiveRecord::Schema.define(:version => 20120416020600) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,11 @@ ActiveRecord::Schema.define(:version => 20120330030205) do
     t.boolean  "receives_people_here"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "contiguous_zones", :id => false, :force => true do |t|
+    t.integer "zone_id"
+    t.integer "contiguous_zone_id"
   end
 
   create_table "professorships", :force => true do |t|

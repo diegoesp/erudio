@@ -128,3 +128,8 @@ end
 Factory.define :professorship4, :class => Professorship do |professorship|
 	professorship.price_per_hour 30
 end
+
+Factory.define :zone3, :class => Zone do |zone|
+  zone.name "Mataderos"
+  zone.contiguous_zones { |contiguous_zone| [contiguous_zone.association(:zone2)] }
+end
