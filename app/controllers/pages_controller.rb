@@ -9,8 +9,8 @@ class PagesController < ApplicationController
   def home
     @json_all_activities = Activity.all.to_json
     @json_featured_activities = Activity.find_all_by_featured(true).to_json
-    @json_all_zones = Zone.all.to_json
-    @json_featured_zones = Zone.find_all_by_featured(true).to_json
+    @json_all_zones = Zone.find(:all, :order => "name").to_json
+    @json_featured_zones = Zone.find_all_by_featured(true, :order => "name").to_json
   end
 
   # API for searching teachers in the wizard

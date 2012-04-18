@@ -9,6 +9,8 @@ describe PagesController do
     @category = Factory(:category)
     @activity = Factory(:activity)
     @zone = Factory(:zone)
+    @zone3 = Factory(:zone3)
+    @zone2 = @zone3.contiguous_zones.first    
   end
 
   describe "GET 'home'" do
@@ -20,9 +22,22 @@ describe PagesController do
 
     it "should include a json for a list of activities" do
       get :home
-      @activities = [@activity]
-      response.should contain @activities.to_json.to_s
+      activities = [@activity]
+      response.should contain activities.to_json.to_s
     end
+    
+    it "should include a json for a list of zones ordered by name" do
+      get :home
+      zones = [@zone3, @zone2, @zone]             # Mataderos, Palermo, Villa Crespo
+      response.should contain zones.to_json.to_s
+    end
+    
+    it "should include a json for a list of featured zones ordered by name" do
+      get :home
+      zones = [@zone3, @zone]             # Mataderos, Villa Crespo
+      response.should contain zones.to_json.to_s
+    end
+    
   end
 
   describe "API testing", :type => :api do

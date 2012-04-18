@@ -49,6 +49,7 @@ end
 
 Factory.define :zone do |zone|
 	zone.name "Villa Crespo"
+	zone.featured "true"
 end
 
 Factory.define :classroom do |classroom|
@@ -132,4 +133,5 @@ end
 Factory.define :zone3, :class => Zone do |zone|
   zone.name "Mataderos"
   zone.contiguous_zones { |contiguous_zone| [contiguous_zone.association(:zone2)] }
+  zone.featured "true"
 end
