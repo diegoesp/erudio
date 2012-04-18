@@ -22,7 +22,7 @@
 <script id="activityTemplate" type="text/template">
 	{[ _.each(data, function(activity) { ]}
 		<div class="{{featured === true ? "featuredActivityContainer" : "allActivityContainer"}}">
-			<div class="activityBox js-activityBox_{{activity.id}}" onclick="app.home.selectActivity($(this), {{featured}});">
+			<div class="activityBox js-activityBox_{{activity.id}}" onclick="app.home.selectActivity($(this));">
 				<div class="activityLeftIndicator"></div>
 				<span>{{ activity.name }}</span>
 				

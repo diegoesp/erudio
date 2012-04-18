@@ -46,7 +46,7 @@ namespace :db do
     Zone.create!(:name => "Barracas")
     Zone.create!(:name => "Belgrano", :featured => true)
     Zone.create!(:name => "Boedo")
-    Zone.create!(:name => "Caballito", :featured => false)
+    Zone.create!(:name => "Caballito", :featured => true)
     Zone.create!(:name => "Chacarita")
     Zone.create!(:name => "Coghlan")
     Zone.create!(:name => "Colegiales")
