@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
 
+  protect_from_forgery
+  respond_to :json
+
   # An around filter that catches exceptions in the API and returns the content of the exception serialized
   around_filter do |controller, action_block|
 

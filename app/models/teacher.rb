@@ -19,6 +19,7 @@
 #  salt               :string(255)
 #
 
+# A User that can teach to other Users
 class Teacher < User
 	has_many :classrooms
 	has_many :professorships, :dependent => :destroy

@@ -40,55 +40,285 @@ namespace :db do
     @plastic_arts.activities.create!(:name => "Pintura")
     @plastic_arts.activities.create!(:name => "Historia del arte")
 
-    Zone.create!(:name => "Agronomía")
-    Zone.create!(:name => "Almagro", :featured => true)
-    Zone.create!(:name => "Balvanera", :featured => true)
-    Zone.create!(:name => "Barracas")
-    Zone.create!(:name => "Belgrano", :featured => true)
-    Zone.create!(:name => "Boedo")
-    Zone.create!(:name => "Caballito", :featured => true)
-    Zone.create!(:name => "Chacarita")
-    Zone.create!(:name => "Coghlan")
-    Zone.create!(:name => "Colegiales")
-    Zone.create!(:name => "Constitución")
-    Zone.create!(:name => "Flores")
-    Zone.create!(:name => "Floresta")
-    Zone.create!(:name => "La Boca")
-    Zone.create!(:name => "La Paternal")
-    Zone.create!(:name => "Liniers")
-    Zone.create!(:name => "Mataderos")
-    Zone.create!(:name => "Monte Castro")
-    Zone.create!(:name => "Monserrat")
-    Zone.create!(:name => "Nueva Pompeya")
-    Zone.create!(:name => "Núñez")
-    Zone.create!(:name => "Palermo")
-    Zone.create!(:name => "Parque Avellaneda")
-    Zone.create!(:name => "Parque Chacabuco")
-    Zone.create!(:name => "Parque Chas")
-    Zone.create!(:name => "Parque Patricios")
-    Zone.create!(:name => "Puerto Madero")
-    Zone.create!(:name => "Recoleta")
-    Zone.create!(:name => "Retiro")
-    Zone.create!(:name => "Saavedra")
-    Zone.create!(:name => "San Cristóbal")
-    Zone.create!(:name => "San Nicolás")
-    Zone.create!(:name => "San Telmo")
-    Zone.create!(:name => "Vélez Sársfield")
-    Zone.create!(:name => "Versalles")
-    Zone.create!(:name => "Villa Crespo")
-    Zone.create!(:name => "Villa del Parque")
-    Zone.create!(:name => "Villa Devoto")
-    Zone.create!(:name => "Villa General Mitre")
-    Zone.create!(:name => "Villa Lugano")
-    Zone.create!(:name => "Villa Luro")
-    Zone.create!(:name => "Villa Ortúzar")
-    Zone.create!(:name => "Villa Pueyrredón")
-    Zone.create!(:name => "Villa Real")
-    Zone.create!(:name => "Villa Riachuelo")
-    Zone.create!(:name => "Villa Santa Rita")
-    Zone.create!(:name => "Villa Soldati")
-    Zone.create!(:name => "Villa Talar")
-    Zone.create!(:name => "Villa Urquiza")
+    # Zones are neighbourhoods, or "barrios". They're taken form wikipedia, here => http://en.wikipedia.org/wiki/Barrios_and_Communes_of_Buenos_Aires
+    @zone_agronomia = Zone.create!(:name => "Agronomía")
+    @zone_almagro = Zone.create!(:name => "Almagro", :featured => true)
+    @zone_balvanera = Zone.create!(:name => "Balvanera", :featured => true)
+    @zone_barracas = Zone.create!(:name => "Barracas")
+    @zone_belgrano = Zone.create!(:name => "Belgrano", :featured => true)
+    @zone_boedo = Zone.create!(:name => "Boedo")
+    @zone_caballito = Zone.create!(:name => "Caballito", :featured => false)
+    @zone_chacarita = Zone.create!(:name => "Chacarita")
+    @zone_coghlan = Zone.create!(:name => "Coghlan")
+    @zone_colegiales = Zone.create!(:name => "Colegiales")
+    @zone_constitucion = Zone.create!(:name => "Constitución")
+    @zone_flores = Zone.create!(:name => "Flores")
+    @zone_floresta = Zone.create!(:name => "Floresta")
+    @zone_la_boca = Zone.create!(:name => "La Boca")
+    @zone_la_paternal = Zone.create!(:name => "La Paternal")
+    @zone_liniers = Zone.create!(:name => "Liniers")
+    @zone_mataderos = Zone.create!(:name => "Mataderos")
+    @zone_monte_castro = Zone.create!(:name => "Monte Castro")
+    @zone_monserrat = Zone.create!(:name => "Monserrat")
+    @zone_nueva_pompeya = Zone.create!(:name => "Nueva Pompeya")
+    @zone_nunez = Zone.create!(:name => "Núñez")
+    @zone_palermo = Zone.create!(:name => "Palermo")
+    @zone_parque_avellaneda = Zone.create!(:name => "Parque Avellaneda")
+    @zone_parque_chacabuco = Zone.create!(:name => "Parque Chacabuco")
+    @zone_parque_chas = Zone.create!(:name => "Parque Chas")
+    @zone_parque_patricios = Zone.create!(:name => "Parque Patricios")
+    @zone_puerto_madero = Zone.create!(:name => "Puerto Madero")
+    @zone_recoleta = Zone.create!(:name => "Recoleta")
+    @zone_retiro = Zone.create!(:name => "Retiro")
+    @zone_saavedra = Zone.create!(:name => "Saavedra")
+    @zone_san_cristobal = Zone.create!(:name => "San Cristóbal")
+    @zone_san_nicolas = Zone.create!(:name => "San Nicolás")
+    @zone_san_telmo = Zone.create!(:name => "San Telmo")
+    @zone_velez_sarsfield = Zone.create!(:name => "Vélez Sársfield")
+    @zone_versalles = Zone.create!(:name => "Versalles")
+    @zone_villa_crespo = Zone.create!(:name => "Villa Crespo")
+    @zone_villa_del_parque = Zone.create!(:name => "Villa del Parque")
+    @zone_villa_devoto = Zone.create!(:name => "Villa Devoto")
+    @zone_villa_general_mitre = Zone.create!(:name => "Villa General Mitre")
+    @zone_villa_lugano = Zone.create!(:name => "Villa Lugano")
+    @zone_villa_luro = Zone.create!(:name => "Villa Luro")
+    @zone_villa_ortuzar = Zone.create!(:name => "Villa Ortúzar")
+    @zone_villa_pueyrredon = Zone.create!(:name => "Villa Pueyrredón")
+    @zone_villa_real = Zone.create!(:name => "Villa Real")
+    @zone_villa_riachuelo = Zone.create!(:name => "Villa Riachuelo")
+    @zone_villa_santa_rita = Zone.create!(:name => "Villa Santa Rita")
+    @zone_villa_soldati = Zone.create!(:name => "Villa Soldati")
+    @zone_villa_talar = Zone.create!(:name => "Villa Talar")
+    @zone_villa_urquiza = Zone.create!(:name => "Villa Urquiza")
+
+    # Relationships between zones was created using http://mapa.buenosaires.gob.ar/
+    # The zones are neighbourhoods. They're reviewed from north to south. I start with Nuñez and end with Villa Riachuelo.
+    @zone_nunez.contiguous_zones << @zone_saavedra
+    @zone_nunez.contiguous_zones << @zone_belgrano
+    @zone_nunez.contiguous_zones << @zone_coghlan
+    @zone_saavedra.contiguous_zones << @zone_nunez
+    @zone_saavedra.contiguous_zones << @zone_belgrano
+    @zone_saavedra.contiguous_zones << @zone_coghlan
+    @zone_saavedra.contiguous_zones << @zone_villa_urquiza
+    @zone_belgrano.contiguous_zones << @zone_nunez
+    @zone_belgrano.contiguous_zones << @zone_saavedra
+    @zone_belgrano.contiguous_zones << @zone_coghlan        
+    @zone_belgrano.contiguous_zones << @zone_colegiales    
+    @zone_belgrano.contiguous_zones << @zone_palermo
+    @zone_belgrano.contiguous_zones << @zone_villa_ortuzar
+    @zone_coghlan.contiguous_zones << @zone_nunez
+    @zone_coghlan.contiguous_zones << @zone_saavedra
+    @zone_coghlan.contiguous_zones << @zone_belgrano
+    @zone_coghlan.contiguous_zones << @zone_villa_urquiza 
+    @zone_coghlan.contiguous_zones << @zone_colegiales
+    @zone_coghlan.contiguous_zones << @zone_palermo
+    @zone_villa_urquiza.contiguous_zones << @zone_coghlan
+    @zone_villa_urquiza.contiguous_zones << @zone_colegiales    
+    @zone_villa_urquiza.contiguous_zones << @zone_palermo    
+    @zone_villa_urquiza.contiguous_zones << @zone_villa_ortuzar    
+    @zone_villa_urquiza.contiguous_zones << @zone_villa_pueyrredon
+    @zone_villa_urquiza.contiguous_zones << @zone_parque_chas
+    @zone_colegiales.contiguous_zones << @zone_belgrano
+    @zone_colegiales.contiguous_zones << @zone_coghlan
+    @zone_colegiales.contiguous_zones << @zone_villa_urquiza
+    @zone_colegiales.contiguous_zones << @zone_palermo
+    @zone_colegiales.contiguous_zones << @zone_villa_ortuzar
+    @zone_colegiales.contiguous_zones << @zone_villa_pueyrredon
+    @zone_colegiales.contiguous_zones << @zone_parque_chas
+    @zone_colegiales.contiguous_zones << @zone_chacarita
+    @zone_colegiales.contiguous_zones << @zone_recoleta
+    @zone_palermo.contiguous_zones << @zone_belgrano
+    @zone_palermo.contiguous_zones << @zone_coghlan
+    @zone_palermo.contiguous_zones << @zone_villa_urquiza
+    @zone_palermo.contiguous_zones << @zone_colegiales
+    @zone_palermo.contiguous_zones << @zone_villa_ortuzar
+    @zone_palermo.contiguous_zones << @zone_chacarita
+    @zone_palermo.contiguous_zones << @zone_recoleta
+    @zone_palermo.contiguous_zones << @zone_villa_crespo
+    @zone_palermo.contiguous_zones << @zone_almagro
+    @zone_villa_ortuzar.contiguous_zones << @zone_belgrano
+    @zone_villa_ortuzar.contiguous_zones << @zone_villa_urquiza
+    @zone_villa_ortuzar.contiguous_zones << @zone_colegiales
+    @zone_villa_ortuzar.contiguous_zones << @zone_palermo
+    @zone_villa_ortuzar.contiguous_zones << @zone_villa_pueyrredon
+    @zone_villa_ortuzar.contiguous_zones << @zone_parque_chas
+    @zone_villa_ortuzar.contiguous_zones << @zone_chacarita
+    @zone_villa_pueyrredon.contiguous_zones << @zone_villa_urquiza
+    @zone_villa_pueyrredon.contiguous_zones << @zone_parque_chas
+    @zone_villa_pueyrredon.contiguous_zones << @zone_agronomia
+    @zone_villa_pueyrredon.contiguous_zones << @zone_villa_del_parque
+    @zone_villa_pueyrredon.contiguous_zones << @zone_villa_devoto
+    @zone_parque_chas.contiguous_zones << @zone_villa_ortuzar
+    @zone_parque_chas.contiguous_zones << @zone_villa_pueyrredon
+    @zone_parque_chas.contiguous_zones << @zone_chacarita 
+    @zone_parque_chas.contiguous_zones << @zone_agronomia
+    @zone_parque_chas.contiguous_zones << @zone_la_paternal
+    @zone_chacarita.contiguous_zones << @zone_colegiales    
+    @zone_chacarita.contiguous_zones << @zone_palermo
+    @zone_chacarita.contiguous_zones << @zone_villa_ortuzar
+    @zone_chacarita.contiguous_zones << @zone_parque_chas
+    @zone_chacarita.contiguous_zones << @zone_agronomia        
+    @zone_chacarita.contiguous_zones << @zone_la_paternal
+    @zone_chacarita.contiguous_zones << @zone_villa_crespo
+    @zone_chacarita.contiguous_zones << @zone_recoleta
+    @zone_agronomia.contiguous_zones << @zone_villa_pueyrredon
+    @zone_agronomia.contiguous_zones << @zone_parque_chas
+    @zone_agronomia.contiguous_zones << @zone_chacarita
+    @zone_agronomia.contiguous_zones << @zone_la_paternal
+    @zone_agronomia.contiguous_zones << @zone_villa_del_parque
+    @zone_agronomia.contiguous_zones << @zone_villa_devoto
+    @zone_recoleta.contiguous_zones << @zone_palermo
+    @zone_recoleta.contiguous_zones << @zone_colegiales
+    @zone_recoleta.contiguous_zones << @zone_villa_ortuzar
+    @zone_recoleta.contiguous_zones << @zone_chacarita
+    @zone_recoleta.contiguous_zones << @zone_villa_crespo
+    @zone_recoleta.contiguous_zones << @zone_almagro
+    @zone_recoleta.contiguous_zones << @zone_san_nicolas
+    @zone_recoleta.contiguous_zones << @zone_puerto_madero
+    @zone_la_paternal.contiguous_zones << @zone_parque_chas
+    @zone_la_paternal.contiguous_zones << @zone_chacarita
+    @zone_la_paternal.contiguous_zones << @zone_agronomia
+    @zone_la_paternal.contiguous_zones << @zone_villa_crespo
+    @zone_la_paternal.contiguous_zones << @zone_villa_del_parque
+    @zone_la_paternal.contiguous_zones << @zone_villa_general_mitre
+    @zone_villa_crespo.contiguous_zones << @zone_palermo
+    @zone_villa_crespo.contiguous_zones << @zone_chacarita
+    @zone_villa_crespo.contiguous_zones << @zone_recoleta
+    @zone_villa_crespo.contiguous_zones << @zone_villa_del_parque
+    @zone_villa_crespo.contiguous_zones << @zone_almagro
+    @zone_villa_crespo.contiguous_zones << @zone_villa_general_mitre
+    @zone_villa_crespo.contiguous_zones << @zone_caballito
+    @zone_villa_del_parque.contiguous_zones << @zone_agronomia
+    @zone_villa_del_parque.contiguous_zones << @zone_la_paternal
+    @zone_villa_del_parque.contiguous_zones << @zone_villa_crespo
+    @zone_villa_del_parque.contiguous_zones << @zone_villa_devoto
+    @zone_villa_del_parque.contiguous_zones << @zone_villa_general_mitre
+    @zone_villa_del_parque.contiguous_zones << @zone_villa_santa_rita
+    @zone_villa_del_parque.contiguous_zones << @zone_monte_castro
+    @zone_san_nicolas.contiguous_zones << @zone_recoleta
+    @zone_san_nicolas.contiguous_zones << @zone_balvanera
+    @zone_san_nicolas.contiguous_zones << @zone_monserrat
+    @zone_san_nicolas.contiguous_zones << @zone_puerto_madero
+    @zone_almagro.contiguous_zones << @zone_palermo
+    @zone_almagro.contiguous_zones << @zone_recoleta
+    @zone_almagro.contiguous_zones << @zone_villa_crespo
+    @zone_almagro.contiguous_zones << @zone_balvanera
+    @zone_almagro.contiguous_zones << @zone_caballito
+    @zone_almagro.contiguous_zones << @zone_san_cristobal
+    @zone_villa_devoto.contiguous_zones << @zone_villa_pueyrredon
+    @zone_villa_devoto.contiguous_zones << @zone_agronomia
+    @zone_villa_devoto.contiguous_zones << @zone_villa_del_parque
+    @zone_villa_devoto.contiguous_zones << @zone_villa_santa_rita
+    @zone_villa_devoto.contiguous_zones << @zone_monte_castro
+    @zone_villa_devoto.contiguous_zones << @zone_versalles
+    @zone_villa_general_mitre.contiguous_zones << @zone_la_paternal
+    @zone_villa_general_mitre.contiguous_zones << @zone_villa_del_parque
+    @zone_villa_general_mitre.contiguous_zones << @zone_villa_crespo
+    @zone_villa_general_mitre.contiguous_zones << @zone_villa_santa_rita
+    @zone_villa_general_mitre.contiguous_zones << @zone_monte_castro
+    @zone_villa_general_mitre.contiguous_zones << @zone_flores
+    @zone_villa_general_mitre.contiguous_zones << @zone_caballito
+    @zone_balvanera.contiguous_zones << @zone_recoleta
+    @zone_balvanera.contiguous_zones << @zone_almagro
+    @zone_balvanera.contiguous_zones << @zone_san_nicolas
+    @zone_balvanera.contiguous_zones << @zone_monserrat
+    @zone_balvanera.contiguous_zones << @zone_san_cristobal
+    @zone_puerto_madero.contiguous_zones << @zone_recoleta
+    @zone_puerto_madero.contiguous_zones << @zone_san_nicolas
+    @zone_puerto_madero.contiguous_zones << @zone_monserrat
+    @zone_puerto_madero.contiguous_zones << @zone_la_boca
+    @zone_monserrat.contiguous_zones << @zone_san_nicolas
+    @zone_monserrat.contiguous_zones << @zone_balvanera
+    @zone_monserrat.contiguous_zones << @zone_puerto_madero
+    @zone_monserrat.contiguous_zones << @zone_san_cristobal
+    @zone_monserrat.contiguous_zones << @zone_la_boca
+    @zone_villa_santa_rita.contiguous_zones << @zone_villa_del_parque
+    @zone_villa_santa_rita.contiguous_zones << @zone_villa_devoto
+    @zone_villa_santa_rita.contiguous_zones << @zone_villa_general_mitre
+    @zone_villa_santa_rita.contiguous_zones << @zone_caballito
+    @zone_villa_santa_rita.contiguous_zones << @zone_monte_castro
+    @zone_villa_santa_rita.contiguous_zones << @zone_floresta
+    @zone_villa_santa_rita.contiguous_zones << @zone_flores
+    @zone_caballito.contiguous_zones << @zone_villa_crespo
+    @zone_caballito.contiguous_zones << @zone_almagro
+    @zone_caballito.contiguous_zones << @zone_villa_general_mitre
+    @zone_caballito.contiguous_zones << @zone_flores
+    @zone_caballito.contiguous_zones << @zone_parque_chacabuco
+    @zone_caballito.contiguous_zones << @zone_san_cristobal
+    @zone_monte_castro.contiguous_zones << @zone_villa_devoto
+    @zone_monte_castro.contiguous_zones << @zone_villa_santa_rita
+    @zone_monte_castro.contiguous_zones << @zone_floresta
+    @zone_monte_castro.contiguous_zones << @zone_versalles
+    @zone_monte_castro.contiguous_zones << @zone_velez_sarsfield
+    @zone_san_cristobal.contiguous_zones << @zone_almagro
+    @zone_san_cristobal.contiguous_zones << @zone_balvanera
+    @zone_san_cristobal.contiguous_zones << @zone_monserrat      
+    @zone_san_cristobal.contiguous_zones << @zone_caballito
+    @zone_san_cristobal.contiguous_zones << @zone_parque_chacabuco
+    @zone_san_cristobal.contiguous_zones << @zone_parque_patricios
+    @zone_san_cristobal.contiguous_zones << @zone_la_boca
+    @zone_san_cristobal.contiguous_zones << @zone_barracas
+    @zone_floresta.contiguous_zones << @zone_villa_santa_rita
+    @zone_floresta.contiguous_zones << @zone_monte_castro
+    @zone_floresta.contiguous_zones << @zone_versalles
+    @zone_floresta.contiguous_zones << @zone_velez_sarsfield
+    @zone_floresta.contiguous_zones << @zone_flores
+    @zone_floresta.contiguous_zones << @zone_liniers
+    @zone_versalles.contiguous_zones << @zone_monte_castro
+    @zone_versalles.contiguous_zones << @zone_velez_sarsfield
+    @zone_versalles.contiguous_zones << @zone_liniers
+    @zone_velez_sarsfield.contiguous_zones << @zone_monte_castro
+    @zone_velez_sarsfield.contiguous_zones << @zone_floresta
+    @zone_velez_sarsfield.contiguous_zones << @zone_versalles
+    @zone_velez_sarsfield.contiguous_zones << @zone_flores
+    @zone_velez_sarsfield.contiguous_zones << @zone_liniers
+    @zone_parque_chacabuco.contiguous_zones << @zone_caballito
+    @zone_parque_chacabuco.contiguous_zones << @zone_san_cristobal
+    @zone_parque_chacabuco.contiguous_zones << @zone_flores
+    @zone_parque_chacabuco.contiguous_zones << @zone_parque_patricios
+    @zone_parque_chacabuco.contiguous_zones << @zone_nueva_pompeya
+    @zone_la_boca.contiguous_zones << @zone_puerto_madero
+    @zone_la_boca.contiguous_zones << @zone_monserrat
+    @zone_la_boca.contiguous_zones << @zone_san_cristobal
+    @zone_la_boca.contiguous_zones << @zone_parque_patricios
+    @zone_la_boca.contiguous_zones << @zone_barracas
+    @zone_flores.contiguous_zones << @zone_caballito
+    @zone_flores.contiguous_zones << @zone_floresta
+    @zone_flores.contiguous_zones << @zone_velez_sarsfield
+    @zone_flores.contiguous_zones << @zone_parque_chacabuco
+    @zone_flores.contiguous_zones << @zone_nueva_pompeya
+    @zone_flores.contiguous_zones << @zone_liniers
+    @zone_flores.contiguous_zones << @zone_mataderos
+    @zone_flores.contiguous_zones << @zone_villa_lugano
+    @zone_parque_patricios.contiguous_zones << @zone_san_cristobal
+    @zone_parque_patricios.contiguous_zones << @zone_parque_chacabuco
+    @zone_parque_patricios.contiguous_zones << @zone_la_boca
+    @zone_parque_patricios.contiguous_zones << @zone_barracas
+    @zone_parque_patricios.contiguous_zones << @zone_nueva_pompeya
+    @zone_liniers.contiguous_zones << @zone_floresta
+    @zone_liniers.contiguous_zones << @zone_versalles
+    @zone_liniers.contiguous_zones << @zone_flores
+    @zone_liniers.contiguous_zones << @zone_mataderos
+    @zone_barracas.contiguous_zones << @zone_san_cristobal
+    @zone_barracas.contiguous_zones << @zone_la_boca
+    @zone_barracas.contiguous_zones << @zone_parque_patricios
+    @zone_barracas.contiguous_zones << @zone_nueva_pompeya
+    @zone_barracas.contiguous_zones << @zone_la_boca
+    @zone_nueva_pompeya.contiguous_zones << @zone_parque_chacabuco
+    @zone_nueva_pompeya.contiguous_zones << @zone_flores
+    @zone_nueva_pompeya.contiguous_zones << @zone_parque_patricios
+    @zone_nueva_pompeya.contiguous_zones << @zone_barracas
+    @zone_nueva_pompeya.contiguous_zones << @zone_villa_lugano
+    @zone_mataderos.contiguous_zones << @zone_liniers
+    @zone_mataderos.contiguous_zones << @zone_flores
+    @zone_mataderos.contiguous_zones << @zone_villa_lugano
+    @zone_mataderos.contiguous_zones << @zone_villa_riachuelo
+    @zone_villa_lugano.contiguous_zones << @zone_mataderos
+    @zone_villa_lugano.contiguous_zones << @zone_nueva_pompeya
+    @zone_villa_lugano.contiguous_zones << @zone_flores
+    @zone_villa_lugano.contiguous_zones << @zone_villa_riachuelo
+    @zone_villa_riachuelo.contiguous_zones << @zone_mataderos
+    @zone_villa_riachuelo.contiguous_zones << @zone_villa_lugano
 
     # Users
     50.times do
@@ -135,7 +365,7 @@ namespace :db do
       Random.new.rand(1..5).times do
         rating = Random.new.rand(1..5)
         user = User.random while user.has_rated_teacher?(teacher)
-        teacher.ratings.create(:user_id => user.id, :rating => rating, :comment => Faker::Lorem.paragraph)
+        teacher.ratings.create!(:user_id => user.id, :rating => rating, :comment => Faker::Lorem.paragraph)
       end
 
     end
