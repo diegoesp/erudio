@@ -16,6 +16,8 @@ class Classroom < ActiveRecord::Base
   belongs_to :teacher
   belongs_to :zone
 
+  attr_accessible :zone_id, :goes_here, :receives_people_here
+  
   validates :teacher, :presence => true
   validates :zone, :presence => true
   validates_inclusion_of :goes_here, :in => [true, false]

@@ -228,8 +228,6 @@ app.home.selectZone = function(zoneBox) {
 
 }
 
-
-
 //
 // HOME EVENTS
 //
@@ -299,3 +297,40 @@ app.home.alertSearchTerm = function() {
 	alert(JSON.stringify(app.home.searchTerm));
 }
 
+//
+// Launches a search for teachers using the teachers controller
+//
+app.home.post_search = function(url) {
+	var activity_id = app.home.searchTerm.activityId;
+	var zone_id_csv = app.home.searchTerm.zonesIds;
+	var activity_mode = app.home.searchTerm.activityMode;
+	
+	if (activity_id == undefined)
+	{
+		alert("Please specify an activity");
+		return;
+	}
+	if (activity_mode == undefined)
+	{
+		alert("Please specify an activity_mode");
+		return;
+	}
+	if (zone_id_csv == "")
+	{
+		alert("Please specify zones");
+		return;
+	}	
+	
+	var goes_here = false;
+	var receives_people_here = false;
+	if (activity_mode == "student_place") goes_here = true;
+	if (activity_mode == "teacher_place") receives_people_here = true;
+	
+	var location = url;
+	location += "?activity_id=" + activity_id;
+	location += "&zone_id_csv=" + zone_id_csv;
+	if (goes_here) location += "&goes_here=" + goes_here;
+	if (receives_people_here) location += "&receives_people_here=" + receives_people_here;	
+	
+	window.location = location;
+}

@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+
   include SessionsHelper
 
   protect_from_forgery
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
     
     # If the called method is an API then the returned value cannot be a 500 page, but a 402 JSON error
-    if controller.action_name.starts_with?("api_")
+    if params[:format] = "json"
       begin
         action_block.call
       rescue Exception => e
