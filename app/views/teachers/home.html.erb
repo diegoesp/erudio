@@ -4,6 +4,8 @@
 		// Initialize the js for this particular page when the DOM is ready.
 		$(document).ready(function() {
 			app.home.initialize();
+			
+			app.home.searchURL = '.<%= url_for(:action => 'search', :controller => 'teachers') %>'; 
 		});
 	
 	
