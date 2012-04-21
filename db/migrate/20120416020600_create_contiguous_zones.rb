@@ -6,7 +6,7 @@ class CreateContiguousZones < ActiveRecord::Migration
     end
   end
   
-  defself.down
+  def self.down
     drop_table:'contiguous_zones'
   end
 end
