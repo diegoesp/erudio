@@ -19,7 +19,7 @@ gem "random_record", "~> 0.0.7"             # For sample_data.rake script
 group :assets do
   # We're not using Coffeescript for this project
   # gem 'coffee-rails', '~> 3.1.1'
-  gem 'sass-rails',   '~> 3.1.5'
+  gem 'sass-rails',   '<= 3.1.4'
   gem 'uglifier', '>= 1.0.3'
 end
 
