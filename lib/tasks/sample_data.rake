@@ -52,7 +52,7 @@ namespace :db do
     @zone_coghlan = Zone.create!(:name => "Coghlan")
     @zone_colegiales = Zone.create!(:name => "Colegiales")
     @zone_constitucion = Zone.create!(:name => "Constitución")
-    @zone_flores = Zone.create!(:name => "Flores", :featured => true)
+    @zone_flores = Zone.create!(:name => "Flores")
     @zone_floresta = Zone.create!(:name => "Floresta")
     @zone_la_boca = Zone.create!(:name => "La Boca")
     @zone_la_paternal = Zone.create!(:name => "La Paternal")
@@ -76,11 +76,11 @@ namespace :db do
     @zone_san_telmo = Zone.create!(:name => "San Telmo")
     @zone_velez_sarsfield = Zone.create!(:name => "Vélez Sársfield")
     @zone_versalles = Zone.create!(:name => "Versalles")
-    @zone_villa_crespo = Zone.create!(:name => "Villa Crespo", :featured => true)
+    @zone_villa_crespo = Zone.create!(:name => "Villa Crespo")
     @zone_villa_del_parque = Zone.create!(:name => "Villa del Parque")
     @zone_villa_devoto = Zone.create!(:name => "Villa Devoto")
     @zone_villa_general_mitre = Zone.create!(:name => "Villa General Mitre")
-    @zone_villa_lugano = Zone.create!(:name => "Villa Lugano", :featured => true)
+    @zone_villa_lugano = Zone.create!(:name => "Villa Lugano")
     @zone_villa_luro = Zone.create!(:name => "Villa Luro")
     @zone_villa_ortuzar = Zone.create!(:name => "Villa Ortúzar")
     @zone_villa_pueyrredon = Zone.create!(:name => "Villa Pueyrredón")
@@ -89,7 +89,7 @@ namespace :db do
     @zone_villa_santa_rita = Zone.create!(:name => "Villa Santa Rita")
     @zone_villa_soldati = Zone.create!(:name => "Villa Soldati")
     @zone_villa_talar = Zone.create!(:name => "Villa Talar")
-    @zone_villa_urquiza = Zone.create!(:name => "Villa Urquiza", :featured => true)
+    @zone_villa_urquiza = Zone.create!(:name => "Villa Urquiza")
 
     # Relationships between zones was created using http://mapa.buenosaires.gob.ar/
     # The zones are neighbourhoods. They're reviewed from north to south. I start with Nuñez and end with Villa Riachuelo.
