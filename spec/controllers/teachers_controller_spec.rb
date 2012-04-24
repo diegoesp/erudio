@@ -10,7 +10,8 @@ describe TeachersController do
     @activity = Factory(:activity)
     @zone = Factory(:zone)
     @zone3 = Factory(:zone3)
-    @zone2 = @zone3.contiguous_zones.first    
+    @zone2 = @zone3.contiguous_zones.first
+    @teacher = Factory(:teacher)
   end
 
   describe "GET 'home'" do
@@ -45,7 +46,6 @@ describe TeachersController do
     before(:each) do
       @activity = Factory(:activity)
       @zone = Factory(:zone)
-      @teacher = Factory(:teacher)
       @user = Factory(:user)
       @teacher.classrooms << Factory(:classroom, :teacher => @teacher, :zone => @zone)
       @teacher.professorships << Factory(:professorship, :teacher => @teacher, :activity => @activity)
@@ -54,15 +54,15 @@ describe TeachersController do
 
     it "must return an error because i'm using page_size without page_number" do
       get "search", :format => "json", :activity_id => @activity.id, :zone_id_csv => @zone.id, :goes_here => "true", :page_size => "invalid"
-      response.status.should == 406
+      response.status.should equal 406
       response.body.should contain "page_size must be a number"
     end
 
     it "should call search and receive no result" do
       get "search", :format => "json", :activity_id => @activity.id, :zone_id_csv => @zone.id, :goes_here => "true"
-      response.status.should == 200
+      response.status.should equal 200
       teachers = JSON.parse(response.body, :object_class => Teacher)
-      teachers.length.should == 0
+      teachers.length.should equal 0
     end
 
     it "should call search and receive only one result: Octavio with rating 3" do
@@ -89,11 +89,10 @@ describe TeachersController do
 
     before(:each) do
       @user = Factory(:user)
-      @teacher = Factory(:teacher)
     end
 
     it "should raise an error because i'm not authenticated'" do
-      get "rate", :format => "json", :teacher_id => @teacher.id, :rating => 2, :comment => "A questionable quality teacher"
+      get "rate", :format => "json", :id => @teacher.id, :rating => 2, :comment => "A questionable quality teacher"
       response.status.should == 406
       response.body.should contain "user must be logged to execute this action"
     end
@@ -105,7 +104,7 @@ describe TeachersController do
       end
 
       it "should rate the teacher" do
-        get "rate", :format => "json", :teacher_id => @teacher.id, :rating => 2, :comment => "A questionable quality teacher"
+        get "rate", :format => "json", :id => @teacher.id, :rating => 2, :comment => "A questionable quality teacher"
         response.status.should == 200
         rating = JSON.parse(response.body, :object_class => Rating)
         rating.teacher.id.should == @teacher.id
@@ -115,12 +114,23 @@ describe TeachersController do
 
     it "should return the rating of a teacher'" do
 
-      get "rating", :format => "json", :teacher_id => @teacher.id
+      get "rating", :format => "json", :id => @teacher.id
       response.status.should == 200
       json = JSON.generate(:rating => 0)
       response.body.should == json.to_s
-    end
-    
-  end
+    end  
   
+  end
+
+  describe "Detail API test", :type => :api do
+
+    it "must return a valid teacher" do
+
+      get :show, :format => "json", :id => @teacher.id
+      response.status.should eq 200
+      response.body.should contain "Pochiero"
+    end
+
+  end
+
 end

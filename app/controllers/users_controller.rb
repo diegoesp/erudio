@@ -15,8 +15,8 @@ class UsersController < ApplicationController
     email = params[:email]
     password = params[:password]
 
-    raise "must specify email parameter" unless !email.nil?
-    raise "must specify password parameter" unless !password.nil?
+    raise "must specify email parameter" if email.nil?
+    raise "must specify password parameter" if password.nil?
 
     user = User.authenticate(email, password)
 

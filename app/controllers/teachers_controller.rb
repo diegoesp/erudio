@@ -3,7 +3,7 @@
 class TeachersController < ApplicationController
 
   respond_to :html, :json
-  skip_before_filter :require_login, :only => [:home, :search, :rating]
+  skip_before_filter :require_login, :only => [:home, :search, :show, :rating]
 
   # Displays the homepage (that contains the wizard)
   def home
@@ -68,38 +68,50 @@ class TeachersController < ApplicationController
     respond_with @teachers, :include => { :professorships => { :include => :activity }}
   end
   
+  # Shows the detail page for the teacher. Used for displaying the teacher to a pupil
+  # @param [Integer] id Teacher id to be shown
+  # @return [String] a Teacher object serialized to JSON
+  def show
+    id = params[:id]
+
+    raise "must specify id parameter" unless !id.nil?
+    
+    @teacher = Teacher.find(id)
+    respond_with(@teacher)
+  end
+
   # Allows the user currently logged to rate a teacher
   #
-  # @param [Integer] teacher_id Teacher to be rated
+  # @param [Integer] id Teacher to be rated
   # @param [Integer] rating Rating, 1 to 5
   # @param [String] comment Comments for the rating
   # @return [String] A rating object serialized as JSON
   # @raise [Error] any validation error that happens to occur
   def rate
-    teacher_id = params[:teacher_id]
+    id = params[:id]
     rating = params[:rating]
     comment = params[:comment]
 
-    raise "must specify teacher_id parameter" unless !teacher_id.nil?
+    raise "must specify id parameter" unless !id.nil?
     raise "must specify rating parameter" unless !rating.nil?
     raise "must specify comment parameter" unless !comment.nil?
 
-    rating = current_user.rate_a_teacher(teacher_id, rating, comment)
+    rating = current_user.rate_a_teacher(id, rating, comment)
 
     respond_with(rating)
   end
 
   # Gets the rating of a teacher
   #
-  # @param [Integer] teacher_id Teacher to be rated
+  # @param [Integer] id Teacher to be rated
   # @return [String] A simple JSON containing a string analogous to { rating = 3 }
   def rating
-    teacher_id = params[:teacher_id]
+    id = params[:id]
 
-    raise "must specify teacher_id parameter" unless !teacher_id.nil?
-    raise "teacher_id must be a number" unless teacher_id.is_number?
+    raise "must specify id parameter" unless !id.nil?
+    raise "id must be a number" unless id.is_number?
 
-    teacher = Teacher.find(teacher_id)
+    teacher = Teacher.find(id)
 
     respond_with(:rating => teacher.get_rating)
   end

@@ -5,8 +5,8 @@
 	const API_URL_BASE = "http://localhost:3000/";
 	
 	// Called whenever the API selection combo is changed
-	function api_select_on_change() {
-	
+	function api_select_on_change() 
+	{
 	    // Variables
 	    var api_select = document.getElementById("api_select");
 	    var api_url_text = document.getElementById("api_url_text");
@@ -19,7 +19,8 @@
 	        api_url_text = API_URL_BASE;
 	        api_url_text.disabled = false;
 	    }
-	    else {
+	    else 
+	    {
 	        api_url_text .value = API_URL_BASE + api_select.options[api_select.selectedIndex].text;
 	        api_url_text .disabled = true;
 	    }
@@ -28,8 +29,8 @@
 	    result_textarea.value = "";
 	}
 	
-	function execute_ajax_search() {
-	
+	function execute_ajax_search() 
+	{
 	    var api_select = document.getElementById("api_select");
 	    var parameters_textarea = document.getElementById("parameters_textarea");
 	
@@ -37,14 +38,31 @@
 	    api += "?format=json";
 	
 	    var parameters = parameters_textarea.value;
-	
-	    $.ajax({
+		
+		// Check if this is a :member URL
+		if (api.indexOf("#") >=0)
+		{
+			id_text = document.getElementById("id_text");
+			var id = id_text.value;
+			if (id == "")
+			{
+				alert("Must specify :member parameter for this REST call");
+				return;
+			}			
+			api = api.replace("#", id)
+		}
+
+		alert(api);
+	    $.ajax
+	    ({
 	        url:api,
 	        data:parameters,
-	        success:function (response) {
+	        success:function (response) 
+	        {
 	            $("#result_textarea").attr("value", JSON.stringify(response));
 	        },
-	        error:function (xhr, ajaxOptions, thrownError) {
+	        error:function (xhr, ajaxOptions, thrownError) 
+	        {
 	            alert("There was an error with status: " + xhr.status + " => " + thrownError);
 	            $("#result_textarea").attr("value", xhr.responseText);
 	        }
@@ -72,12 +90,13 @@
 	  </td>
 	  <td width="35%">
 		<select id="api_select" onchange="api_select_on_change()">
-		  <option id="1">users/login</option>
-		  <option id="2">users/logout</option>
-		  <option id="3">teachers/search</option>
-		  <option id="4">teachers/rating</option>
-		  <option id="5">teachers/rate</option>
-		  <option id="6">zones/contiguous</option>
+		  <option id="10">users/login</option>
+		  <option id="20">users/logout</option>
+		  <option id="30">teachers/search</option>
+		  <option id="40">teachers/#/rating</option>
+		  <option id="50">teachers/#/rate</option>
+		  <option id="55">teachers/#</option>
+		  <option id="60">zones/#/contiguous</option>
 		  <option id="9999">custom</option>
 		</select>
 	  </td>
@@ -87,6 +106,10 @@
 	  <td width="35%">
 		<input type="text" id="api_url_text" disabled="disabled" size="45"/>
 	  </td>
+	</tr>
+	<tr>
+		<td align="right">:member</td>
+		<td><input type="text" id="id_text" size="5" />
 	</tr>
 	<tr>
 	  <td colspan="4" align="right">

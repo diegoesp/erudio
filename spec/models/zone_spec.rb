@@ -29,8 +29,8 @@ describe Zone do
   end
   
   it "must include only the contiguous zone for Villa Crespo" do
-    @zone3.contiguous_zones.length.should == 1
-    @zone3.contiguous_zones.first.name.should == "Palermo"
+    @zone3.contiguous_zones.length.should equal 1
+    @zone3.contiguous_zones.first.name.should eq "Palermo"
   end
   
 end

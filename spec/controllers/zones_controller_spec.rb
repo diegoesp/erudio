@@ -10,17 +10,17 @@ describe ZonesController do
      end
 
      it "call for Mataderos must get one result" do
-       get "contiguous", :format => "json", :zone_id => @zone3.id
-       response.status.should == 200
+       get "contiguous", :format => "json", :id => @zone3.id
+       response.status.should equal 200
        zones = JSON.parse(response.body, :object_class => Zone)
-       zones.length.should == 1
+       zones.length.should eq 1
      end
      
      it "call for Villa Crespo should get no result" do
-       get "contiguous", :format => "json", :zone_id => @zone.id
-       response.status.should == 200
+       get "contiguous", :format => "json", :id => @zone.id
+       response.status.should equal 200
        zones = JSON.parse(response.body, :object_class => Zone)
-       zones.length.should == 0
+       zones.length.should eq 0
      end
      
    end
