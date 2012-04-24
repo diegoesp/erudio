@@ -5,7 +5,6 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
 gem 'valid_email'
@@ -19,11 +18,17 @@ gem "random_record", "~> 0.0.7"             # For sample_data.rake script
 group :assets do
   # We're not using Coffeescript for this project
   # gem 'coffee-rails', '~> 3.1.1'
-  gem 'sass-rails',   '~> 3.1.5'
+  gem 'sass-rails',   '<= 3.1.4'
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :production do
+  # gems specifically for production
+  gem "pg"
+end
+
 group :development do
+  gem 'sqlite3'
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', '~> 2.4.1.beta'
   gem "yard", "0.7.5"
@@ -31,6 +36,7 @@ group :development do
 end
 
 group :test do
+  gem 'sqlite3'
   gem 'factory_girl_rails', '1.0'
   gem 'rack-test', '0.6.1'
 end

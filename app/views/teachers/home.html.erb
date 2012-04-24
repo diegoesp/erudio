@@ -4,6 +4,8 @@
 		// Initialize the js for this particular page when the DOM is ready.
 		$(document).ready(function() {
 			app.home.initialize();
+			
+			app.home.searchURL = '.<%= url_for(:action => 'search', :controller => 'teachers') %>'; 
 		});
 	
 	
@@ -29,10 +31,10 @@
 
 
 <section id="welcome">
-
-	<div id="sloganWrapper">
-		<img id="slogan" src="/assets/slogan.png"/>
-	</div>
+	
+	<div id="welcomeBackgroundImage"></div>
+	
+	<div class="horizontalShadow"></div>
 	
 	<div id="selectTeacherLabelWrapper">
 		<img id="selectTeacherLabel" src="/assets/que_profesores_label.png"></image>
@@ -71,12 +73,12 @@
 				
 			</div>
 			
-			
 		</div>
 		
 		<div id="wizardNextButton" class="js-wizardNextButton">
 			<span>&gt;</span>
 		</div>
+		
 	</div>
 </section>
 

@@ -1,26 +1,36 @@
+@import "mixins";
+
 #home_page {
 	
 	section#welcome {
-		height: 300px;
-	
-		#sloganWrapper {
-			width: 100%;
-			height: 180px;
-			top: 130px;
+		
+		.horizontalShadow {
 			position: relative;
+			width: 100%;
+			height: 1px;
+			z-index: 1;
+			top: -1px;
 			
-			#slogan {
-				margin: auto;
-				display: block;
-			}
+			@include shadow(black, 8px, 0px, 2px);
 		}
+		
+		#welcomeBackgroundImage {
+			position: relative;
+			width: 100%;
+			height: 300px;
+			background: url(/assets/header_background.jpg) no-repeat;
+			z-index: 2;
+		}
+		
+		height: 300px;
+		background-image: url(/assets/background_pattern.png);
 		
 		#selectTeacherLabelWrapper {
 			width: 100%;
 			height: 80px;
 			position: absolute;
 			top: 275px;
-			z-index: 1;
+			z-index: 3;
 			
 			#selectTeacherLabel {
 				display: block;

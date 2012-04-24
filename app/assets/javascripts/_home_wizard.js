@@ -5,24 +5,8 @@ app.home.wizard.backButton = {};
 app.home.wizard.nextButton = {};
 
 //
-// Recalculate the widths for the "sliding" boxes
-//
-//
-app.home.wizard.setWidths = function() {
-	var slider = app.home.wizard.slider;
-
-	slider.totalBoxes = $('section#wizard #slider .slideBox').length;
-	slider.sectionWidth = $('section#wizard #sliderWrapper').width();
-	slider.boxesTotalWidth = slider.sectionWidth * slider.totalBoxes;
-
-	$('section#wizard #slider').width(slider.boxesTotalWidth);
-
-	$("section#wizard #slider .slideBox").each(function() {
-		$(this).width(slider.sectionWidth);
-	});
-}
-
-
+// Wizard Initialization
+// 
 app.home.wizard.initialize = function() {
 
 	var slider = app.home.wizard.slider;
@@ -50,7 +34,23 @@ app.home.wizard.initialize = function() {
 	app.home.wizard.triggerHandler('wizardInitialized');
 }
 
+//
+// Recalculate the widths for the "sliding" boxes
+//
+//
+app.home.wizard.setWidths = function() {
+	var slider = app.home.wizard.slider;
 
+	slider.totalBoxes = $('section#wizard #slider .slideBox').length;
+	slider.sectionWidth = $('section#wizard #sliderWrapper').width();
+	slider.boxesTotalWidth = slider.sectionWidth * slider.totalBoxes;
+
+	$('section#wizard #slider').width(slider.boxesTotalWidth);
+
+	$("section#wizard #slider .slideBox").each(function() {
+		$(this).width(slider.sectionWidth);
+	});
+}
 
 //
 // Move the slider to the right, one step.

@@ -58,7 +58,7 @@ app.home.initialize = function() {
 	// Bind some events required by this page.
 	app.eventHolder.on('activityClicked', app.home.EVENT_activityClicked);
 	app.eventHolder.on('activityModeClicked', app.home.EVENT_activityModeClicked);
-	app.eventHolder.on('zoneClicked', app.home.EVENT_zoneClicked);
+	app.eventHolder.on('activityZoneClicked', app.home.EVENT_activityZoneClicked);
 
 
 }
@@ -226,6 +226,50 @@ app.home.selectZone = function(zoneBox) {
 			}
 	});
 
+	if (app.home.searchTerm.zonesIds.length > 0) {
+		app.home.zoneSelected = true;
+	} else {
+		app.home.zoneSelected = false;
+	}
+	app.eventHolder.triggerHandler('activityZoneClicked');	
+}
+
+//
+// Search!
+//
+app.home.search = function() {
+	var activity_id = app.home.searchTerm.activityId;
+	var zone_id_csv = app.home.searchTerm.zonesIds;
+	var activity_mode = app.home.searchTerm.activityMode;
+	
+	if (activity_id == undefined)
+	{
+		alert("Please specify an activity");
+		return;
+	}
+	if (activity_mode == undefined)
+	{
+		alert("Please specify an activity_mode");
+		return;
+	}
+	if (zone_id_csv == "")
+	{
+		alert("Please specify zones");
+		return;
+	}	
+	
+	var goes_here = false;
+	var receives_people_here = false;
+	if (activity_mode == "student_place") goes_here = true;
+	if (activity_mode == "teacher_place") receives_people_here = true;
+	
+	var location = app.home.searchURL;
+	location += "?activity_id=" + activity_id;
+	location += "&zone_id_csv=" + zone_id_csv;
+	if (goes_here) location += "&goes_here=" + goes_here;
+	if (receives_people_here) location += "&receives_people_here=" + receives_people_here;	
+	
+	window.location = location;
 }
 
 //
@@ -245,9 +289,15 @@ app.home.EVENT_activityModeClicked = function() {
 		app.home.wizard.disableNextButton();	
 	}
 }
-app.home.EVENT_zoneClicked = function() {
+app.home.EVENT_activityZoneClicked = function() {
+
 	if (app.home.zoneSelected === true) {
-		app.home.wizard.enableNextButton();	
+		app.home.wizard.enableNextButton();
+		// TODO(rafael.chiti): This is pretty ugly. I should refactor
+		// the component. So far lets do this here!.
+		app.home.wizard.nextButton.off('click');
+		app.home.wizard.nextButton.on('click', app.home.search);
+		
 	} else {
 		app.home.wizard.disableNextButton();	
 	}
