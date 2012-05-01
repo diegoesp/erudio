@@ -2,60 +2,60 @@
 
 #home_page section#wizard {
 
-	.activityModeContent {
-		margin: auto;
-		width: 620px;
-		height: 200px;
-		position: relative;
-		top: 50px;
-	
-	
-		.activityModeButton {
-			cursor: pointer;
-			float: left;
-			width: 290px;
-			height: 80px;
-			@include gradient(#ffffff,#f8f8f8);
-			@include shadow(#cfcfcf, 3px, 1px, 2px);
-			@include border_radius(3px);
-			
-			margin: 0px;
-			padding: 0px;
-			margin-right: 10px;	
-			border: 1px solid #cfcfcf;
-									
-			&:last-child {
-				margin-right: 0px;
-	
-			}
-			
-			span {
-				padding-right: 5px;
-				padding-left: 22px;
-				display: table-cell;
-				vertical-align: middle;
-				height: inherit;
-				width: inherit;
-				text-align: center;
-			}
-			
-		}
-		
-		.activityModeButtonSelected {
-			@include gradient($activitiesSoftGreen, $activitiesDarkerGreen);
-			color: white;
-			position: relative;
-			
-			.selectedIndicator {
-				width: 22px;
-				height: 22px;
-				position: absolute;
-				top: 30px;
-				left: 4px;
-				background-color: red;
-				background: url(/assets/wizard_button_selected_small.png) no-repeat;	
-			}
-		}
-		
-	}
+  .activityModeContent {
+    margin: auto;
+    width: 620px;
+    height: 200px;
+    position: relative;
+    top: 50px;
+  
+  
+    .activityModeButton {
+      cursor: pointer;
+      float: left;
+      width: 290px;
+      height: 80px;
+      @include gradient(#ffffff,#f8f8f8);
+      @include shadow(#cfcfcf, 3px, 1px, 2px);
+      @include border_radius(3px);
+      
+      margin: 0px;
+      padding: 0px;
+      margin-right: 10px; 
+      border: 1px solid #cfcfcf;
+                  
+      &:last-child {
+        margin-right: 0px;
+  
+      }
+      
+      span {
+        padding-right: 5px;
+        padding-left: 22px;
+        display: table-cell;
+        vertical-align: middle;
+        height: inherit;
+        width: inherit;
+        text-align: center;
+      }
+      
+    }
+    
+    .activityModeButtonSelected {
+      @include gradient($activitiesSoftGreen, $activitiesDarkerGreen);
+      color: white;
+      position: relative;
+      
+      .selectedIndicator {
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        top: 30px;
+        left: 4px;
+        background-color: red;
+        background: url(/assets/wizard_button_selected_small.png) no-repeat;  
+      }
+    }
+    
+  }
 }

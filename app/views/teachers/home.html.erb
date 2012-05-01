@@ -1,101 +1,101 @@
 <% content_for :head do %>
-	<script type="text/javascript">
-	
-		// Initialize the js for this particular page when the DOM is ready.
-		$(document).ready(function() {
-			app.home.initialize();
-			
-			app.home.searchURL = '.<%= url_for(:action => 'search', :controller => 'teachers') %>'; 
-		});
-	
-	
-	</script>
+  <script type="text/javascript">
+  
+    // Initialize the js for this particular page when the DOM is ready.
+    $(document).ready(function() {
+      app.home.initialize();
+      
+      app.home.searchURL = '.<%= url_for(:action => 'search', :controller => 'teachers') %>'; 
+    });
+  
+  
+  </script>
 <% end %>
 
 <!-- Remove this, just the debug box -->
 <% content_for :debug_box do %>
-	<div id="debuggingBox">
-		<label style="color: white;">
-			Debugging Box
-		</label></br>
-		<a onclick="app.home.alertSearchTerm();">Search Term to JSON</a></br>
-		<a onclick="app.home.wizard.back();">Previous</a>&nbsp;|&nbsp;
-		<a onclick="app.home.wizard.next();">Next</a></br>
-		<a onclick="app.home.post_search('.<%= url_for(:action => 'search', :controller => 'teachers') %>');">Post Search</a></br>
-	</div>
+  <div id="debuggingBox">
+    <label style="color: white;">
+      Debugging Box
+    </label></br>
+    <a onclick="app.home.alertSearchTerm();">Search Term to JSON</a></br>
+    <a onclick="app.home.wizard.back();">Previous</a>&nbsp;|&nbsp;
+    <a onclick="app.home.wizard.next();">Next</a></br>
+    <a onclick="app.home.post_search('.<%= url_for(:action => 'search', :controller => 'teachers') %>');">Post Search</a></br>
+  </div>
 <% end %>
 
 <% content_for :page_id do %>
-	"home_page"
+  "home_page"
 <% end %>
 
 
 <section id="welcome">
-	
-	<div id="welcomeBackgroundImage"></div>
-	
-	<div class="horizontalShadow"></div>
-	
-	<div id="selectTeacherLabelWrapper">
-		<img id="selectTeacherLabel" src="/assets/que_profesores_label.png"></image>
-	</div>
+  
+  <div id="welcomeBackgroundImage"></div>
+  
+  <div class="horizontalShadow"></div>
+  
+  <div id="selectTeacherLabelWrapper">
+    <img id="selectTeacherLabel" src="/assets/que_profesores_label.png"></image>
+  </div>
 
 </section>
-	
-	
+  
+  
 <section id="wizard" class="js-wizard">
-	<div id="sliderWrapper">
-	
-		<div id="wizardBackButton" class="js-wizardBackButton">
-			<span>&lt;</span>
-		</div>
-				
-		<div id="slider">
-			
-			<!-- ACTIVITIES	-->
-			<div class="slideBox" id="slideBox1">
-				
-				<%= render 'home_activities' %>
-				
-			</div>
-			
-			<!-- IN HOUSE / NOT	-->
-			<div class="slideBox" id="slideBox2">
-				
-				<%= render 'home_activity_mode' %>
-				
-			</div>
-			
-			<!-- ZONES -->
-			<div class="slideBox" id="slideBox3">
-			
-				<%= render 'home_zones' %>
-				
-			</div>
-			
-		</div>
-		
-		<div id="wizardNextButton" class="js-wizardNextButton">
-			<span>&gt;</span>
-		</div>
-		
-	</div>
+  <div id="sliderWrapper">
+  
+    <div id="wizardBackButton" class="js-wizardBackButton">
+      <span>&lt;</span>
+    </div>
+        
+    <div id="slider">
+      
+      <!-- ACTIVITIES -->
+      <div class="slideBox" id="slideBox1">
+        
+        <%= render 'home_activities' %>
+        
+      </div>
+      
+      <!-- IN HOUSE / NOT -->
+      <div class="slideBox" id="slideBox2">
+        
+        <%= render 'home_activity_mode' %>
+        
+      </div>
+      
+      <!-- ZONES -->
+      <div class="slideBox" id="slideBox3">
+      
+        <%= render 'home_zones' %>
+        
+      </div>
+      
+    </div>
+    
+    <div id="wizardNextButton" class="js-wizardNextButton">
+      <span>&gt;</span>
+    </div>
+    
+  </div>
 </section>
 
 <section id="howItWorks">
-	How it works
+  How it works
 </section>
 
 
 <script type="text/javascript">
-	_.templateSettings = {
-	evaluate:/\{\[([\s\S]+?)\]\}/g,
-	interpolate:/\{\{([\s\S]+?)\}\}/g
-	};
+  _.templateSettings = {
+  evaluate:/\{\[([\s\S]+?)\]\}/g,
+  interpolate:/\{\{([\s\S]+?)\}\}/g
+  };
 
-	app.home.featuredActivities =<%= @json_featured_activities.html_safe%>;
-	app.home.allActivities = <%= @json_all_activities.html_safe%>;
-	app.home.allZones = <%= @json_all_zones.html_safe%>;
-	app.home.featuredZones = <%= @json_featured_zones.html_safe%>;
+  app.home.featuredActivities =<%= @json_featured_activities.html_safe%>;
+  app.home.allActivities = <%= @json_all_activities.html_safe%>;
+  app.home.allZones = <%= @json_all_zones.html_safe%>;
+  app.home.featuredZones = <%= @json_featured_zones.html_safe%>;
 </script>
 

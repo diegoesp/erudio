@@ -2,20 +2,20 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>Erudio</title>
-	<%= stylesheet_link_tag "application" %>
-	<%= javascript_include_tag "application" %>
-	<%= csrf_meta_tags %>
-	<%= yield :head %>
+  <meta charset="UTF-8">
+  <title>Erudio</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
 </head>
 
 <body id=<%= yield :page_id %> >
 
-	<%= render 'layouts/header' %>
-	
-	<%= yield %>
-	
-	<%= render 'layouts/footer' %>
+  <%= render 'layouts/header' %>
+  
+  <%= yield %>
+  
+  <%= render 'layouts/footer' %>
 </body>
 </html>

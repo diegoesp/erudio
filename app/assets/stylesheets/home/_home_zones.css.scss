@@ -1,157 +1,157 @@
 @import "mixins";
 
 @mixin featuredZoneBox {
-	margin: auto;
-	margin-top: 10px;	
-	background-color: #fefefe;
-	border: 1px solid #b4b5b4;
+  margin: auto;
+  margin-top: 10px; 
+  background-color: #fefefe;
+  border: 1px solid #b4b5b4;
 
-	@include shadow(#b9b9b9, 4px, 0px, 2px);
-	@include border_radius(3px);
-	
-	span {
-		display: table-cell;
-		text-align: center;
-		vertical-align: middle;
-		margin: auto;
-		cursor: pointer;	
-	}
+  @include shadow(#b9b9b9, 4px, 0px, 2px);
+  @include border_radius(3px);
+  
+  span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+    cursor: pointer;  
+  }
 }
 
 #home_page section#wizard {
-	
-	section#zones {
-		margin: auto;
-		height: 250px;
-		position: relative;
-	}
-	
-	
-	section#zones {
-		
-		.allZonesContainerWrapperHide , .featuredZonesContainerWrapperHide {
-			display: none;
-		}
-		
-		#featuredZonesContainerWrapper , #allZonesContainerWrapper {
-			position: absolute;
-			top: 50px;
-			height: 100%;
-			width: 100%;
-			
-			#allZonesContainer {
-				width: 900px;
-			}
-			#featuredZonesContainer {
-				width: auto;
-				width: 605px;
-				height: 100%;
-			}
-			
-			#featuredZonesContainer , #allZonesContainer {
-				margin: auto;
-	
-				.featuredZoneContainer {
-					width: 150px;
-					float: left;
-					margin: auto;
-				}
-				.allZoneContainer {
-					width: 138px;
-					height: 20px;
-					float: left;
-					margin-bottom: 2px;
-				}	
-			}
-		}
-	}
-	
-	
-	.featuredZoneContainer .zoneBox {
-		/* Add common properties to this selector and the inner span*/
-		@include featuredZoneBox; 
-		@include gradient(#ffffff,#f8f8f8);
-				
-		height: 86px;
-		width: 140px;
-		position: relative;
-		
-		span {	
-			height: 86px;
-			width: 140px;
-		}
-		
-		&.zoneSelected {
-			border: 1px solid #79a948;
-			color: white;
-			@include gradient($activitiesSoftGreen, $activitiesDarkerGreen);
-			
-			.zoneLeftIndicator {
-				width: 29px;
-				height: 29px;
-				background: url(/assets/wizard_button_selected.png) no-repeat;
-				position: absolute;
-				top:  29px;
-				left: 2px;
-				
-			}
-		}
-	}
-	
-	 
-	.allZoneContainer .zoneBox {
-		position: relative;
-		cursor: pointer;
-		
-		span {
-			text-align: left;
-			display: block;
-			position: absolute;
-			left: 20px;
-			top: 2px;
-			font-family: arial;
-			font-size: 12px;	
-		}
-		
-		.zoneLeftIndicator {
-			width: 16px;
-			height: 16px;
-			position: absolute;
-			background: url(/assets/wizard_check_unchecked.png) no-repeat;		
-		}
-		
-		&.zoneSelected {
-			
-			.zoneLeftIndicator {
-				background-color: rgb(133, 190, 52);				
-				background: url(/assets/wizard_check_checked.png) no-repeat;		
-			}
-		}
-	}
-	
-	
-	
-	#seeMoreZonesWrapper {
-		width: 95px;
-		height: 95px;
-		position: relative;	
-		z-index: 40;
-		margin: auto;
-		
-		#seeMoreZones {
-			width: 95px;
-			height: 95px;
-			cursor: pointer;
-			position: absolute;
-			bottom: -2px;
-		}
-		
-		#seeMoreZones.seeMore {
-			background: url(/assets/see_more_sprite.png) no-repeat 0px 0px;
-		}
-		
-		#seeMoreZones.seeLess {
-			background: url(/assets/see_more_sprite.png) no-repeat 0px -95px;
-		}
-	}	
+  
+  section#zones {
+    margin: auto;
+    height: 250px;
+    position: relative;
+  }
+  
+  
+  section#zones {
+    
+    .allZonesContainerWrapperHide , .featuredZonesContainerWrapperHide {
+      display: none;
+    }
+    
+    #featuredZonesContainerWrapper , #allZonesContainerWrapper {
+      position: absolute;
+      top: 50px;
+      height: 100%;
+      width: 100%;
+      
+      #allZonesContainer {
+        width: 900px;
+      }
+      #featuredZonesContainer {
+        width: auto;
+        width: 605px;
+        height: 100%;
+      }
+      
+      #featuredZonesContainer , #allZonesContainer {
+        margin: auto;
+  
+        .featuredZoneContainer {
+          width: 150px;
+          float: left;
+          margin: auto;
+        }
+        .allZoneContainer {
+          width: 138px;
+          height: 20px;
+          float: left;
+          margin-bottom: 2px;
+        } 
+      }
+    }
+  }
+  
+  
+  .featuredZoneContainer .zoneBox {
+    /* Add common properties to this selector and the inner span*/
+    @include featuredZoneBox; 
+    @include gradient(#ffffff,#f8f8f8);
+        
+    height: 86px;
+    width: 140px;
+    position: relative;
+    
+    span {  
+      height: 86px;
+      width: 140px;
+    }
+    
+    &.zoneSelected {
+      border: 1px solid #79a948;
+      color: white;
+      @include gradient($activitiesSoftGreen, $activitiesDarkerGreen);
+      
+      .zoneLeftIndicator {
+        width: 29px;
+        height: 29px;
+        background: url(/assets/wizard_button_selected.png) no-repeat;
+        position: absolute;
+        top:  29px;
+        left: 2px;
+        
+      }
+    }
+  }
+  
+   
+  .allZoneContainer .zoneBox {
+    position: relative;
+    cursor: pointer;
+    
+    span {
+      text-align: left;
+      display: block;
+      position: absolute;
+      left: 20px;
+      top: 2px;
+      font-family: arial;
+      font-size: 12px;  
+    }
+    
+    .zoneLeftIndicator {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      background: url(/assets/wizard_check_unchecked.png) no-repeat;    
+    }
+    
+    &.zoneSelected {
+      
+      .zoneLeftIndicator {
+        background-color: rgb(133, 190, 52);        
+        background: url(/assets/wizard_check_checked.png) no-repeat;    
+      }
+    }
+  }
+  
+  
+  
+  #seeMoreZonesWrapper {
+    width: 95px;
+    height: 95px;
+    position: relative; 
+    z-index: 40;
+    margin: auto;
+    
+    #seeMoreZones {
+      width: 95px;
+      height: 95px;
+      cursor: pointer;
+      position: absolute;
+      bottom: -2px;
+    }
+    
+    #seeMoreZones.seeMore {
+      background: url(/assets/see_more_sprite.png) no-repeat 0px 0px;
+    }
+    
+    #seeMoreZones.seeLess {
+      background: url(/assets/see_more_sprite.png) no-repeat 0px -95px;
+    }
+  } 
 }

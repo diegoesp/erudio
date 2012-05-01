@@ -2,72 +2,72 @@
 
 <script type="text/javascript">
 
-	const API_URL_BASE = "http://localhost:3000/";
-	
-	// Called whenever the API selection combo is changed
-	function api_select_on_change() 
-	{
-	    // Variables
-	    var api_select = document.getElementById("api_select");
-	    var api_url_text = document.getElementById("api_url_text");
-	    var parameters_textarea = document.getElementById("parameters_textarea");
-	    var result_textarea = document.getElementById("result_textarea");
-	
-	    var api_id = api_select.options[api_select.selectedIndex].id;
-	
-	    if (api_id == "9999") {
-	        api_url_text = API_URL_BASE;
-	        api_url_text.disabled = false;
-	    }
-	    else 
-	    {
-	        api_url_text .value = API_URL_BASE + api_select.options[api_select.selectedIndex].text;
-	        api_url_text .disabled = true;
-	    }
-	
-	    parameters_textarea.value = 'parameter1=value1&parameter2=value2';
-	    result_textarea.value = "";
-	}
-	
-	function execute_ajax_search() 
-	{
-	    var api_select = document.getElementById("api_select");
-	    var parameters_textarea = document.getElementById("parameters_textarea");
-	
-	    var api = api_select.value;
-	    api += "?format=json";
-	
-	    var parameters = parameters_textarea.value;
-		
-		// Check if this is a :member URL
-		if (api.indexOf("#") >=0)
-		{
-			id_text = document.getElementById("id_text");
-			var id = id_text.value;
-			if (id == "")
-			{
-				alert("Must specify :member parameter for this REST call");
-				return;
-			}			
-			api = api.replace("#", id)
-		}
+  const API_URL_BASE = "http://localhost:3000/";
+  
+  // Called whenever the API selection combo is changed
+  function api_select_on_change() 
+  {
+      // Variables
+      var api_select = document.getElementById("api_select");
+      var api_url_text = document.getElementById("api_url_text");
+      var parameters_textarea = document.getElementById("parameters_textarea");
+      var result_textarea = document.getElementById("result_textarea");
+  
+      var api_id = api_select.options[api_select.selectedIndex].id;
+  
+      if (api_id == "9999") {
+          api_url_text = API_URL_BASE;
+          api_url_text.disabled = false;
+      }
+      else 
+      {
+          api_url_text .value = API_URL_BASE + api_select.options[api_select.selectedIndex].text;
+          api_url_text .disabled = true;
+      }
+  
+      parameters_textarea.value = 'parameter1=value1&parameter2=value2';
+      result_textarea.value = "";
+  }
+  
+  function execute_ajax_search() 
+  {
+      var api_select = document.getElementById("api_select");
+      var parameters_textarea = document.getElementById("parameters_textarea");
+  
+      var api = api_select.value;
+      api += "?format=json";
+  
+      var parameters = parameters_textarea.value;
+    
+    // Check if this is a :member URL
+    if (api.indexOf("#") >=0)
+    {
+      id_text = document.getElementById("id_text");
+      var id = id_text.value;
+      if (id == "")
+      {
+        alert("Must specify :member parameter for this REST call");
+        return;
+      }     
+      api = api.replace("#", id)
+    }
 
-		alert(api);
-	    $.ajax
-	    ({
-	        url:api,
-	        data:parameters,
-	        success:function (response) 
-	        {
-	            $("#result_textarea").attr("value", JSON.stringify(response));
-	        },
-	        error:function (xhr, ajaxOptions, thrownError) 
-	        {
-	            alert("There was an error with status: " + xhr.status + " => " + thrownError);
-	            $("#result_textarea").attr("value", xhr.responseText);
-	        }
-	    });
-	}
+    alert(api);
+      $.ajax
+      ({
+          url:api,
+          data:parameters,
+          success:function (response) 
+          {
+              $("#result_textarea").attr("value", JSON.stringify(response));
+          },
+          error:function (xhr, ajaxOptions, thrownError) 
+          {
+              alert("There was an error with status: " + xhr.status + " => " + thrownError);
+              $("#result_textarea").attr("value", xhr.responseText);
+          }
+      });
+  }
 </script>
 
 <% end %>
@@ -84,47 +84,47 @@
 <div align="center">
 
   <table width="50%">
-	<tr>
-	  <td width="15%" align="right">
-		API
-	  </td>
-	  <td width="35%">
-		<select id="api_select" onchange="api_select_on_change()">
-		  <option id="10">users/login</option>
-		  <option id="20">users/logout</option>
-		  <option id="30">teachers/search</option>
-		  <option id="40">teachers/#/rating</option>
-		  <option id="50">teachers/#/rate</option>
-		  <option id="55">teachers/#</option>
-		  <option id="60">zones/#/contiguous</option>
-		  <option id="9999">custom</option>
-		</select>
-	  </td>
-	  <td width="15%" align="right">
-		API URL
-	  </td>
-	  <td width="35%">
-		<input type="text" id="api_url_text" disabled="disabled" size="45"/>
-	  </td>
-	</tr>
-	<tr>
-		<td align="right">:member</td>
-		<td><input type="text" id="id_text" size="5" />
-	</tr>
-	<tr>
-	  <td colspan="4" align="right">
-		<input type="button" value="Execute" onclick="execute_ajax_search()"/>
-	  </td>
-	</tr>
-	<tr>
-	  <td colspan="2" align="center">Parameters</td>
-	  <td colspan="2" align="center">Result</td>
-	</tr>
-	<tr>
-	  <td colspan="2" align="center"><textarea id="parameters_textarea" cols="40" rows="32"></textarea></td>
-	  <td colspan="2" align="center"><textarea id="result_textarea" cols="40" rows="32" disabled="disabled"></textarea>
-	  </td>
-	</tr>
+  <tr>
+    <td width="15%" align="right">
+    API
+    </td>
+    <td width="35%">
+    <select id="api_select" onchange="api_select_on_change()">
+      <option id="10">users/login</option>
+      <option id="20">users/logout</option>
+      <option id="30">teachers/search</option>
+      <option id="40">teachers/#/rating</option>
+      <option id="50">teachers/#/rate</option>
+      <option id="55">teachers/#</option>
+      <option id="60">zones/#/contiguous</option>
+      <option id="9999">custom</option>
+    </select>
+    </td>
+    <td width="15%" align="right">
+    API URL
+    </td>
+    <td width="35%">
+    <input type="text" id="api_url_text" disabled="disabled" size="45"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="right">:member</td>
+    <td><input type="text" id="id_text" size="5" />
+  </tr>
+  <tr>
+    <td colspan="4" align="right">
+    <input type="button" value="Execute" onclick="execute_ajax_search()"/>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">Parameters</td>
+    <td colspan="2" align="center">Result</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><textarea id="parameters_textarea" cols="40" rows="32"></textarea></td>
+    <td colspan="2" align="center"><textarea id="result_textarea" cols="40" rows="32" disabled="disabled"></textarea>
+    </td>
+  </tr>
   </table>
 
 </div>

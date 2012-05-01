@@ -1,33 +1,33 @@
 <section id="zones">
-	<h2 class="wizard">Selecciona la zona</h2>
-	<div id="featuredZonesContainerWrapper" class="">
-		<div id="featuredZonesContainer">
-			<!-- ZONES TEMPLATE WILL BE RENDERED HERE -->
-		</div>
-	</div>
-	<div id="allZonesContainerWrapper" class="allZonesContainerWrapperHide">
-		<div id="allZonesContainer">
-			<!-- ZONES TEMPLATE WILL BE RENDERED HERE -->
-		</div>
-	</div>
+  <h2 class="wizard">Selecciona la zona</h2>
+  <div id="featuredZonesContainerWrapper" class="">
+    <div id="featuredZonesContainer">
+      <!-- ZONES TEMPLATE WILL BE RENDERED HERE -->
+    </div>
+  </div>
+  <div id="allZonesContainerWrapper" class="allZonesContainerWrapperHide">
+    <div id="allZonesContainer">
+      <!-- ZONES TEMPLATE WILL BE RENDERED HERE -->
+    </div>
+  </div>
 </section>
 
 <div id="seeMoreZonesWrapper">
-	<div id="seeMoreZones" class="seeMore" onclick="app.home.seeMoreZones(this);"></div>
+  <div id="seeMoreZones" class="seeMore" onclick="app.home.seeMoreZones(this);"></div>
 </div>
 
 
 
 <!-- ZONES TEMPLATE -->
 <script id="zoneTemplate" type="text/template">
-	{[ _.each(data, function(zone) { ]}
-		<div class="{{featured === true ? "featuredZoneContainer" : "allZoneContainer"}}">
-			<div class="zoneBox js-zoneBox_{{zone.id}}" onclick="app.home.selectZone($(this));">
-				<div class="zoneLeftIndicator"></div>
-				<span>{{ zone.name }}</span>
-				
-				<input type="hidden" name="zoneId" id="{{featured === true ? 'featured_' : ''}}zoneId_{{zone.id}}" value="{{zone.id}}"/>
-			</div>
-		</div>
-	{[ }); ]}
+  {[ _.each(data, function(zone) { ]}
+    <div class="{{featured === true ? "featuredZoneContainer" : "allZoneContainer"}}">
+      <div class="zoneBox js-zoneBox_{{zone.id}}" onclick="app.home.selectZone($(this));">
+        <div class="zoneLeftIndicator"></div>
+        <span>{{ zone.name }}</span>
+        
+        <input type="hidden" name="zoneId" id="{{featured === true ? 'featured_' : ''}}zoneId_{{zone.id}}" value="{{zone.id}}"/>
+      </div>
+    </div>
+  {[ }); ]}
 </script>
