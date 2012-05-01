@@ -23,5 +23,9 @@
 # Ignore the Espresso IDE files (Rafa IDE)
 *.esproj
 
+# Ignore the Sublime Workspace file (not ignoring the project file, on purpose)
+*.sublime-workspace
+
+
 # Ignore assets generation for asset pipeline
 /public/assets
