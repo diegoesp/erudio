@@ -2,33 +2,24 @@
 
 @mixin wizardNavButtonCommon {
   position: absolute;
-  @include border_radius(24px);
   z-index: 2;
   cursor: pointer;
-  width: 48px;
-  height: 48px;
-  background-color: rgb(166, 203, 112);
+  width: 53px;
+  height: 50px;
+  background-image: url(/assets/arrows_sprite.png);
+  background-repeat: no-repeat;
   top: 100px;
-  color: #888b84;
-  font-size: 44px;
-  font-family: "Comic Sans MS";
 
-  span {
-    display: block;
-    position: relative;
-    width: inherit;
-    height: inherit;
-    text-align: center;
-    bottom: 2px;
+  &.wizardLefNavButtonDisabled {
+    background-position-y: -150px;
   }
-  
-  &.wizardNavButtonDisabled {
-    background-color: rgba(207, 207, 205, 0.56);
+  &.wizardNextNavButtonDisabled {
+    background-position-y: 0px;
   }
 }
 
 #home_page {
-  
+
   section#wizard {
     background-image: url(/assets/background_pattern.png);
     position: relative;
@@ -37,17 +28,17 @@
     clear: left;
     background-color: #f4f4f4;
     padding-top: 50px;
-      
+
     #sliderWrapper {
       height: 100%;
       position: relative;
       overflow: hidden;
-      
+
       #slider {
         position: absolute;
         clear: both;
         height: 100%;
-      
+
         .slideBox {
           height: 100%;
           float: left;
@@ -55,24 +46,25 @@
         }
       }
     }
-    
+
     h2.wizard {
       font-size: 28px;
       text-shadow: 0 0 2px #ffffff;
       color: #53a51f;
       text-align: center;
     }
-    
-    
+
+
     #wizardNextButton {
       @include wizardNavButtonCommon;
+      background-position-y: -50px;
       right: 10%;
     }
     #wizardBackButton {
       @include wizardNavButtonCommon;
+      background-position-y: -100px;
       left: 10%;
     }
-    
-        
-  } 
+
+  }
 }
