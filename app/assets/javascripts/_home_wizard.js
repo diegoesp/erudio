@@ -6,7 +6,7 @@ app.home.wizard.nextButton = {};
 
 //
 // Wizard Initialization
-// 
+//
 app.home.wizard.initialize = function() {
 
   var slider = app.home.wizard.slider;
@@ -24,13 +24,13 @@ app.home.wizard.initialize = function() {
     }, 650, function() {
     });
   });
-  
+
   app.home.wizard.backButton = $("section.js-wizard .js-wizardBackButton");
   app.home.wizard.nextButton = $("section.js-wizard .js-wizardNextButton");
-  
+
   app.home.wizard.on('wizardMoved', app.home.EVENT_wizardMoved);
   app.home.wizard.on('wizardInitialized', app.home.EVENT_wizardInitialized);
-  
+
   app.home.wizard.triggerHandler('wizardInitialized');
 }
 
@@ -68,10 +68,13 @@ app.home.wizard.next = function() {
 
   valueToMove = parseInt(-slider.sectionWidth * slider.current)
 
-  $('section#wizard #slider').stop().animate({
-    left : valueToMove + 'px',
-  }, 650, function() {
-  });
+  $(".js-wizardButton").css('opacity', .2);
+
+  $('section#wizard #slider').stop().animate(
+    {left : valueToMove + 'px'}, 650, function() {
+      $(".js-wizardButton").css('opacity', 1);
+    }
+  );
 
   app.home.wizard.triggerHandler('wizardMoved');
 }
@@ -91,11 +94,14 @@ app.home.wizard.back = function() {
 
   valueToMove = parseInt(-slider.sectionWidth * slider.current)
 
+  $(".js-wizardButton").css('opacity', .2);
+
   $('section#wizard #slider').stop().animate({
     left : valueToMove + 'px',
   }, 650, function() {
+    $(".js-wizardButton").css('opacity', 1);
   });
-  
+
   app.home.wizard.triggerHandler('wizardMoved');
 }
 
@@ -105,20 +111,20 @@ app.home.wizard.back = function() {
 app.home.wizard.enableBackButton = function() {
   app.home.wizard.backButton.off('click');
   app.home.wizard.backButton.on('click', app.home.wizard.back);
-  app.home.wizard.backButton.removeClass('wizardNavButtonDisabled');
+  app.home.wizard.backButton.removeClass('wizardBackNavButtonDisabled');
 }
 app.home.wizard.disableBackButton = function() {
   app.home.wizard.backButton.off('click');
-  app.home.wizard.backButton.addClass('wizardNavButtonDisabled');
+  app.home.wizard.backButton.addClass('wizardBackNavButtonDisabled');
 }
 app.home.wizard.enableNextButton = function() {
   app.home.wizard.nextButton.off('click');
   app.home.wizard.nextButton.on('click', app.home.wizard.next);
-  app.home.wizard.nextButton.removeClass('wizardNavButtonDisabled');
+  app.home.wizard.nextButton.removeClass('wizardNextNavButtonDisabled');
 }
 app.home.wizard.disableNextButton = function() {
   app.home.wizard.nextButton.off('click');
-  app.home.wizard.nextButton.addClass('wizardNavButtonDisabled');
+  app.home.wizard.nextButton.addClass('wizardNextNavButtonDisabled');
 }
 app.home.wizard.hideNextButton = function() {
   app.home.wizard.nextButton.hide();
