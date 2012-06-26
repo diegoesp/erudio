@@ -4,7 +4,7 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
 */
 
-/* 
+/*
 /* We need the reset file first.
 *= require reset
 *= require_self
@@ -16,4 +16,8 @@ body {
   font-family: "Century Gothic", "Geneva", "Helvetica";
   color: #777777;
   margin: 0px;
+}
+
+.clear {
+  clear: both;
 }

@@ -1,0 +1,93 @@
+<!-- Remove this, just the debug box -->
+<% content_for :debug_box do %>
+  <div id="debuggingBox">
+    <label style="color: white;">
+      Debugging Box
+    </label></br>
+    <a onclick="app.home.alertSearchTerm();">Search Term to JSON</a></br>
+    <a onclick="app.home.wizard.back();">Previous</a>&nbsp;|&nbsp;
+    <a onclick="app.home.wizard.next();">Next</a></br>
+    <a onclick="app.home.post_search('.<%= url_for(:action => 'search', :controller => 'teachers') %>');">Post Search</a></br>
+  </div>
+<% end %>
+
+<% content_for :page_id do %>
+  "show_page"
+<% end %>
+
+<section id="main_content">
+
+  <nav id="main-details-navigation">
+    <div class="nav-left-buttons">
+      <div class="green-button">Nueva Busqueda</div>
+      <div class="dark-button">Volver a Resultados</div>
+    </div>
+  </nav>
+
+  <section id="details">
+    <header>
+        <div class="avatar">Avatar</div>
+
+        <div class="main-information">
+          <h2 class="fullname">Rafael Chiti</h2>
+          <div class="social-tags">F 41 Bajo Guitarra Guitarra Criolla</div>
+          <div>
+            <small class="header">Ubicacion</small>
+            <small class="value">Palermo</small>
+          </div>
+          <div>
+            <small class="header">Metodologia</small>
+            <small class="value">A Domicilio</small>
+          </div>
+          <div>
+            <small class="header">Costo</small>
+            <small class="value">Clas $ 80</small>
+          </div>
+        </div>
+
+        <div class="secondary-information">
+          <h3 class="teacher-activity">Educacion</h3>
+          <small class="activity-description">Conservatorio de Musica de la
+            Cuidad de Buenos Aires. Especializacion en instrumentos de cuerda
+          </small>
+        <div>
+
+        <div class="clear"></div>
+    </header>
+
+    <div class="details-content">
+      <div class="left-menu">
+        <div class="gray-button">Perfil</div>
+        <div class="gray-button">Alumnos</div>
+        <div class="gray-button">Preguntas</div>
+      </div>
+
+      <div class="content">
+        Topping jelly soufflé. Powder pie jelly beans sweet roll cheesecake cake. Jelly-o cookie tiramisu. Cheesecake sesame snaps marzipan candy tootsie roll marzipan sweet roll. Bear claw chocolate sesame snaps wafer chocolate bar lollipop macaroon cake powder. Macaroon carrot cake carrot cake dragée sesame snaps. Lemon drops chupa chups cheesecake pie caramels lemon drops liquorice candy canes. Gingerbread oat cake dragée. Apple pie lemon drops carrot cake cookie sweet danish. Gummies macaroon applicake tart. Tiramisu marshmallow sweet apple pie cupcake chocolate jelly-o chocolate. Pudding chocolate jelly-o wafer pie icing dessert. Chupa chups caramels wafer ice cream candy sweet roll donut candy canes macaroon. Cotton candy brownie lollipop gummies tiramisu macaroon toffee.
+      </div>
+
+      <form class="contact-form">
+        <h3>Contacta</h3>
+        <div>
+          <label>Nombre</label>
+          <input type="text"></input>
+        </div>
+        <div>
+          <label>Mail</label>
+          <input type="text"></input>
+        </div>
+        <div>
+          <label>Asunto</label>
+          <input type="text"></input>
+        </div>
+        <div>
+          <label>Mensaje</label>
+          <textarea rows="1" cols="20"></textarea>
+        </div>
+      </form>
+
+      <div class="clear"></div>
+    </div>
+  </section>
+
+</section>
