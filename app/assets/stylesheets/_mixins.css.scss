@@ -16,11 +16,16 @@ $activitiesDarkerGreen: #76b935;
 @mixin border_radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
-  border-radius: $radius; 
+  border-radius: $radius;
 }
 
 @mixin shadow($color, $blur, $xOffset, $yOffset) {
   -moz-box-shadow: $xOffset $yOffset $blur $color;
   -webkit-box-shadow: $xOffset $yOffset $blur $color;
-  box-shadow: $xOffset $yOffset $blur $color; 
+  box-shadow: $xOffset $yOffset $blur $color;
+}
+
+@mixin inner-shadow($xOffset, $yOffset, $blurRadius, $spread, $colorRGBA) {
+  -webkit-box-shadow: inset $xOffset $yOffset $blurRadius $spread $colorRGBA;
+  box-shadow: inset $xOffset $yOffset $blurRadius $spread $colorRGBA;
 }
