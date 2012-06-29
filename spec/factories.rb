@@ -123,7 +123,7 @@ Factory.define :classroom3, :class => Classroom do |classroom|
 end
 
 Factory.define :professorship3, :class => Professorship do |professorship|
-	professorship.price_per_hour 50
+	professorship.price_per_hour nil
 end
 
 Factory.define :professorship4, :class => Professorship do |professorship|

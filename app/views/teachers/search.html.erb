@@ -1,21 +1,23 @@
 <!-- HEAD SECTION -->
 <% content_for :head do %>
-  <script type="text/javascript">
+  <script>
   
+    app.search.teachers = <%=@teachers_json.html_safe%>;
+
     // Initialize the js for this particular page when the DOM is ready.
     $(document).ready(function() {
-      app.result.initialize();
+      app.search.initialize();
     });
   
   </script>
+
 <% end %>
 
-<!-- Remove this, just the debug box -->
 <% content_for :debug_box do %>
   <div id="debuggingBox">
-    <label style="color: white;">Debugging Box</label> </br>
+    <label style="color: grey;">Debugging Box</label> </br>
+    <br/>
     <a href="<%= url_for(:action => 'home', :controller => 'teachers') %>">Home Page</a> </br>
-    <a onclick="app.result.alertSearchTerm();">Search Term to JSON</a>  </br>
   </div>
 <% end %>
 
@@ -25,10 +27,9 @@
 
 <section id="main_content">
 
-      <section id="results">
+      <section id="teacherList">
       </section>
   
-      <!-- [START] FILTER SECTION - ACOMODAR!!!! -->
       <section id="filters">
         <div class="filterHeaderRowContainer">
           <div class="filterRowLeftCommon filterHeaderLeftCorner"></div>
@@ -37,98 +38,73 @@
           <div class="filterHeaderTitle">Filtrar Resultados</div>
         </div>
   
-        <!-- ZONE -->
         <div class="filterChildRowContainerCommon">
           <div class="filterRowLeftCommon filterOddRowLeft"></div>
           <div class="filterRowMiddleCommon filterOddRowMiddle"></div>
           <div class="filterRowRightCommon filterOddRowRight"></div>
           <div class="filterOddRowContent">
             <div style="float: left;">Zona</div>
-            <div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
-              <div class="sweetCheckbox" title="zone" onclick="app.result.updateBoolFilter(this, this.title)"></div>
+            <div class="hasTooltipsy" title="Agrega zonas aledañas a las que seleccionaste" style="float: right;">
+              (TBD)
             </div>
           </div>
         </div>
   
-        <!-- PHONE -->
         <div class="filterChildRowContainerCommon">
           <div class="filterRowLeftCommon filterEvenRowLeft"></div>
           <div class="filterRowMiddleCommon filterEvenRowMiddle"></div>
           <div class="filterRowRightCommon filterEvenRowRight"></div>
           <div class="filterEvenRowContent">
             <div style="float: left;">Telefono</div>
-            <div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
-              <div class="sweetCheckbox" title="phone" onclick="app.result.updateBoolFilter(this, this.title)"></div>
+            <div class="hasTooltipsy" title="¿Solo mostrar profesores que pusieron a disposición un numero telefónico para contactarlos?" style="float: right;">
+              <div class="sweetCheckbox" title="must_have_phone"></div>
             </div>
           </div>
         </div>
   
-        <!-- EMAIL -->
         <div class="filterChildRowContainerCommon">
           <div class="filterRowLeftCommon filterOddRowLeft"></div>
           <div class="filterRowMiddleCommon filterOddRowMiddle"></div>
           <div class="filterRowRightCommon filterOddRowRight"></div>
           <div class="filterOddRowContent">
-            <div style="float: left;">Mail</div>
-            <div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" class="hasTooltipsy" style="float: right;">
-              <div class="sweetCheckbox" title="email"  onclick="app.result.updateBoolFilter(this, this.title)"></div>
+            <div style="float: left;">E-Mail</div>
+            <div class="hasTooltipsy" title="¿Solo mostrar profesores que pusieron a disposición un correo electrónico para contactarlos?" class="hasTooltipsy" style="float: right;">
+              <div class="sweetCheckbox" title="must_have_email"></div>
             </div>
           </div>
         </div>
   
-        <!-- COMMUTE -->
-        <div class="filterChildRowContainerCommon">
-          <div class="filterRowLeftCommon filterEvenRowLeft"></div>
-          <div class="filterRowMiddleCommon filterEvenRowMiddle"></div>
-          <div class="filterRowRightCommon filterEvenRowRight"></div>
-          <div class="filterEvenRowContent">
-            <div style="float: left;">A Domicilio</div>
-            <div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
-              <div class="sweetCheckbox" title="commute" onclick="app.result.updateBoolFilter(this, this.title)"></div>
-            </div>
-          </div>
-        </div>
-  
-        <!-- HAS PRICE -->
         <div class="filterChildRowContainerCommon">
           <div class="filterRowLeftCommon filterOddRowLeft"></div>
           <div class="filterRowMiddleCommon filterOddRowMiddle"></div>
           <div class="filterRowRightCommon filterOddRowRight"></div>
           <div class="filterOddRowContent">
-            <div style="float: left;">Tiene Precio</div>
-            <div class="hasTooltipsy" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum ornare sem" style="float: right;">
-              <div class="sweetCheckbox" title="price" onclick="app.result.updateBoolFilter(this, this.title)"></div>
+            <div style="float: left;">Precio</div>
+            <div class="hasTooltipsy" title="¿Solo mostrar profesores que muestran el precio por hora para su clase?" style="float: right;">
+              <div class="sweetCheckbox" title="must_have_price"></div>
             </div>
           </div>
         </div>
         
       </section>
-      <!-- [END] FILTER SECTION -->
 
 </section>
 
-<script  type="text/javascript">
-  _.templateSettings = {
-        evaluate : /\{\[([\s\S]+?)\]\}/g,
-        interpolate : /\{\{([\s\S]+?)\}\}/g
-   };
-</script>
+<script id="searchTemplate" type="text/template">
 
-<!-- RESULT TEMPLATE -->
-<script id="resultTemplate" type="text/template">
   {[ _.each(data, function(result, index) { ]}
 
-    {[ classValue = index%2 === 0 ? "resultBoxOdd" : "resultBoxEven"; ]}
+    {[ classValue = index%2 === 0 ? "teacherListOdd" : "teacherListEven"; ]}
 
-    <div class="resultBox {{ classValue}}">
+    <div class="teacherList {{ classValue }}">
 
-      <img src="/assets/picture_thumb_example.jpg" class="resultThumbnail" alt="" />
+      <img src="/avatars/{{ result.avatar }}" class="resultThumbnail" alt="" />
 
       <div class="reputationBox">
-        {[ _.each([1,2,3,4,5], function(index){
-          classValue = index <= result.stars ? "teacherReputationYellowStar" : "teacherReputationBlackStar";]}
+        {[ _.each([1,2,3,4,5], function(index) {
+          classValue = index <= result.rating ? "teacherReputationYellowStar" : "teacherReputationBlackStar";]}
 
-          <span class="{{ classValue}}"></span>
+          <span class="{{ classValue }}"></span>
         {[ }); ]}
 
       </div>
@@ -136,7 +112,7 @@
       <div class="detailsSection">
 
         <div class="teacherName">
-          {{ result.name }} {{ result.lastName }}
+          {{ result.first_name }} {{ result.last_name }}
         </div>
 
         <div class="teacherDescription">
@@ -145,12 +121,12 @@
 
         <div class="tagsSection">
 
-          {[ _.each(result.tags, function(each) {]}
+          {[ _.each(result.professorships, function(professorship) {]}
               <div class="tagContainer">
                 <div class="tagLeftBg"></div>
                 <div class="tagMiddleBg">
                   <span class="tagText">
-                    {{each}}
+                    {{professorship.activity.name}}
                   </span>
                 </div>
                 <div class="tagRightBg"></div>
@@ -163,14 +139,4 @@
       </div>
     </div>
   {[ }); ]}
-</script>
-
-<font size="+10">Teachers Returned = <%= @teachers.length %></font><br/>
-<font size="+10">First teacher name = <%= @teachers.first.first_name unless @teachers.first.nil? %></font><br/>
-<textarea cols="80" rows="30">
-  <%=@teachers.to_json%>
-</textarea>
-<script>
-  app.result.searchTerm = {"zone": false, "phone": true, "commute": false, "price": true, "email": false};
-  app.result.results = [<%=@json_result.html_safe%>];
 </script>

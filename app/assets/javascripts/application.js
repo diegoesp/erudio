@@ -6,11 +6,12 @@
 //
 
 //= require jquery
-//= require_self
 //= require jquery-ui
 //= require sweet_checkbox
 //= require tooltipsy
 //= require underscore
+//= require jquery.url
+//= require_self
 //= require_tree .
 
 // Create the initial context. All the functions, page related objects, etc
@@ -20,3 +21,8 @@ window.app = {};
 // This object will be used to store jQuery events (binded with '$.on()').
 // More references using jQuery 'on' here: http://api.jquery.com/on/
 window.app.eventHolder = $({});
+
+_.templateSettings = {
+    evaluate : /\{\[([\s\S]+?)\]\}/g,
+    interpolate : /\{\{([\s\S]+?)\}\}/g
+};
