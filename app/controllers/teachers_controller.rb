@@ -21,6 +21,7 @@ class TeachersController < ApplicationController
   # @param [String] receives_people_here an OPTIONAL boolean string => if true, then the teacher must be able to receive people in the detailed zones to teach
   # @param [String] must_have_phone an OPTIONAL boolean string => if true, then the teacher must have a phone
   # @param [String] must_have_email an OPTIONAL boolean string => if true, then the teacher allowed erudio to publish his email
+  # @param [String] must_have_price an OPTIONAL boolean string => if true, then the teacher must have specified a price for his classes
   # @param [String] maximum_price_per_hour an OPTIONAL integer => If provided, gets the maximum allowed price per teacher
   # @param [String] order_by an OPTIONAL string => If provided, it must be a field of the model. You can also order by the virtual attribute rating.
   # @param [String] page_size an OPTIONAL number => If supplied, the search will be paginated and this page_size will be used. If page_number is not supplied an exception will be thrown.
@@ -33,6 +34,7 @@ class TeachersController < ApplicationController
     receives_people_here = params[:receives_people_here]
     must_have_phone = params[:must_have_phone]
     must_have_email = params[:must_have_email]
+    must_have_price = params[:must_have_price]
     maximum_price_per_hour = params[:maximum_price_per_hour]
     order_by  = params[:order_by]
     page_size = params[:page_size]
@@ -53,6 +55,7 @@ class TeachersController < ApplicationController
     raise "receives_people_here must be true/false: #{receives_people_here} " unless (receives_people_here.nil? or !receives_people_here.is_boolean?)
     raise "must_have_phone must be true/false: #{must_have_phone} " unless (must_have_phone.nil? or !must_have_phone.is_boolean?)
     raise "must_have_email must be true/false: #{must_have_email} " unless (must_have_email.nil? or !must_have_email.is_boolean?)
+    raise "must_have_price must be true/false: #{must_have_price} " unless (must_have_price.nil? or !must_have_price.is_boolean?)    
     raise "maximum_price_per_hour must be a number: #{maximum_price_per_hour} " unless (maximum_price_per_hour.nil? or !maximum_price_per_hour.is_number?)
     if !page_size.nil? 
       raise "page_size must be a number: #{page_size} " unless page_size.is_number?
@@ -60,12 +63,21 @@ class TeachersController < ApplicationController
     if !page_number.nil? 
       raise "page_number must be a number: #{page_number} " unless page_number.is_number?
     end
-    
-    # Just for search_html.erb debugging purposes => DEPRECATED, should erase
-    @json_result = '{"activity":"Teatro","description":"Lorem ipsum dolum","lastName":"Chiti","name":"Rafael","phone":"46595841","price":"$ 45","stars":"2","tags":["Musico","Rockstar"]},{"activity":"Guitarra","description":"Lorem ipsum dolum","lastName":"Espada","name":"Diego","phone":"46577654","price":"$ 65","stars":"3","tags":["Rockstar","Loquito lindo","Tag very very long"]},{"activity":"Piano","description":"Lorem ipsum dolum","lastName":"Pochiero","name":"Octavio","phone":"45678723","price":"$ 66","stars":"5","tags":["Piano"]},{"activity":"Saxo","description":"Lorem ipsum dolum","lastName":"Rodriguez","name":"Pedro","phone":"47656789","price":"$ 10","stars":"4","tags":["I dont know what to write", "asdasdasd","asdasdasdas","asdadasd"]}'
-    
-    @teachers = Teacher.find_teacher_for_pupil :activity_id => activity_id, :zone_id_array => zone_id_array, :goes_here => goes_here, :receives_people_here => receives_people_here, :must_have_phone => must_have_phone, :must_have_email => must_have_email, :maximum_price_per_hour => maximum_price_per_hour, :order_by => order_by, :page_size => page_size, :page_number => page_number    
-    respond_with @teachers, :include => { :professorships => { :include => :activity }}
+        
+    @teachers = Teacher.find_teacher_for_pupil :activity_id => activity_id, 
+      :zone_id_array => zone_id_array, 
+      :goes_here => goes_here, 
+      :receives_people_here => receives_people_here, 
+      :must_have_phone => must_have_phone, 
+      :must_have_email => must_have_email, 
+      :must_have_price => must_have_price,
+      :maximum_price_per_hour => maximum_price_per_hour, 
+      :order_by => order_by, 
+      :page_size => page_size, 
+      :page_number => page_number
+
+    @teachers_json = @teachers.to_json :include => { :professorships => { :include => :activity }}
+    respond_with @teachers_json
   end
   
   # Shows the detail page for the teacher. Used for displaying the teacher to a pupil

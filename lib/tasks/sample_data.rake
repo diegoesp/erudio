@@ -8,6 +8,8 @@ namespace :db do
     Rake::Task['db:reset'].invoke
 
     # Categories
+    print "Creating categories\n"
+
     @category_music = Category.create!(:name => "Música")
     @category_language = Category.create!(:name => "Idioma")
     @category_subject = Category.create!(:name => "Asignatura")
@@ -41,6 +43,8 @@ namespace :db do
     @plastic_arts.activities.create!(:name => "Historia del arte")
 
     # Zones are neighbourhoods, or "barrios". They're taken form wikipedia, here => http://en.wikipedia.org/wiki/Barrios_and_Communes_of_Buenos_Aires
+    print "Creating zones\n"
+
     @zone_agronomia = Zone.create!(:name => "Agronomía")
     @zone_almagro = Zone.create!(:name => "Almagro", :featured => true)
     @zone_balvanera = Zone.create!(:name => "Balvanera", :featured => true)
@@ -93,6 +97,8 @@ namespace :db do
 
     # Relationships between zones was created using http://mapa.buenosaires.gob.ar/
     # The zones are neighbourhoods. They're reviewed from north to south. I start with Nuñez and end with Villa Riachuelo.
+    print "Creating relationship between zones (contiguous zones)\n"
+
     @zone_nunez.contiguous_zones << @zone_saavedra
     @zone_nunez.contiguous_zones << @zone_belgrano
     @zone_nunez.contiguous_zones << @zone_coghlan
@@ -321,7 +327,7 @@ namespace :db do
     @zone_villa_riachuelo.contiguous_zones << @zone_villa_lugano
 
     # Users
-    50.times do
+    50.times do |user_number|
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email
@@ -329,46 +335,92 @@ namespace :db do
       password = "password"
       password_confirmation = "password"
       avatar = ["avatar_1.jpg", "avatar_2.gif", "avatar_3.png"][Random.new.rand(0..2)]      
-      User.create!(:first_name => first_name, :last_name => last_name, :email => email, :cellphone => cellphone, :password => password, :password_confirmation => password_confirmation, :avatar => avatar)
+      User.create!(:first_name => first_name, 
+        :last_name => last_name, 
+        :email => email, 
+        :cellphone => cellphone, 
+        :password => password, 
+        :password_confirmation => password_confirmation, 
+        :avatar => avatar)
+
+      print "Created user #{user_number+1} for #{last_name}, #{first_name}\n"
     end
 
-    # Teachers
-    500.times do
-      first_name = Faker::Name.first_name
-      last_name = Faker::Name.last_name
-      description = Faker::Lorem.paragraph
-      email = Faker::Internet.free_email
-      cellphone = Faker::PhoneNumber.phone_number
-      password = "password"
-      password_confirmation = "password"
-      avatar = ["avatar_1.jpg", "avatar_2.gif", "avatar_3.png"][Random.new.rand(0..2)]
-      publish_email = [true, false][Random.new.rand(0..1)]
-      publish_phone = [true, false][Random.new.rand(0..1)]
-      teacher = Teacher.create!(:first_name => first_name, :last_name => last_name, :description => description, :email => email, :cellphone => cellphone, :password => password, :password_confirmation => password_confirmation, :avatar => avatar)
+    # Create some teachers for each combination of featured zones and activities 
+    zones = Zone.find_all_by_featured(true)
+    activities = Activity.find_all_by_featured(true)
+    
+    print "Creating teachers => Estimated quantity is #{zones.count * activities.count * 11}\n"
 
-      # Add a classroom
-      zone = Zone.random
-      goes_here = [true, false][Random.new.rand(0..1)]
-      receives_people_here = [true, false][Random.new.rand(0..1)]
-      # Cannot have them both false
-      goes_here = true if (goes_here == false and receives_people_here == false) 
-      # Create the classroom
-      teacher.classrooms.create!(:zone_id => zone.id, :goes_here => goes_here, :receives_people_here => receives_people_here)
+    teacher_number = 0
 
-      # Add a professorship
-      activity = Activity.random
-      price_per_hour = Random.new.rand(15..50)
-      teacher.professorships.create!(:activity_id => activity.id, :price_per_hour => price_per_hour)
-
-      # Add some random ratings to each teacher.
-      user = User.random
-      Random.new.rand(1..5).times do
-        rating = Random.new.rand(1..5)
-        user = User.random while user.has_rated_teacher?(teacher)
-        teacher.ratings.create!(:user_id => user.id, :rating => rating, :comment => Faker::Lorem.words(20))
-      end
-
+    # for each featured zone...
+    zones.each do |zone|
+      # ...and for each featured activity...      
+      activities.each do |activity|
+        # ... add between 10 and 12 teachers
+        Random.new.rand(10..12).times do
+            hash = create_teacher(zone, activity)
+            teacher_number += 1
+            print "Created teacher #{teacher_number} for #{hash[:last_name]}, #{hash[:first_name]}\n"
+        end
+      end      
     end
 
   end
+
+  # Creates a teacher in the database using the zone and activity received
+  #
+
+  # @param zone Zone to be used
+  # @param activity Activity to be used
+  # @return [Hash] a hash containing the last_name and first_name keys
+  def create_teacher(zone, activity)
+
+    first_name = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+    description = Faker::Lorem.paragraph(2)
+    email = Faker::Internet.free_email
+    phone = Faker::PhoneNumber.phone_number
+    password = "password"
+    password_confirmation = "password"
+    avatar = ["avatar_1.jpg", "avatar_2.gif", "avatar_3.png"][Random.new.rand(0..2)]
+    publish_email = [true, false][Random.new.rand(0..1)]
+    publish_phone = [true, false][Random.new.rand(0..1)]
+    teacher = Teacher.create!(:first_name => first_name, 
+        :last_name => last_name, 
+        :description => description, 
+        :email => email, 
+        :phone => phone, 
+        :password => password, 
+        :password_confirmation => password_confirmation,         
+        :avatar => avatar,
+        :publish_email => publish_email,
+        :publish_phone => publish_phone)
+
+    # Add a classroom
+    goes_here = [true, false][Random.new.rand(0..1)]
+    receives_people_here = [true, false][Random.new.rand(0..1)]
+    # Cannot have them both false
+    goes_here = true if (goes_here == false and receives_people_here == false) 
+    # Create the classroom
+    teacher.classrooms.create!(:zone_id => zone.id, :goes_here => goes_here, :receives_people_here => receives_people_here)
+    # Add a professorship
+    price_per_hour = Random.new.rand(15..50)
+    # Set a nil every 1/3 classrooms (approx)
+    if Random.new.rand(0..2) == 0
+        price_per_hour = nil
+    end
+    teacher.professorships.create!(:activity_id => activity.id, :price_per_hour => price_per_hour)
+    # Random rating for the teacher
+    Random.new.rand(1..5).times do
+        rating = Random.new.rand(1..5)
+        user = User.random
+        user = User.random while user.has_rated_teacher?(teacher)
+        teacher.ratings.create!(:user_id => user.id, :rating => rating, :comment => Faker::Lorem.words(20))
+    end
+    # Return the name of the new teacher
+    {:last_name => last_name, :first_name => first_name}
+  end
+
 end

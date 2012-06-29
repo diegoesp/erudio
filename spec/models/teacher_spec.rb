@@ -101,6 +101,11 @@ describe Teacher do
     teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone.id]
     teachers.length.should == 2 
   end
+
+  it "find_teacher_for_pupil using @activity and @zone and that must have price should return no records" do
+    teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone.id], :must_have_price => true
+    teachers.length.should == 0
+  end
   
   it "find_teacher_for_pupil using page_size and page_number should return only one record" do
     teachers = Teacher.find_teacher_for_pupil :activity_id => @activity.id, :zone_id_array => [@zone.id], :page_size => 1, :page_number => 1

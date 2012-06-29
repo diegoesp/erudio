@@ -1,0 +1,227 @@
+body#search_page {
+  background-image: url(/assets/background_pattern.png);
+}
+
+section#main_content {
+  width: 1000px;
+  margin: auto;
+  position: relative;
+  padding-top: 180px;
+  margin-bottom: 50px;
+}
+
+section#results {
+  width: 400px;
+  position: relative;
+}
+
+section#filters {
+  position: absolute;
+  width: 295px;
+  top:  180px;
+  right: 0px;
+}
+
+/* @group Filter common styles */
+.filterChildRowContainerCommon {
+  width: 100%;
+  height: 50px;
+  position: relative;
+}
+.filterRowLeftCommon {
+  width: 8px;
+  height: 61px;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.filterRowMiddleCommon {
+  width: 1px;
+  height: 61px;
+  width: 284px;
+  background-repeat: repeat-x;
+  position: absolute;
+  left: 8px;
+  top: 0px;
+}
+.filterRowRightCommon {
+  width: 8px;
+  height: 61px;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+/* @end */
+
+/* @group Filter Header */
+.filterHeaderRowContainer {
+  width: 100%;
+  height: 61px;
+  position: relative;
+}
+.filterHeaderLeftCorner {
+  background-image: url(/assets/filterBox/filter_header_left_corner.png);
+}
+.filterHeaderLeftMiddle {
+  background-image: url(/assets/filterBox/filter_header_middle.png);
+}
+.filterHeaderRightCorner {
+  background-image: url(/assets/filterBox/filter_header_right_corner.png);
+}
+.filterHeaderTitle {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+/* @end */
+
+/* @group Filter Odd Row */
+.filterOddRowLeft {
+  background-image: url(/assets/filterBox/odd_row_left.png);
+}
+.filterOddRowMiddle {
+  background-image: url(/assets/filterBox/odd_row_middle.png);
+}
+.filterOddRowRight {
+  background-image: url(/assets/filterBox/odd_row_right.png);
+}
+.filterOddRowContent {
+  width: 260px;
+  position: absolute;
+  left: 10px;
+  top: 16px;
+}
+/* @end */
+
+/* @group Filter Even Row */
+
+.filterEvenRowLeft {
+  background-image: url(/assets/filterBox/even_row_left.png);
+}
+.filterEvenRowMiddle {
+  background-image: url(/assets/filterBox/even_row_middle.png);
+}
+.filterEvenRowRight {
+  background-image: url(/assets/filterBox/even_row_right.png);
+}
+.filterEvenRowContent {
+  width: 260px;
+  position: absolute;
+  left: 10px;
+  top: 16px;
+}
+
+/* Teacher List */
+
+.teacherList {
+  margin-bottom: 14px;
+}
+
+.teacherList {
+  width: 620px;
+  height: 108px;
+  border: 1px solid #c0bdb0;
+  position: relative;
+  border-radius: 5px;
+}
+.teacherListOdd {
+  background-color: #fdfbe9;
+}
+.teacherListEven {
+  background-color: #fefefe;
+}
+.teacherList .resultThumbnail {
+  margin-left: 20px;
+  margin-top: 12px;
+  outline: 1px solid #dad8c9;
+  padding: 2px;
+  background-color: white;
+  width: 64px;
+  height: 54px;
+}
+.teacherList .reputationBox {
+  margin-left: 15px;
+  margin-top: 5px;
+  width: 80px;
+  height: 20px;
+}
+.teacherList .reputationBox span {
+  width: 16px;
+  height: 17px;
+  display: block;
+  float: left;
+}
+.teacherList .teacherReputationYellowStar {
+  background: url(/assets/result_item_sprite.png) no-repeat -89px -41px;
+}
+.teacherList .teacherReputationBlackStar {
+  background: url(/assets/result_item_sprite.png) no-repeat -107px -41px;
+}
+.teacherList .detailsSection {
+  width: 500px;
+  height: 84px;
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  text-shadow: 0 0 2px #dadada;;
+}
+.teacherList .teacherName {
+  color: #766958;
+  font-size: 13px;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+.teacherList .teacherDescription {
+  color: #766958;
+  font-size: 13px;
+  width: 85%;
+}
+.teacherList .showDetails {
+  cursor: pointer;
+  background: url(/assets/result_item_sprite.png) no-repeat 0px -4px;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.teacherList .tagsSection {
+  font-size: 10px;
+  position: absolute;
+  bottom: 0px;
+  width: 400px;
+  height: 23px;
+  clear: both;
+  overflow: hidden;
+}
+.teacherList .tagContainer {
+  float: left;
+  margin-right: 5px;
+}
+.teacherList .tagLeftBg {
+  background: url(/assets/tag_sprite.png) no-repeat 0px 0px;
+  width: 14px;
+  height: 22px;
+  float: left;
+}
+.teacherList .tagMiddleBg {
+  background: url(/assets/tag_sprite.png) repeat-x 0px -25px;
+  height: 22px;
+  float: left;
+}
+.teacherList .tagText {
+  position: relative;
+  top: 5px;
+  /* There is a little trick here that makes some especial
+   behavior on the tag and allow us to have spaces on the left and right*/
+  left: 3px;
+  margin-right: 10px;
+}
+.teacherList .tagRightBg {
+  background: url(/assets/tag_sprite.png) no-repeat -19px 0px;
+  height: 22px;
+  width: 2px;
+  float: left;
+}

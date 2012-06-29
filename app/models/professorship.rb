@@ -18,5 +18,5 @@ class Professorship < ActiveRecord::Base
   validates :teacher, :presence => true
   validates :activity, :presence => true
 
-  validates :price_per_hour, :presence => true
+  validates :price_per_hour, :allow_nil => true, :numericality => { :less_than => 1000 }
 end
