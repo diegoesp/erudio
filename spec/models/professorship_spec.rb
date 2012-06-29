@@ -40,8 +40,13 @@ describe Professorship do
     professorship.should be_nil
   end
 
-  it "should require the price" do
+  it "should allow nil in the price" do
     @professorship.price_per_hour = nil
+    @professorship.should be_valid
+  end
+
+  it "should not allow a price superior to $ 1000" do
+    @professorship.price_per_hour = 1001
     @professorship.should_not be_valid
   end
 

@@ -38,6 +38,7 @@ class Teacher < User
   # :receives_people_here Optional. Boolean. If true, the teacher can receive people in any of these zones at home
   # :must_have_phone Optional. Boolean. If true, the teacher must have phone
   # :must_have_email Optional. Boolean. If true, the teacher must be willing to disclose his e-mail.
+  # :must_have_price Optional. Boolean. If true, the teacher must have input price in his classes
   # :maximum_price_per_hour Optional. Integer. The top price for the teachers to be listed
   # :order_by Optional. String. A field name to be used for order as  DESC
   # :page_size Optional. Integer. If specified, the search will be paged and this page size will be used
@@ -50,6 +51,7 @@ class Teacher < User
     receives_people_here_string = hsh[:receives_people_here] ? "t" : "f"
     must_have_phone = hsh[:must_have_phone] ? "t" : "f"
     must_have_email = hsh[:must_have_email] ? "t" : "f"
+    must_have_price = hsh[:must_have_price] ? "t" : "f"
     # must provide both pagers parameters at the same time or none at all
     page_size = hsh[:page_size]
     page_number = hsh[:page_number]
@@ -74,6 +76,7 @@ class Teacher < User
     sql += " classrooms.zone_id IN (#{zone_id_string}) AND"
     sql += " (publish_phone = 't' AND phone IS NOT NULL) AND" unless (must_have_phone.nil? or must_have_phone == "f")
     sql += " publish_email = 't' AND" unless (must_have_email.nil? or must_have_email == "f") 
+    sql += " professorships.price_per_hour IS NOT NULL AND" unless (must_have_price.nil? or must_have_price == "f") 
     sql += " professorships.price_per_hour < #{hsh[:maximum_price_per_hour]} AND" unless hsh[:maximum_price_per_hour].nil?
     sql += " users.type = 'Teacher'"
     sql += " ORDER BY #{hsh[:order_by]}" unless hsh[:order_by].nil? 

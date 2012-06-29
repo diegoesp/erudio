@@ -1,56 +1,60 @@
 // Initial context for the Result page.
-app.result = {};
-
-app.result.searchTerm = {};
+app.search = {};
 
 //
 // Initialization (called on DOM ready)
 //
-app.result.initialize = function() {
-  // Initialize the SweetCheckboxes by calling the config method from the
-  // library
+app.search.initialize = function() {
+  // Initialize the SweetCheckboxes by calling the config method from the library
   configureSweetCheckboxes();
 
-  // Bind the "results" JSON object to the template and render it.
-  var template = _.template($("#resultTemplate")[0].text, {
-    data : app.result.results
-  });
-  $("section#results").append(template);
+  // Bind the JSON written in the ERB to the template and render it.
+  var template = _.template($("#searchTemplate")[0].text, {data : app.search.teachers});
+  $("section#teacherList").append(template);
 
-  // Load all the checkboxes from the filter section and
-  // synch them with the search term status from the server.
-  // TODO(rafael.chiti) This logic should be on the server, changing the
-  // status of the chekboxes after loading the page is not "nice".
   $(".sweetCheckbox").each(function(index) {
-    if (app.result.searchTerm[this.title] === true) {
-      $(this).trigger('turnOn');
-    }
+      $(this).trigger('turnOff');
+  });
+
+  $(".sweetCheckbox").click(function() {
+    app.search.updateBoolFilter(this, this.title);
   });
 
   // Configure the ToolTipsy tool.
-  app.result.initializeTooltipsy();
+  app.search.initializeTooltipsy();
 }
 
-// Update the searchTerm JSON object based on the state of the 'clicked'
-// checkbox.
-// Each time the user clicks any of the options from the filter
-// this functions is triggered.
-app.result.updateBoolFilter = function(checkBox, filterOption) {
-  app.result.searchTerm[filterOption] = !$(checkBox).triggerHandler(
-      'isOn');
-  app.result.executeAjaxSearch();
+// Executed everytime a user clicks on the boolean filters
+app.search.updateBoolFilter = function(checkBox, filterOption) {
+  app.search.executeAjaxSearch();
 }
 
-app.result.executeAjaxSearch = function() {
-  $.ajax({
-    url : "/result_search?format=json",
+app.search.executeAjaxSearch = function() {
+
+  var activity_id = $.url().param("activity_id");
+  var zone_id_csv = $.url().param("zone_id_csv");
+  var goes_here = $.url().param("goes_here");
+  var receives_people_here = $.url().param("receives_people_here");
+
+  var rest_api_url = "/teachers/search?format=json";
+
+  rest_api_url += "&activity_id=" + activity_id;
+  rest_api_url += "&zone_id_csv=" + zone_id_csv;
+
+  if (goes_here != undefined) rest_api_url += "&goes_here=" + goes_here;
+  if (receives_people_here != undefined) rest_api_url += "&receives_people_here=" + receives_people_here;
+
+  // Take all filters info for the query
+  $(".sweetCheckbox").each(function(index) {
+    var isOn = $(this).triggerHandler('isOn')
+    if (isOn) rest_api_url += "&" + this.title + "=true";
+  });
+
+  $.ajax({url : rest_api_url,
     success : function(response) {
-      $("section#results").children().remove();
-      var template = _.template($("#resultTemplate")[0].text, {
-        data : response
-      });
-      $("section#results").append(template);
-
+      $("section#teacherList").children().remove();
+      var template = _.template($("#searchTemplate")[0].text, {data : response});
+      $("section#teacherList").append(template);
     },
     error : function(xhr, ajaxOptions, thrownError) {
       alert(xhr.status);
@@ -60,7 +64,7 @@ app.result.executeAjaxSearch = function() {
 }
 
 // Initialize and configure the tooltips for this page (tooltipsy library)
-app.result.initializeTooltipsy = function() {
+app.search.initializeTooltipsy = function() {
   $('.hasTooltipsy').tooltipsy({
     offset : [ -10, 0 ],
     css : {
@@ -75,16 +79,4 @@ app.result.initializeTooltipsy = function() {
       'text-shadow' : 'none'
     }
   });
-}
-
-// ////////////////////////////////////////////////////////////
-//
-// REMOVE THIS FUNCTIONS WHEN FINISHED (DEBBUGING BOX)
-//
-// ////////////////////////////////////////////////////////////
-
-// TODO(rafael.chiti): Remove this. Just for debugging.
-app.result.alertSearchTerm = function() {
-
-  alert(JSON.stringify(app.result.searchTerm));
 }

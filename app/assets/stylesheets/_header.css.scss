@@ -52,13 +52,13 @@ header#page_header {
   left: 15px;
   color: gray;
   font-size: small;
-  background-color: rgba(255, 255, 255, .8);
+  background-color: rgba(210, 210, 210, .8);
   z-index: 100;
   padding: 10px;
   a {
     cursor: pointer;
   }
 
-  @include shadow(white, 5px, 0px, 0px);
+  @include shadow(grey, 5px, 0px, 0px);
   @include border_radius(3px);
 }
