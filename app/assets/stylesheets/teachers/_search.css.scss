@@ -2,6 +2,16 @@ body#search_page {
   background-image: url(/assets/background_pattern.png);
 }
 
+/******************************************************************************
+
+Main sections
+
+The page is divided in three major sections: the main content (the general
+body that contains the other two sections), sections for displaying teacher
+results and a section for configuring additional filters. See below.
+
+*******************************************************************************/
+
 section#main_content {
   width: 1000px;
   margin: auto;
@@ -22,21 +32,37 @@ section#filters {
   right: 0px;
 }
 
-/* @group Filter common styles */
-.filterChildRowContainerCommon {
+
+/******************************************************************************
+
+The filters section
+
+The filters are grouped inside a box for filtering. The filtering box follows
+this basic idea:
+
+|---------------|
+| Filter1   On  |
+|---------------|
+|---------------|
+| Filter2   On  |
+|---------------|
+
+*******************************************************************************/
+
+.filter-row {
   width: 100%;
   height: 50px;
   position: relative;
 }
-.filterRowLeftCommon {
+.filter-row-left {
   width: 8px;
   height: 61px;
-  background-repeat: no-repeat;
   position: absolute;
   left: 0px;
   top: 0px;
+  background-image: url(/assets/filterBox/even_row_left.png);
 }
-.filterRowMiddleCommon {
+.filter-row-middle {
   width: 1px;
   height: 61px;
   width: 284px;
@@ -44,16 +70,48 @@ section#filters {
   position: absolute;
   left: 8px;
   top: 0px;
+  background-image: url(/assets/filterBox/even_row_middle.png);
 }
-.filterRowRightCommon {
+.filter-row-right {
   width: 8px;
   height: 61px;
   background-repeat: no-repeat;
   position: absolute;
   right: 0px;
   top: 0px;
+  background-image: url(/assets/filterBox/even_row_right.png);
 }
-/* @end */
+
+.filter-row-zone {  
+  position: absolute;
+  left: 10px;
+  top: 16px;
+  width: 260px;
+}
+
+.filter-row-zone-column {
+  font-size: 13px;
+}
+
+.filter-row-zone-column-one {
+  position:absolute;
+  background-image: url(/assets/wizard_check_unchecked.png);
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  height: 30px;
+}
+
+.filter-row-zone-column-two {
+  position:absolute;
+  padding-left: 50%;
+  background-image: url(/assets/wizard_check_unchecked.png);
+  background-repeat: no-repeat;
+  background-position: 110px;
+}
+
+.filter-row-zone-column-set-selected {
+  background-image: url(/assets/wizard_check_checked.png);
+}
 
 /* @group Filter Header */
 .filterHeaderRowContainer {

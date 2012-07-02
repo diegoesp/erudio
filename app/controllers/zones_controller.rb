@@ -17,5 +17,5 @@ class ZonesController < ApplicationController
     contiguous_zones = Zone.find(id).contiguous_zones
     respond_with(contiguous_zones)
   end
-
+  
 end

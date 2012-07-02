@@ -10,7 +10,7 @@ describe TeachersController do
     @activity = Factory(:activity)
     @zone = Factory(:zone)
     @zone3 = Factory(:zone3)
-    @zone2 = @zone3.contiguous_zones.first
+    @zone2 = Factory(:zone2)
     @teacher = Factory(:teacher)
   end
 

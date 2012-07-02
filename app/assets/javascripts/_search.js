@@ -20,6 +20,8 @@ app.search.initialize = function() {
     app.search.updateBoolFilter(this, this.title);
   });
 
+  $(".filter-row-zone-column").click(function() {
+  })
   // Configure the ToolTipsy tool.
   app.search.initializeTooltipsy();
 }

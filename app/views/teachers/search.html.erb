@@ -4,7 +4,7 @@
   
     app.search.teachers = <%=@teachers_json.html_safe%>;
 
-    // Initialize the js for this particular page when the DOM is ready.
+    // Initialize the JavaScript for this particular page when the DOM is ready.
     $(document).ready(function() {
       app.search.initialize();
     });
@@ -32,28 +32,73 @@
   
       <section id="filters">
         <div class="filterHeaderRowContainer">
-          <div class="filterRowLeftCommon filterHeaderLeftCorner"></div>
-          <div class="filterRowMiddleCommon filterHeaderLeftMiddle"></div>
-          <div class="filterRowRightCommon filterHeaderRightCorner"></div>
+          <div class="filter-row-left filterHeaderLeftCorner"></div>
+          <div class="filter-row-middle filterHeaderLeftMiddle"></div>
+          <div class="filter-row-right filterHeaderRightCorner"></div>
           <div class="filterHeaderTitle">Filtrar Resultados</div>
         </div>
   
-        <div class="filterChildRowContainerCommon">
-          <div class="filterRowLeftCommon filterOddRowLeft"></div>
-          <div class="filterRowMiddleCommon filterOddRowMiddle"></div>
-          <div class="filterRowRightCommon filterOddRowRight"></div>
+        <div class="filter-row">
+          <div class="filter-row-left filterOddRowLeft"></div>
+          <div class="filter-row-middle filterOddRowMiddle"></div>
+          <div class="filter-row-right filterOddRowRight"></div>
           <div class="filterOddRowContent">
             <div style="float: left;">Zona</div>
             <div class="hasTooltipsy" title="Agrega zonas aledañas a las que seleccionaste" style="float: right;">
-              (TBD)
             </div>
           </div>
         </div>
-  
-        <div class="filterChildRowContainerCommon">
-          <div class="filterRowLeftCommon filterEvenRowLeft"></div>
-          <div class="filterRowMiddleCommon filterEvenRowMiddle"></div>
-          <div class="filterRowRightCommon filterEvenRowRight"></div>
+        
+        <%        
+        for i in 1..@contiguous_zones.length do
+
+          zone = @contiguous_zones[i-1]
+
+          # Even zones are displayed in the same row than odd ones, so they must be ignored
+          if (i % 2) == 0
+            next
+          end
+
+          # If there's a next zone, take it and display it in the same row
+          zone2 = nil
+          if @contiguous_zones.length > i
+            zone2 = @contiguous_zones[i]
+          end
+
+          # Set a special style for the selected zones so it is shown to the user as a checked box
+          zone_contains = ""
+          if @zone_id_array.include?(zone.id.to_s)
+            zone_contains = "filter-row-zone-column-set-selected"
+          end
+          zone2_contains = ""
+          if zone2 != nil            
+            if @zone_id_array.include?(zone2.id.to_s)
+              zone2_contains = "filter-row-zone-column-set-selected"
+            end
+          end
+        %>
+        <div class="filter-row">
+          <div class="filter-row-left"></div>
+          <div class="filter-row-middle"></div>
+          <div class="filter-row-right"></div>
+          <div class="filter-row-zone">
+            <span class="filter-row-zone-column filter-row-zone-column-one <%=zone_contains%>">
+              <%=zone.name%>
+            </span>
+            <% if zone2 != nil %>
+            <span class="filter-row-zone-column filter-row-zone-column-two <%=zone2_contains%>">
+              <%=zone2.name%>
+            </span>
+            <% end %>
+          </div>
+        </div>
+          <%
+        end
+        %>
+        <div class="filter-row">
+          <div class="filter-row-left filterEvenRowLeft"></div>
+          <div class="filter-row-middle filterEvenRowMiddle"></div>
+          <div class="filter-row-right filterEvenRowRight"></div>
           <div class="filterEvenRowContent">
             <div style="float: left;">Telefono</div>
             <div class="hasTooltipsy" title="¿Solo mostrar profesores que pusieron a disposición un numero telefónico para contactarlos?" style="float: right;">
@@ -62,10 +107,10 @@
           </div>
         </div>
   
-        <div class="filterChildRowContainerCommon">
-          <div class="filterRowLeftCommon filterOddRowLeft"></div>
-          <div class="filterRowMiddleCommon filterOddRowMiddle"></div>
-          <div class="filterRowRightCommon filterOddRowRight"></div>
+        <div class="filter-row">
+          <div class="filter-row-left filterOddRowLeft"></div>
+          <div class="filter-row-middle filterOddRowMiddle"></div>
+          <div class="filter-row-right filterOddRowRight"></div>
           <div class="filterOddRowContent">
             <div style="float: left;">E-Mail</div>
             <div class="hasTooltipsy" title="¿Solo mostrar profesores que pusieron a disposición un correo electrónico para contactarlos?" class="hasTooltipsy" style="float: right;">
@@ -74,10 +119,10 @@
           </div>
         </div>
   
-        <div class="filterChildRowContainerCommon">
-          <div class="filterRowLeftCommon filterOddRowLeft"></div>
-          <div class="filterRowMiddleCommon filterOddRowMiddle"></div>
-          <div class="filterRowRightCommon filterOddRowRight"></div>
+        <div class="filter-row">
+          <div class="filter-row-left filterOddRowLeft"></div>
+          <div class="filter-row-middle filterOddRowMiddle"></div>
+          <div class="filter-row-right filterOddRowRight"></div>
           <div class="filterOddRowContent">
             <div style="float: left;">Precio</div>
             <div class="hasTooltipsy" title="¿Solo mostrar profesores que muestran el precio por hora para su clase?" style="float: right;">
