@@ -20,10 +20,40 @@ app.search.initialize = function() {
     app.search.updateBoolFilter(this, this.title);
   });
 
-  $(".filter-row-zone-column").click(function() {
+  $(".filter-row-zone-column-one").click(function() {
+    app.search.filterRowZoneColumn_click(this);
   })
+  $(".filter-row-zone-column-two").click(function() {
+    app.search.filterRowZoneColumn_click(this);
+  })
+
+
   // Configure the ToolTipsy tool.
   app.search.initializeTooltipsy();
+}
+
+// Executed everytime a user clicks on the boolean filters
+app.search.filterRowZoneColumn_click = function(filter) {
+  
+  if (_.str.endsWith(filter.className, "set-selected"))
+  {    
+    // Is selected ==> un-check it !
+    // But first, verify if other zones are checked. You cannot uncheck every zone
+    if ($(".filter-row-zone-column-set-selected").length == 1)
+    {
+      alert("Tenés que seleccionar al menos un barrio");
+      return;
+    }
+
+    filter.className = filter.className.replace("-set-selected", "-set-unselected");
+  }
+  else
+  {
+    // It is unselected => select!
+    filter.className = filter.className.replace("-set-unselected", "-set-selected");    
+  }
+
+  app.search.executeAjaxSearch();
 }
 
 // Executed everytime a user clicks on the boolean filters
@@ -33,8 +63,15 @@ app.search.updateBoolFilter = function(checkBox, filterOption) {
 
 app.search.executeAjaxSearch = function() {
 
-  var activity_id = $.url().param("activity_id");
-  var zone_id_csv = $.url().param("zone_id_csv");
+  // Construct the chosen zones from the filters
+  var zone_id_csv = "";
+  _.each($(".filter-row-zone-column-set-selected"), function(span) { 
+    if (zone_id_csv != "") zone_id_csv += ","
+    zone_id_csv += span.id
+  });
+
+  // THe rest is taken from the querystring
+  var activity_id = $.url().param("activity_id");  
   var goes_here = $.url().param("goes_here");
   var receives_people_here = $.url().param("receives_people_here");
 

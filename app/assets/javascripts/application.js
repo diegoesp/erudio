@@ -11,6 +11,7 @@
 //= require tooltipsy
 //= require underscore
 //= require jquery.url
+//= require underscore.string.min
 //= require_self
 //= require_tree .
 

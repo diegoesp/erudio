@@ -66,11 +66,11 @@
           end
 
           # Set a special style for the selected zones so it is shown to the user as a checked box
-          zone_contains = ""
+          zone_contains = "filter-row-zone-column-set-unselected"
           if @zone_id_array.include?(zone.id.to_s)
             zone_contains = "filter-row-zone-column-set-selected"
           end
-          zone2_contains = ""
+          zone2_contains = "filter-row-zone-column-set-unselected"
           if zone2 != nil            
             if @zone_id_array.include?(zone2.id.to_s)
               zone2_contains = "filter-row-zone-column-set-selected"
@@ -82,11 +82,11 @@
           <div class="filter-row-middle"></div>
           <div class="filter-row-right"></div>
           <div class="filter-row-zone">
-            <span class="filter-row-zone-column filter-row-zone-column-one <%=zone_contains%>">
+            <span id="<%=zone.id%>" class="filter-row-zone-column filter-row-zone-column-one <%=zone_contains%>">
               <%=zone.name%>
             </span>
             <% if zone2 != nil %>
-            <span class="filter-row-zone-column filter-row-zone-column-two <%=zone2_contains%>">
+            <span id="<%=zone2.id%>"class="filter-row-zone-column filter-row-zone-column-two <%=zone2_contains%>">
               <%=zone2.name%>
             </span>
             <% end %>
