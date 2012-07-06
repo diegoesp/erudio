@@ -25,24 +25,24 @@
   "search_page"
 <% end %>
 
-<section id="main_content">
+<section id="main-content">
 
-      <section id="teacherList">
+      <section id="teachers">
       </section>
   
       <section id="filters">
-        <div class="filterHeaderRowContainer">
-          <div class="filter-row-left filterHeaderLeftCorner"></div>
-          <div class="filter-row-middle filterHeaderLeftMiddle"></div>
-          <div class="filter-row-right filterHeaderRightCorner"></div>
-          <div class="filterHeaderTitle">Filtrar Resultados</div>
+        <div class="filter-header-row-container">
+          <div class="filter-row-left filter-header-left-corner"></div>
+          <div class="filter-row-middle filter-header-middle"></div>
+          <div class="filter-row-right filter-header-right-corner"></div>
+          <div class="filter-header-title">Filtrar Resultados</div>
         </div>
   
         <div class="filter-row">
-          <div class="filter-row-left filterOddRowLeft"></div>
-          <div class="filter-row-middle filterOddRowMiddle"></div>
-          <div class="filter-row-right filterOddRowRight"></div>
-          <div class="filterOddRowContent">
+          <div class="filter-row-left filter-odd-row-left"></div>
+          <div class="filter-row-middle filter-odd-row-middle"></div>
+          <div class="filter-row-right filter-odd-row-right"></div>
+          <div class="filter-odd-row-content">
             <div style="float: left;">Zona</div>
             <div class="hasTooltipsy" title="Agrega zonas aledañas a las que seleccionaste" style="float: right;">
             </div>
@@ -96,10 +96,10 @@
         end
         %>
         <div class="filter-row">
-          <div class="filter-row-left filterEvenRowLeft"></div>
-          <div class="filter-row-middle filterEvenRowMiddle"></div>
-          <div class="filter-row-right filterEvenRowRight"></div>
-          <div class="filterEvenRowContent">
+          <div class="filter-row-left filter-even-row-left"></div>
+          <div class="filter-row-middle filter-even-row-middle"></div>
+          <div class="filter-row-right filter-even-row-right"></div>
+          <div class="filter-even-row-content">
             <div style="float: left;">Telefono</div>
             <div class="hasTooltipsy" title="¿Solo mostrar profesores que pusieron a disposición un numero telefónico para contactarlos?" style="float: right;">
               <div class="sweetCheckbox" title="must_have_phone"></div>
@@ -108,10 +108,10 @@
         </div>
   
         <div class="filter-row">
-          <div class="filter-row-left filterOddRowLeft"></div>
-          <div class="filter-row-middle filterOddRowMiddle"></div>
-          <div class="filter-row-right filterOddRowRight"></div>
-          <div class="filterOddRowContent">
+          <div class="filter-row-left filter-odd-row-left"></div>
+          <div class="filter-row-middle filter-odd-row-middle"></div>
+          <div class="filter-row-right filter-odd-row-right"></div>
+          <div class="filter-odd-row-content">
             <div style="float: left;">E-Mail</div>
             <div class="hasTooltipsy" title="¿Solo mostrar profesores que pusieron a disposición un correo electrónico para contactarlos?" class="hasTooltipsy" style="float: right;">
               <div class="sweetCheckbox" title="must_have_email"></div>
@@ -120,10 +120,10 @@
         </div>
   
         <div class="filter-row">
-          <div class="filter-row-left filterOddRowLeft"></div>
-          <div class="filter-row-middle filterOddRowMiddle"></div>
-          <div class="filter-row-right filterOddRowRight"></div>
-          <div class="filterOddRowContent">
+          <div class="filter-row-left filter-odd-row-left"></div>
+          <div class="filter-row-middle filter-odd-row-middle"></div>
+          <div class="filter-row-right filter-odd-row-right"></div>
+          <div class="filter-odd-row-content">
             <div style="float: left;">Precio</div>
             <div class="hasTooltipsy" title="¿Solo mostrar profesores que muestran el precio por hora para su clase?" style="float: right;">
               <div class="sweetCheckbox" title="must_have_price"></div>
@@ -137,49 +137,63 @@
 
 <script id="searchTemplate" type="text/template">
 
+  {[
+
+    if (data.length == 0)
+    {
+      ]}
+      <div class="teacher-list teacher-list-empty">
+        
+        No hay profesores! Emplea los filtros al costado para expandir tu zona de influencia
+        
+      </div>
+      {[
+    }
+
+  ]}
   {[ _.each(data, function(result, index) { ]}
 
-    {[ classValue = index%2 === 0 ? "teacherListOdd" : "teacherListEven"; ]}
+    {[ classValue = index%2 === 0 ? "teacher-list-odd" : "teacher-list-even"; ]}
 
-    <div class="teacherList {{ classValue }}">
+    <div class="teacher-list {{ classValue }}">
 
-      <img src="/avatars/{{ result.avatar }}" class="resultThumbnail" alt="" />
+      <img src="/avatars/{{ result.avatar }}" class="result-thumbnail" alt="" />
 
-      <div class="reputationBox">
+      <div class="reputation-box">
         {[ _.each([1,2,3,4,5], function(index) {
-          classValue = index <= result.rating ? "teacherReputationYellowStar" : "teacherReputationBlackStar";]}
+          classValue = index <= result.rating ? "teacher-reputation-star" : "teacher-reputation-empty";]}
 
           <span class="{{ classValue }}"></span>
         {[ }); ]}
 
       </div>
 
-      <div class="detailsSection">
+      <div class="details-section">
 
-        <div class="teacherName">
+        <div class="teacher-name">
           {{ result.first_name }} {{ result.last_name }}
         </div>
 
-        <div class="teacherDescription">
+        <div class="teacher-description">
           {{ result.description }}
         </div>
 
-        <div class="tagsSection">
+        <div class="tags-section">
 
           {[ _.each(result.professorships, function(professorship) {]}
-              <div class="tagContainer">
-                <div class="tagLeftBg"></div>
-                <div class="tagMiddleBg">
-                  <span class="tagText">
+              <div class="tag-container">
+                <div class="tag-container-left"></div>
+                <div class="tag-container-middle">
+                  <span class="tag-text">
                     {{professorship.activity.name}}
                   </span>
                 </div>
-                <div class="tagRightBg"></div>
+                <div class="tag-container-right"></div>
               </div>
           {[ }); ]}
         </div>
 
-        <div class="showDetails"></div>
+        <div class="show-details"></div>
 
       </div>
     </div>

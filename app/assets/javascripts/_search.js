@@ -10,7 +10,7 @@ app.search.initialize = function() {
 
   // Bind the JSON written in the ERB to the template and render it.
   var template = _.template($("#searchTemplate")[0].text, {data : app.search.teachers});
-  $("section#teacherList").append(template);
+  $("section#teachers").append(template);
 
   $(".sweetCheckbox").each(function(index) {
       $(this).trigger('turnOff');
@@ -91,9 +91,9 @@ app.search.executeAjaxSearch = function() {
 
   $.ajax({url : rest_api_url,
     success : function(response) {
-      $("section#teacherList").children().remove();
+      $("section#teachers").children().remove();
       var template = _.template($("#searchTemplate")[0].text, {data : response});
-      $("section#teacherList").append(template);
+      $("section#teachers").append(template);
     },
     error : function(xhr, ajaxOptions, thrownError) {
       alert(xhr.status);
