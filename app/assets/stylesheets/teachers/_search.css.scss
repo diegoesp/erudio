@@ -65,7 +65,7 @@ this basic idea:
 }
 .filter-row-middle {
   width: 1px;
-  height: 61px;
+  height: 50px;
   width: 284px;
   background-repeat: repeat-x;
   position: absolute;
@@ -88,6 +88,7 @@ this basic idea:
   left: 10px;
   top: 16px;
   width: 260px;
+  height:10px;
 }
 
 .filter-row-zone-column {
@@ -98,7 +99,7 @@ this basic idea:
   position:absolute;
   background-repeat: no-repeat;
   padding-left: 20px;
-  height: 30px;
+  height: 15px;
   z-index: 2;
 }
 
@@ -175,7 +176,7 @@ This is the header part only.
 
 *******************************************************************************/
 
-.filter-header-row-container {
+.filter-header {
   width: 100%;
   height: 61px;
   position: relative;
@@ -193,6 +194,7 @@ This is the header part only.
   position: absolute;
   left: 20px;
   top: 20px;
+  font-weight: bold;
 }
 
 /******************************************************************************
@@ -237,55 +239,66 @@ The teachers section
   vertical-align: center;
   line-height: 108px;
 }
-.teacher-list .result-thumbnail {
-  margin-left: 20px;
-  margin-top: 12px;
-  outline: 1px solid #dad8c9;
-  padding: 2px;
-  background-color: white;
-  width: 64px;
-  height: 54px;
-}
-.teacher-list .reputation-box {
-  margin-left: 15px;
-  margin-top: 5px;
-  width: 80px;
-  height: 20px;
-}
-.teacher-list .reputation-box span {
-  width: 16px;
-  height: 17px;
-  display: block;
-  float: left;
-}
-.teacher-list .teacher-reputation-star {
-  background: url(/assets/result_item_sprite.png) no-repeat -89px -41px;
-}
-.teacher-list .teacher-reputation-empty {
-  background: url(/assets/result_item_sprite.png) no-repeat -107px -41px;
-}
+
 .teacher-list .details-section {
   width: 500px;
   height: 84px;
   position: absolute;
   right: 10px;
   top: 13px;
-  text-shadow: 0 0 2px #dadada;;
+  text-shadow: 0 0 2px #dadada;
 }
-.teacher-list .teacher-name {
+.teacher-list .result-thumbnail {
+  margin-left: 12px;
+  margin-top: 12px;
+  outline: 1px solid #dad8c9;
+  padding: 2px;
+  background-color: white;
+  width: 82px;
+  height: 82px;
+}
+.teacher-name {
   color: #766958;
   font-size: 13px;
   font-weight: bold;
   padding-bottom: 5px;
 }
+.teacher-reputation-box
+{
+position:absolute;
+display:inline;
+padding-left:10px;
+}
+.teacher-reputation-star {
+  width:15px;
+  height:20px;
+  background: image_url('sprites.png') no-repeat -240px -69px;
+  position: relative;
+  float:left;
+}
+.teacher-reputation-empty {
+  width:15px;
+  height:20px;  
+  background: image_url('sprites.png') no-repeat -284px -69px;
+  position: relative;
+  float:left;
+}
+.teacher-reputation-half-star {
+  width:15px;
+  height:20px;  
+  background: image_url('sprites.png') no-repeat -260px -69px;
+  position: relative;
+  float:left;
+}
 .teacher-list .teacher-description {
   color: #766958;
   font-size: 13px;
   width: 85%;
+
 }
 .teacher-list .show-details {
   cursor: pointer;
-  background: url(/assets/result_item_sprite.png) no-repeat 0px -4px;
+  background: image_url('sprites.png') no-repeat -150px -0px;
   width: 60px;
   height: 60px;
   position: absolute;
@@ -293,40 +306,23 @@ The teachers section
   top: 10px;
 }
 .teacher-list .tags-section {
-  font-size: 10px;
   position: absolute;
   bottom: 0px;
   width: 400px;
-  height: 23px;
+  height: 21px;
   clear: both;
   overflow: hidden;
 }
-.teacher-list .tag-container {
-  float: left;
-  margin-right: 5px;
-}
-.teacher-list .tag-container-left {
-  background: url(/assets/tag_sprite.png) no-repeat 0px 0px;
-  width: 14px;
-  height: 22px;
-  float: left;
-}
-.teacher-list .tag-container-middle {
-  background: url(/assets/tag_sprite.png) repeat-x 0px -25px;
-  height: 22px;
-  float: left;
-}
-.teacher-list .tag-text {
-  position: relative;
-  top: 5px;
-  /* There is a little trick here that makes some especial
-   behavior on the tag and allow us to have spaces on the left and right*/
-  left: 3px;
-  margin-right: 10px;
-}
-.teacher-list .tag-container-right {
-  background: url(/assets/tag_sprite.png) no-repeat -19px 0px;
-  height: 22px;
-  width: 2px;
-  float: left;
+.teacher-list .tag-container
+{
+  background-color: #ffc056;
+  color: #95672b;
+  font-weight: bolder;
+  font-size:12px;
+  text-transform: lowercase;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top:5px;
+  padding-bottom: 5px;
+  margin-right:5px;
 }

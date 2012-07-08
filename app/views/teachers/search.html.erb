@@ -31,7 +31,7 @@
       </section>
   
       <section id="filters">
-        <div class="filter-header-row-container">
+        <div class="filter-header">
           <div class="filter-row-left filter-header-left-corner"></div>
           <div class="filter-row-middle filter-header-middle"></div>
           <div class="filter-row-right filter-header-right-corner"></div>
@@ -42,7 +42,7 @@
           <div class="filter-row-left filter-odd-row-left"></div>
           <div class="filter-row-middle filter-odd-row-middle"></div>
           <div class="filter-row-right filter-odd-row-right"></div>
-          <div class="filter-odd-row-content">
+          <div class="filter-row-zone">
             <div style="float: left;">Zona</div>
             <div class="hasTooltipsy" title="Agrega zonas aledañas a las que seleccionaste" style="float: right;">
             </div>
@@ -159,20 +159,32 @@
 
       <img src="/avatars/{{ result.avatar }}" class="result-thumbnail" alt="" />
 
-      <div class="reputation-box">
-        {[ _.each([1,2,3,4,5], function(index) {
-          classValue = index <= result.rating ? "teacher-reputation-star" : "teacher-reputation-empty";]}
-
-          <span class="{{ classValue }}"></span>
-        {[ }); ]}
-
-      </div>
-
       <div class="details-section">
 
         <div class="teacher-name">
-          {{ result.first_name }} {{ result.last_name }}
+
+          {{ result.first_name }} {{ result.last_name }}                      
+        
+          <div class="teacher-reputation-box">
+            {[ _.each([1,2,3,4,5], function(index) {
+
+              var ratingClass = "teacher-reputation-empty";
+
+              if (index < result.rating) {
+                ratingClass = "teacher-reputation-star";
+              }
+
+              var floatingPointValue = result.rating - index;
+              if (floatingPointValue > 0 && floatingPointValue < 1) {
+                ratingClass = "teacher-reputation-half-star";
+              }
+              ]}
+
+              <div class="{{ ratingClass }}"></div>
+            {[ }); ]}
+          </div>
         </div>
+        
 
         <div class="teacher-description">
           {{ result.description }}
@@ -180,17 +192,14 @@
 
         <div class="tags-section">
 
-          {[ _.each(result.professorships, function(professorship) {]}
-              <div class="tag-container">
-                <div class="tag-container-left"></div>
-                <div class="tag-container-middle">
-                  <span class="tag-text">
-                    {{professorship.activity.name}}
-                  </span>
-                </div>
-                <div class="tag-container-right"></div>
-              </div>
-          {[ }); ]}
+        {[ _.each(result.professorships, function(professorship) {]}
+          
+          <span class="tag-container">
+            {{professorship.activity.name}}
+          </span>
+
+         {[ }); ]}
+
         </div>
 
         <div class="show-details"></div>
