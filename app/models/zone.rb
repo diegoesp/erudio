@@ -19,4 +19,28 @@ class Zone < ActiveRecord::Base
   attr_accessible :name, :featured
 
   validates :name, :presence => true
+
+  # Gets a complete list of contiguous zones for a list of zones returning a non-repeating array of zones
+  #
+  # @param zone_id_array [array] An array of zones ids
+  # @return [Array] A list of zones that are contiguous to the received zones. It includes all the zones passed in the zones_array parameter
+  def self.find_all_contiguous_zones(zone_id_array)
+    
+    contiguous_zones = []
+
+    zone_id_array.each do |zone_id|
+
+      zone = Zone.find(zone_id)
+
+      contiguous_zones += [zone]
+      contiguous_zones += zone.contiguous_zones
+    end
+
+    # Eliminate duplicates
+    done = contiguous_zones.uniq!
+
+    # return my array
+    (contiguous_zones)
+  end
+  
 end

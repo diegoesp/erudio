@@ -32,17 +32,17 @@ class Teacher < User
   # Looks teachers for a pupil given his preferences
   #
   # @param [Hash] a hash that accepts the following symbols:
-  # :activity_id Mandatory. Integer. Activity for the teacher
-  # :zone_id_array Mandatory. Array. A list of zones id where a teacher can teach
-  # :goes_here Optional. Boolean. If true, the teacher can go to any of these zones
-  # :receives_people_here Optional. Boolean. If true, the teacher can receive people in any of these zones at home
-  # :must_have_phone Optional. Boolean. If true, the teacher must have phone
-  # :must_have_email Optional. Boolean. If true, the teacher must be willing to disclose his e-mail.
-  # :must_have_price Optional. Boolean. If true, the teacher must have input price in his classes
-  # :maximum_price_per_hour Optional. Integer. The top price for the teachers to be listed
-  # :order_by Optional. String. A field name to be used for order as  DESC
-  # :page_size Optional. Integer. If specified, the search will be paged and this page size will be used
-  # :page_number Optional. Integer. If specified, the search will be paged and this page number will be returned
+  # @param :activity_id Mandatory. Integer. Activity for the teacher
+  # @param :zone_id_array Mandatory. Array. A list of zones id where a teacher can teach
+  # @param :goes_here Optional. Boolean. If true, the teacher can go to any of these zones
+  # @param :receives_people_here Optional. Boolean. If true, the teacher can receive people in any of these zones at home
+  # @param :must_have_phone Optional. Boolean. If true, the teacher must have phone
+  # @param :must_have_email Optional. Boolean. If true, the teacher must be willing to disclose his e-mail.
+  # @param :must_have_price Optional. Boolean. If true, the teacher must have input price in his classes
+  # @param :maximum_price_per_hour Optional. Integer. The top price for the teachers to be listed
+  # @param :order_by Optional. String. A field name to be used for order as  DESC
+  # @param :page_size Optional. Integer. If specified, the search will be paged and this page size will be used
+  # @param :page_number Optional. Integer. If specified, the search will be paged and this page number will be returned
   # @return [Array] Teacher arrays
   def self.find_teacher_for_pupil(hsh)
 

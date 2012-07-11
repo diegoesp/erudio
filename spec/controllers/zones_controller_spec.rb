@@ -7,6 +7,7 @@ describe ZonesController do
      before(:each) do
        @zone = Factory(:zone)
        @zone3 = Factory(:zone3)
+       @zone3.contiguous_zones << @zone
      end
 
      it "call for Mataderos must get one result" do

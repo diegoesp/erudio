@@ -42,7 +42,7 @@ namespace :db do
     @plastic_arts.activities.create!(:name => "Pintura")
     @plastic_arts.activities.create!(:name => "Historia del arte")
 
-    # Zones are neighbourhoods, or "barrios". They're taken form wikipedia, here => http://en.wikipedia.org/wiki/Barrios_and_Communes_of_Buenos_Aires
+    # Zones are neighborhoods, or "barrios". They're taken form Wikipedia, here => http://en.wikipedia.org/wiki/Barrios_and_Communes_of_Buenos_Aires
     print "Creating zones\n"
 
     @zone_agronomia = Zone.create!(:name => "Agronomía")
@@ -96,7 +96,7 @@ namespace :db do
     @zone_villa_urquiza = Zone.create!(:name => "Villa Urquiza")
 
     # Relationships between zones was created using http://mapa.buenosaires.gob.ar/
-    # The zones are neighbourhoods. They're reviewed from north to south. I start with Nuñez and end with Villa Riachuelo.
+    # The zones are neighborhoods. They're reviewed from north to south. I start with Nuñez and end with Villa Riachuelo.
     print "Creating relationship between zones (contiguous zones)\n"
 
     @zone_nunez.contiguous_zones << @zone_saavedra
@@ -360,7 +360,7 @@ namespace :db do
       activities.each do |activity|
         # ... add between 10 and 12 teachers
         Random.new.rand(10..12).times do
-            hash = create_teacher(zone, activity)
+            hash = create_teacher(zone, activity, Random.new.rand(0..4))
             teacher_number += 1
             print "Created teacher #{teacher_number} for #{hash[:last_name]}, #{hash[:first_name]}\n"
         end
@@ -371,11 +371,11 @@ namespace :db do
 
   # Creates a teacher in the database using the zone and activity received
   #
-
   # @param zone Zone to be used
   # @param activity Activity to be used
+  # @param random_activities [Integer] Optional. number of additional random activities to be added to the teacher. They will be added with the same price.
   # @return [Hash] a hash containing the last_name and first_name keys
-  def create_teacher(zone, activity)
+  def create_teacher(zone, activity, random_activities = 0)
 
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
@@ -412,6 +412,11 @@ namespace :db do
         price_per_hour = nil
     end
     teacher.professorships.create!(:activity_id => activity.id, :price_per_hour => price_per_hour)
+    # Random activity?
+    random_activities.times do
+        activity = Activity.random;
+        teacher.professorships.create!(:activity_id => activity.id, :price_per_hour => price_per_hour)
+    end
     # Random rating for the teacher
     Random.new.rand(1..5).times do
         rating = Random.new.rand(1..5)
