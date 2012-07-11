@@ -7,6 +7,7 @@
 
 //= require jquery
 //= require jquery-ui
+//= require modernizr
 //= require sweet_checkbox
 //= require tooltipsy
 //= require underscore

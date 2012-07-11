@@ -1,20 +1,20 @@
-@import "mixins";
 
 @mixin common-input {
   border: none;
-  @include shadow(#71726C, 2px, 0px, 0px);
-  @include border_radius(3px);
+
+  @include box-shadow(0px 0px 3px 0px #71726C);
+  @include border-radius(3px);
 }
 
 @mixin button-common {
-  @include border_radius(3px);
+  @include border-radius(3px);
   cursor: pointer;
   font-size: 16px;
   text-align: center;
   padding: 5px;
   padding-top: 10px;
   padding-bottom: 10px;
-  @include shadow(gray, 2px, 0px, 0px);
+  @include box-shadow(0px 0px 2px 0px gray);
 }
 
 @mixin green-button {
@@ -87,7 +87,7 @@ body#show_page {
     }
 
     section#details {
-      @include shadow(gray, 5px, 0px, 0px);
+      @include box-shadow(0px 0px 5px 0px gray);
       background-color: #FBF7CD;
 
       header {

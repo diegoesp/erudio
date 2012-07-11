@@ -12,6 +12,9 @@ gem 'multi_json', '~> 1.1.0'
 gem "webrat", "~> 0.7.3"
 gem 'faker', '1.0.1'                        # For sample_data.rake script
 gem "random_record", "~> 0.0.7"             # For sample_data.rake script
+gem 'jquery-rails'
+gem 'bourbon', '~> 0.2.1'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -41,7 +44,7 @@ group :test do
   gem 'rack-test', '0.6.1'
 end
 
-gem 'jquery-rails'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

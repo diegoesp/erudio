@@ -4,13 +4,33 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
 */
 
-/*
-/* We need the reset file first.
-*= require reset
-*= require_self
-*= require_tree .
-*= require sweet_checkbox
-*/
+// External libraries
+@import "bourbon";
+@import "reset";
+@import "sweet_checkbox";
+
+// Common custom styles and mixins
+@import "common";
+
+// Layout
+@import "footer";
+@import "header";
+
+// Home page
+@import "home/home";
+@import "home/home_activities";
+@import "home/home_activity_mode";
+@import "home/home_wizard";
+@import "home/home_zones";
+
+// Show page
+@import "show/show";
+
+// Search page
+@import "teachers/search";
+
+
+
 
 body {
   font-family: "Century Gothic", "Geneva", "Helvetica";

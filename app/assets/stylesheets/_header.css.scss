@@ -1,4 +1,3 @@
-@import "mixins";
 
 header#page_header {
 
@@ -59,6 +58,6 @@ header#page_header {
     cursor: pointer;
   }
 
-  @include shadow(grey, 5px, 0px, 0px);
-  @include border_radius(3px);
+  @include box-shadow(0 0 10px 1px gray);
+  @include border-radius(3px);
 }
