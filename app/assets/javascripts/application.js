@@ -28,3 +28,13 @@ _.templateSettings = {
     evaluate : /\{\[([\s\S]+?)\]\}/g,
     interpolate : /\{\{([\s\S]+?)\}\}/g
 };
+
+// On DOM Ready add behavior to the ajax-loading-indicator.
+$(function() {
+  $("#ajax-loading-indicator").ajaxStart(function(){
+     $(this).fadeIn();
+  });
+  $("#ajax-loading-indicator").ajaxStop(function() {
+    $(this).hide();
+  });
+});
