@@ -1,227 +1,434 @@
+@import "mixins";
+
 body#search_page {
   background-image: url(/assets/background_pattern.png);
 }
 
-section#main_content {
+/******************************************************************************
+
+Main sections
+
+The page is divided in three major sections: the main content (the general
+body that contains the other two sections), sections for displaying teacher
+results and a section for configuring additional filters. See below.
+
+*******************************************************************************/
+
+section#main-content {
   width: 1000px;
   margin: auto;
   position: relative;
-  padding-top: 180px;
+  padding-top: 110px;
   margin-bottom: 50px;
 }
 
-section#results {
-  width: 400px;
+section#teachers {
+  width: 500px;
+  min-height: 500px;
   position: relative;
+}
+
+section#login {
+  width: 150px;
+  height: 50px;
+  top:75px;
+  right:50px;
+  position: absolute;
+  font-weight:bold;
 }
 
 section#filters {
   position: absolute;
   width: 295px;
-  top:  180px;
+  top:  162px;
   right: 0px;
 }
 
-/* @group Filter common styles */
-.filterChildRowContainerCommon {
-  width: 100%;
-  height: 50px;
-  position: relative;
+.new-search {
+  background-color: #a7cf5f;
+  font-weight: bolder;
+  color: white;  
+  width:160px;
+  height:40px;  
+  text-align: center;
+  vertical-align: middle;  
+  margin-bottom:10px;
+  line-height:40px;
+  border-color:#80B480;
+  border-width: 1px;
+  border-style: solid;
+  cursor:pointer;
 }
-.filterRowLeftCommon {
-  width: 8px;
-  height: 61px;
-  background-repeat: no-repeat;
+
+/******************************************************************************
+
+The login section body part
+
+It's a very simple box that contains two icons
+
+|----------------|
+|     X      X   |
+| Register Login | 
+|----------------|
+
+*******************************************************************************/
+
+div#register {
+  background: image_url('sprites.png') no-repeat -6px -5px;
+  width:50px;
+  height:50px;
+  position:absolute;
+  cursor:pointer;
+  z-index:500;
+}
+span#register-text {
+  bottom:-20px;
+  left: -23px;
+  position:absolute;
+  color:black;
+  width:90px;
+  text-align: center;  
+}
+
+div#login {
+  background: image_url('sprites.png') no-repeat -66px -5px;
+  width:50px;
+  height:50px;
+  right:0px;
+  position:absolute;
+  cursor:pointer;
+  z-index:500;
+}
+span#login-text {
+  bottom:-20px;
+  position:absolute;
+  color:black;
+  right: -5px;
+  width:70px;
+  text-align: center;
+}
+
+/******************************************************************************
+
+The filters section body part
+
+The filters are grouped inside a box for filtering. The filtering box follows
+this basic idea:
+
+|---------------|
+| Filters Title | 
+|---------------|
+|---------------|
+| Filter N      | <-- This is the part customized by these styles
+|---------------|
+
+*******************************************************************************/
+
+@mixin base-filter-row {
+  width: 100%;
+  position: relative;
+  font: {
+    size: 12px;
+    weight:bold;
+  }
+}
+@mixin base-filter-row-left {
+  width: 8px;  
   position: absolute;
   left: 0px;
   top: 0px;
+  background-image: url(/assets/filterBox/even_row_left.png);
 }
-.filterRowMiddleCommon {
-  width: 1px;
-  height: 61px;
+@mixin base-filter-row-middle {
   width: 284px;
   background-repeat: repeat-x;
   position: absolute;
   left: 8px;
   top: 0px;
+  background-image: url(/assets/filterBox/even_row_middle.png);
 }
-.filterRowRightCommon {
-  width: 8px;
-  height: 61px;
+@mixin base-filter-row-right {
+  width: 8px;  
   background-repeat: no-repeat;
   position: absolute;
   right: 0px;
   top: 0px;
+  background-image: url(/assets/filterBox/even_row_right.png);
 }
-/* @end */
 
-/* @group Filter Header */
-.filterHeaderRowContainer {
+/* For normal rows i.e. zones rows */
+
+.filter-row {
+  height: 50px;
+  @include base-filter-row;
+}
+.filter-row-left {
+  height: 50px;
+  @include base-filter-row-left;
+}
+.filter-row-middle {  
+  height: 50px;
+  @include base-filter-row-middle;
+}
+.filter-row-right {
+  height: 50px;
+  @include base-filter-row-right;
+}
+
+/* For smaller rows i.e. zones rows */
+.filter-row-small {
+  height: 25px;
+  @include base-filter-row;
+}
+.filter-row-left-small {
+  height: 25px;
+  @include base-filter-row-left;
+}
+.filter-row-middle-small {  
+  height: 25px;
+  @include base-filter-row-middle;
+}
+.filter-row-right-small {
+  height: 25px;
+  @include base-filter-row-right;
+}
+
+/* Left padding for filters */
+$filter-row-left: 10%;
+
+.filter-row-zone {  
+  position: absolute;
+  left: $filter-row-left;
+  top: 25%;
+  width: 260px;
+  height:50px;
+}
+
+.filter-row-zone-column-one {
+  position:absolute;
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  height: 15px;
+  z-index: 2;
+  cursor:pointer;
+}
+
+.filter-row-zone-column-two {
+  position:absolute;
+  padding-left: 50%;  
+  background-repeat: no-repeat;
+  background-position: 110px;
+  z-index: 1;
+  cursor:pointer;
+}
+
+.filter-row-zone-column-set-unselected {
+  background-image: url(/assets/wizard_check_unchecked.png);
+  font-weight:normal;
+}
+
+.filter-row-zone-column-set-selected {
+  background-image: url(/assets/wizard_check_checked.png);
+  font-weight:bolder;
+}
+
+.filter-odd-row-left {
+  background-image: url(/assets/filterBox/odd_row_left.png);
+}
+.filter-odd-row-middle {
+  background-image: url(/assets/filterBox/odd_row_middle.png);
+}
+.filter-odd-row-right {
+  background-image: url(/assets/filterBox/odd_row_right.png);
+}
+.filter-odd-row-content {
+  width: 230px;
+  position: absolute;
+  left: $filter-row-left;
+  top: 16px;
+}
+
+.filter-even-row-left {
+  background-image: url(/assets/filterBox/even_row_left.png);
+}
+.filter-even-row-middle {
+  background-image: url(/assets/filterBox/even_row_middle.png);
+}
+.filter-even-row-right {
+  background-image: url(/assets/filterBox/even_row_right.png);
+}
+.filter-even-row-content {
+  width: 230px;
+  position: absolute;
+  left: $filter-row-left;
+  top: 16px;
+}
+
+/******************************************************************************
+
+The filters section - header
+
+This is the header part only.
+
+|---------------|
+| Filters Title | <-- This is the part customized by these styles
+|---------------|
+|---------------|
+| Filter N      |
+|---------------|
+
+*******************************************************************************/
+
+.filter-header {
   width: 100%;
   height: 61px;
   position: relative;
 }
-.filterHeaderLeftCorner {
+.filter-header-left-corner {
   background-image: url(/assets/filterBox/filter_header_left_corner.png);
+  height:61px;
 }
-.filterHeaderLeftMiddle {
+.filter-header-middle {
   background-image: url(/assets/filterBox/filter_header_middle.png);
+  height:61px;
 }
-.filterHeaderRightCorner {
+.filter-header-right-corner {
   background-image: url(/assets/filterBox/filter_header_right_corner.png);
+  height:61px;
 }
-.filterHeaderTitle {
+.filter-header-title {
   position: absolute;
-  left: 20px;
-  top: 20px;
-}
-/* @end */
-
-/* @group Filter Odd Row */
-.filterOddRowLeft {
-  background-image: url(/assets/filterBox/odd_row_left.png);
-}
-.filterOddRowMiddle {
-  background-image: url(/assets/filterBox/odd_row_middle.png);
-}
-.filterOddRowRight {
-  background-image: url(/assets/filterBox/odd_row_right.png);
-}
-.filterOddRowContent {
-  width: 260px;
-  position: absolute;
-  left: 10px;
-  top: 16px;
-}
-/* @end */
-
-/* @group Filter Even Row */
-
-.filterEvenRowLeft {
-  background-image: url(/assets/filterBox/even_row_left.png);
-}
-.filterEvenRowMiddle {
-  background-image: url(/assets/filterBox/even_row_middle.png);
-}
-.filterEvenRowRight {
-  background-image: url(/assets/filterBox/even_row_right.png);
-}
-.filterEvenRowContent {
-  width: 260px;
-  position: absolute;
-  left: 10px;
-  top: 16px;
+  left: $filter-row-left;
+  top: 25px;
+  font-weight: bold;
 }
 
-/* Teacher List */
+/******************************************************************************
 
-.teacherList {
+The teachers section
+
+|-----------------|
+| Pic   Teacher 1 |
+|-----------------|
+|-----------------|
+| Pic   Teacher 2 |
+|-----------------|
+         |
+         |
+         |
+|-----------------|
+| Pic   Teacher N |
+|-----------------|
+
+*******************************************************************************/
+
+.teacher-list {
   margin-bottom: 14px;
 }
 
-.teacherList {
-  width: 620px;
+.teacher-list {
+  width: 680px;
   height: 108px;
   border: 1px solid #c0bdb0;
   position: relative;
   border-radius: 5px;
 }
-.teacherListOdd {
+.teacher-list-odd {
   background-color: #fdfbe9;
 }
-.teacherListEven {
+.teacher-list-even {
   background-color: #fefefe;
 }
-.teacherList .resultThumbnail {
-  margin-left: 20px;
+.teacher-list-empty {
+  background-color: #fdfbe9; 
+  text-align: center;
+  vertical-align: center;
+  line-height: 108px;
+}
+
+.teacher-list .details-section {
+  width: 550px;
+  height: 84px;
+  position: absolute;
+  left: 17%;
+  top: 13px;
+  text-shadow: 0 0 2px #dadada;
+}
+.teacher-list .result-thumbnail {
+  margin-left: 12px;
   margin-top: 12px;
   outline: 1px solid #dad8c9;
   padding: 2px;
   background-color: white;
-  width: 64px;
-  height: 54px;
+  width: 82px;
+  height: 82px;
 }
-.teacherList .reputationBox {
-  margin-left: 15px;
-  margin-top: 5px;
-  width: 80px;
-  height: 20px;
-}
-.teacherList .reputationBox span {
-  width: 16px;
-  height: 17px;
-  display: block;
-  float: left;
-}
-.teacherList .teacherReputationYellowStar {
-  background: url(/assets/result_item_sprite.png) no-repeat -89px -41px;
-}
-.teacherList .teacherReputationBlackStar {
-  background: url(/assets/result_item_sprite.png) no-repeat -107px -41px;
-}
-.teacherList .detailsSection {
-  width: 500px;
-  height: 84px;
-  position: absolute;
-  right: 10px;
-  top: 13px;
-  text-shadow: 0 0 2px #dadada;;
-}
-.teacherList .teacherName {
+.teacher-name {
   color: #766958;
   font-size: 13px;
   font-weight: bold;
   padding-bottom: 5px;
 }
-.teacherList .teacherDescription {
+.teacher-reputation-box
+{
+  position:absolute;
+  display:inline;
+  padding-left:10px;
+}
+.teacher-reputation-star {
+  width:15px;
+  height:20px;
+  background: image_url('sprites.png') no-repeat -240px -69px;
+  position: relative;
+  float:left;
+}
+.teacher-reputation-empty {
+  width:15px;
+  height:20px;  
+  background: image_url('sprites.png') no-repeat -284px -69px;
+  position: relative;
+  float:left;
+}
+.teacher-reputation-half-star {
+  width:15px;
+  height:20px;  
+  background: image_url('sprites.png') no-repeat -260px -69px;
+  position: relative;
+  float:left;
+}
+.teacher-list .teacher-description {
   color: #766958;
   font-size: 13px;
   width: 85%;
+
 }
-.teacherList .showDetails {
+.teacher-list .show-details {
   cursor: pointer;
-  background: url(/assets/result_item_sprite.png) no-repeat 0px -4px;
+  background: image_url('sprites.png') no-repeat -150px -0px;
   width: 60px;
   height: 60px;
   position: absolute;
-  right: 10px;
+  right: 0px;
   top: 10px;
 }
-.teacherList .tagsSection {
-  font-size: 10px;
+.teacher-list .tags-section {
   position: absolute;
   bottom: 0px;
   width: 400px;
-  height: 23px;
+  height: 21px;
   clear: both;
   overflow: hidden;
 }
-.teacherList .tagContainer {
-  float: left;
-  margin-right: 5px;
-}
-.teacherList .tagLeftBg {
-  background: url(/assets/tag_sprite.png) no-repeat 0px 0px;
-  width: 14px;
-  height: 22px;
-  float: left;
-}
-.teacherList .tagMiddleBg {
-  background: url(/assets/tag_sprite.png) repeat-x 0px -25px;
-  height: 22px;
-  float: left;
-}
-.teacherList .tagText {
-  position: relative;
-  top: 5px;
-  /* There is a little trick here that makes some especial
-   behavior on the tag and allow us to have spaces on the left and right*/
-  left: 3px;
-  margin-right: 10px;
-}
-.teacherList .tagRightBg {
-  background: url(/assets/tag_sprite.png) no-repeat -19px 0px;
-  height: 22px;
-  width: 2px;
-  float: left;
+.teacher-list .tag-container
+{
+  background-color: #ffc056;
+  color: #95672b;
+  font-weight: bolder;
+  font-size:12px;
+  text-transform: lowercase;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top:5px;
+  padding-bottom: 5px;
+  margin-right:5px;
 }

@@ -10,7 +10,7 @@ app.search.initialize = function() {
 
   // Bind the JSON written in the ERB to the template and render it.
   var template = _.template($("#searchTemplate")[0].text, {data : app.search.teachers});
-  $("section#teacherList").append(template);
+  $("section#teachers").append(template);
 
   $(".sweetCheckbox").each(function(index) {
       $(this).trigger('turnOff');
@@ -20,8 +20,56 @@ app.search.initialize = function() {
     app.search.updateBoolFilter(this, this.title);
   });
 
+  $(".filter-row-zone-column-one").click(function() {
+    app.search.filterRowZoneColumn_click(this);
+  })
+  $(".filter-row-zone-column-two").click(function() {
+    app.search.filterRowZoneColumn_click(this);
+  });
+
+  $(".new-search").click(function() {
+    document.location.href = "/"
+  });
+
+  $("#login").click(function() {
+    document.location.href = "/login"
+  });
+
+  $("#login").click(function() {
+    document.location.href = "/register"
+  });
+
+  $(".show-details").click(function() {
+    document.location.href = "/teacher/" + this.id;
+  });
+
+
   // Configure the ToolTipsy tool.
   app.search.initializeTooltipsy();
+}
+
+// Executed everytime a user clicks on the boolean filters
+app.search.filterRowZoneColumn_click = function(filter) {
+  
+  if (_.str.endsWith(filter.className, "set-selected"))
+  {    
+    // Is selected ==> un-check it !
+    // But first, verify if other zones are checked. You cannot uncheck every zone
+    if ($(".filter-row-zone-column-set-selected").length == 1)
+    {
+      alert("Tenés que seleccionar al menos un barrio");
+      return;
+    }
+
+    filter.className = filter.className.replace("set-selected", "set-unselected");
+  }
+  else
+  {
+    // It is unselected => select!
+    filter.className = filter.className.replace("-set-unselected", "-set-selected");    
+  }
+
+  app.search.executeAjaxSearch();
 }
 
 // Executed everytime a user clicks on the boolean filters
@@ -31,8 +79,15 @@ app.search.updateBoolFilter = function(checkBox, filterOption) {
 
 app.search.executeAjaxSearch = function() {
 
-  var activity_id = $.url().param("activity_id");
-  var zone_id_csv = $.url().param("zone_id_csv");
+  // Construct the chosen zones from the filters
+  var zone_id_csv = "";
+  _.each($(".filter-row-zone-column-set-selected"), function(span) { 
+    if (zone_id_csv != "") zone_id_csv += ","
+    zone_id_csv += span.id
+  });
+
+  // THe rest is taken from the querystring
+  var activity_id = $.url().param("activity_id");  
   var goes_here = $.url().param("goes_here");
   var receives_people_here = $.url().param("receives_people_here");
 
@@ -52,9 +107,9 @@ app.search.executeAjaxSearch = function() {
 
   $.ajax({url : rest_api_url,
     success : function(response) {
-      $("section#teacherList").children().remove();
+      $("section#teachers").children().remove();
       var template = _.template($("#searchTemplate")[0].text, {data : response});
-      $("section#teacherList").append(template);
+      $("section#teachers").append(template);
     },
     error : function(xhr, ajaxOptions, thrownError) {
       alert(xhr.status);

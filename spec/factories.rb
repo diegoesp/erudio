@@ -132,6 +132,9 @@ end
 
 Factory.define :zone3, :class => Zone do |zone|
   zone.name "Mataderos"
-  zone.contiguous_zones { |contiguous_zone| [contiguous_zone.association(:zone2)] }
   zone.featured "true"
+end
+
+Factory.define :zone4, :class => Zone do |zone|
+  zone.name "Liniers"
 end

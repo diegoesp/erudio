@@ -4,7 +4,7 @@
   
     app.search.teachers = <%=@teachers_json.html_safe%>;
 
-    // Initialize the js for this particular page when the DOM is ready.
+    // Initialize the JavaScript for this particular page when the DOM is ready.
     $(document).ready(function() {
       app.search.initialize();
     });
@@ -25,36 +25,95 @@
   "search_page"
 <% end %>
 
-<section id="main_content">
+<section id="main-content">
 
-      <section id="teacherList">
+      <div class="new-search">
+          Nueva busqueda
+      </div>
+
+      <section id="teachers">
       </section>
   
+      <section id="login">
+        <div id="register">
+        </div>
+        <span id="register-text">Registrate</span>
+        <div id="login"></div>
+        <span id="login-text">Identificate</span>
+      </section>
+
       <section id="filters">
-        <div class="filterHeaderRowContainer">
-          <div class="filterRowLeftCommon filterHeaderLeftCorner"></div>
-          <div class="filterRowMiddleCommon filterHeaderLeftMiddle"></div>
-          <div class="filterRowRightCommon filterHeaderRightCorner"></div>
-          <div class="filterHeaderTitle">Filtrar Resultados</div>
+        <div class="filter-header">
+          <div class="filter-row-left filter-header-left-corner"></div>
+          <div class="filter-row-middle filter-header-middle"></div>
+          <div class="filter-row-right filter-header-right-corner"></div>
+          <div class="filter-header-title">Filtrar Resultados</div>
         </div>
   
-        <div class="filterChildRowContainerCommon">
-          <div class="filterRowLeftCommon filterOddRowLeft"></div>
-          <div class="filterRowMiddleCommon filterOddRowMiddle"></div>
-          <div class="filterRowRightCommon filterOddRowRight"></div>
-          <div class="filterOddRowContent">
+        <div class="filter-row-small">
+          <div class="filter-row-left-small filter-odd-row-left"></div>
+          <div class="filter-row-middle-small filter-odd-row-middle"></div>
+          <div class="filter-row-right-small filter-odd-row-right"></div>
+          <div class="filter-row-zone">
             <div style="float: left;">Zona</div>
             <div class="hasTooltipsy" title="Agrega zonas aledañas a las que seleccionaste" style="float: right;">
-              (TBD)
             </div>
           </div>
         </div>
-  
-        <div class="filterChildRowContainerCommon">
-          <div class="filterRowLeftCommon filterEvenRowLeft"></div>
-          <div class="filterRowMiddleCommon filterEvenRowMiddle"></div>
-          <div class="filterRowRightCommon filterEvenRowRight"></div>
-          <div class="filterEvenRowContent">
+        
+        <%
+        for i in 1..@contiguous_zones.length do
+
+          zone = @contiguous_zones[i-1]
+
+          # Even zones are displayed in the same row than odd ones, so they must be ignored
+          if (i % 2) == 0
+            next
+          end
+
+          # If there's a next zone, take it and display it in the same row
+          zone2 = nil
+          if @contiguous_zones.length > i
+            zone2 = @contiguous_zones[i]
+          end
+
+          # Set a special style for the selected zones so it is shown to the user as a checked box
+          zone_contains = "filter-row-zone-column-set-unselected"
+          if @zone_id_array.include?(zone.id.to_s)
+            zone_contains = "filter-row-zone-column-set-selected"
+          end
+          zone2_contains = "filter-row-zone-column-set-unselected"
+          if zone2 != nil            
+            if @zone_id_array.include?(zone2.id.to_s)
+              zone2_contains = "filter-row-zone-column-set-selected"
+            end
+          end
+
+        %>
+        <div class="filter-row-small">
+          <div class="filter-row-left-small filter-odd-row-left"></div>
+          <div class="filter-row-middle-small filter-odd-row-middle"></div>
+          <div class="filter-row-right-small filter-odd-row-right"></div>
+
+          <div class="filter-row-zone">
+            <span id="<%=zone.id%>" class="filter-row-zone-column-one <%=zone_contains%>">
+              <%=zone.name%>
+            </span>
+            <% if zone2 != nil %>
+            <span id="<%=zone2.id%>"class="filter-row-zone-column-two <%=zone2_contains%>">
+              <%=zone2.name%>
+            </span>
+            <% end %>
+          </div>
+        </div>
+          <%
+        end
+        %>
+        <div class="filter-row">
+          <div class="filter-row-left filter-odd-row-left"></div>
+          <div class="filter-row-middle filter-odd-row-middle"></div>
+          <div class="filter-row-right filter-odd-row-right"></div>
+          <div class="filter-odd-row-content">
             <div style="float: left;">Telefono</div>
             <div class="hasTooltipsy" title="¿Solo mostrar profesores que pusieron a disposición un numero telefónico para contactarlos?" style="float: right;">
               <div class="sweetCheckbox" title="must_have_phone"></div>
@@ -62,11 +121,11 @@
           </div>
         </div>
   
-        <div class="filterChildRowContainerCommon">
-          <div class="filterRowLeftCommon filterOddRowLeft"></div>
-          <div class="filterRowMiddleCommon filterOddRowMiddle"></div>
-          <div class="filterRowRightCommon filterOddRowRight"></div>
-          <div class="filterOddRowContent">
+        <div class="filter-row">
+          <div class="filter-row-left filter-odd-row-left"></div>
+          <div class="filter-row-middle filter-odd-row-middle"></div>
+          <div class="filter-row-right filter-odd-row-right"></div>
+          <div class="filter-odd-row-content">
             <div style="float: left;">E-Mail</div>
             <div class="hasTooltipsy" title="¿Solo mostrar profesores que pusieron a disposición un correo electrónico para contactarlos?" class="hasTooltipsy" style="float: right;">
               <div class="sweetCheckbox" title="must_have_email"></div>
@@ -74,11 +133,11 @@
           </div>
         </div>
   
-        <div class="filterChildRowContainerCommon">
-          <div class="filterRowLeftCommon filterOddRowLeft"></div>
-          <div class="filterRowMiddleCommon filterOddRowMiddle"></div>
-          <div class="filterRowRightCommon filterOddRowRight"></div>
-          <div class="filterOddRowContent">
+        <div class="filter-row">
+          <div class="filter-row-left filter-odd-row-left"></div>
+          <div class="filter-row-middle filter-odd-row-middle"></div>
+          <div class="filter-row-right filter-odd-row-right"></div>
+          <div class="filter-odd-row-content">
             <div style="float: left;">Precio</div>
             <div class="hasTooltipsy" title="¿Solo mostrar profesores que muestran el precio por hora para su clase?" style="float: right;">
               <div class="sweetCheckbox" title="must_have_price"></div>
@@ -92,49 +151,72 @@
 
 <script id="searchTemplate" type="text/template">
 
+  {[
+
+    if (data.length == 0)
+    {
+      ]}
+      <div class="teacher-list teacher-list-empty">
+        
+        No hay profesores! Emplea los filtros al costado para expandir tu zona de influencia
+        
+      </div>
+      {[
+    }
+
+  ]}
   {[ _.each(data, function(result, index) { ]}
 
-    {[ classValue = index%2 === 0 ? "teacherListOdd" : "teacherListEven"; ]}
+    {[ classValue = index%2 === 0 ? "teacher-list-odd" : "teacher-list-even"; ]}
 
-    <div class="teacherList {{ classValue }}">
+    <div class="teacher-list {{ classValue }}">
 
-      <img src="/avatars/{{ result.avatar }}" class="resultThumbnail" alt="" />
+      <img src="/avatars/{{ result.avatar }}" class="result-thumbnail" alt="" />
 
-      <div class="reputationBox">
-        {[ _.each([1,2,3,4,5], function(index) {
-          classValue = index <= result.rating ? "teacherReputationYellowStar" : "teacherReputationBlackStar";]}
+      <div class="details-section">
 
-          <span class="{{ classValue }}"></span>
-        {[ }); ]}
+        <div class="teacher-name">
 
-      </div>
+          {{ result.first_name }} {{ result.last_name }}                      
+        
+          <div class="teacher-reputation-box">
+            {[ _.each([1,2,3,4,5], function(index) {
 
-      <div class="detailsSection">
+              var ratingClass = "teacher-reputation-empty";
 
-        <div class="teacherName">
-          {{ result.first_name }} {{ result.last_name }}
+              if (index < result.rating) {
+                ratingClass = "teacher-reputation-star";
+              }
+
+              var floatingPointValue = result.rating - index;
+              if (floatingPointValue > 0 && floatingPointValue < 1) {
+                ratingClass = "teacher-reputation-half-star";
+              }
+              ]}
+
+              <div class="{{ ratingClass }}"></div>
+            {[ }); ]}
+          </div>
         </div>
+        
 
-        <div class="teacherDescription">
+        <div class="teacher-description">
           {{ result.description }}
         </div>
 
-        <div class="tagsSection">
+        <div class="tags-section">
 
-          {[ _.each(result.professorships, function(professorship) {]}
-              <div class="tagContainer">
-                <div class="tagLeftBg"></div>
-                <div class="tagMiddleBg">
-                  <span class="tagText">
-                    {{professorship.activity.name}}
-                  </span>
-                </div>
-                <div class="tagRightBg"></div>
-              </div>
-          {[ }); ]}
+        {[ _.each(result.professorships, function(professorship) {]}
+          
+          <span class="tag-container">
+            {{professorship.activity.name}}
+          </span>
+
+         {[ }); ]}
+
         </div>
 
-        <div class="showDetails"></div>
+        <div id="{{result.id}}" class="show-details"></div>
 
       </div>
     </div>
