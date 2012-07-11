@@ -27,9 +27,21 @@
 
 <section id="main-content">
 
+      <div class="new-search">
+          Nueva busqueda
+      </div>
+
       <section id="teachers">
       </section>
   
+      <section id="login">
+        <div id="register">
+        </div>
+        <span id="register-text">Registrate</span>
+        <div id="login"></div>
+        <span id="login-text">Identificate</span>
+      </section>
+
       <section id="filters">
         <div class="filter-header">
           <div class="filter-row-left filter-header-left-corner"></div>
@@ -38,10 +50,10 @@
           <div class="filter-header-title">Filtrar Resultados</div>
         </div>
   
-        <div class="filter-row">
-          <div class="filter-row-left filter-odd-row-left"></div>
-          <div class="filter-row-middle filter-odd-row-middle"></div>
-          <div class="filter-row-right filter-odd-row-right"></div>
+        <div class="filter-row-small">
+          <div class="filter-row-left-small filter-odd-row-left"></div>
+          <div class="filter-row-middle-small filter-odd-row-middle"></div>
+          <div class="filter-row-right-small filter-odd-row-right"></div>
           <div class="filter-row-zone">
             <div style="float: left;">Zona</div>
             <div class="hasTooltipsy" title="Agrega zonas aledañas a las que seleccionaste" style="float: right;">
@@ -49,7 +61,7 @@
           </div>
         </div>
         
-        <%        
+        <%
         for i in 1..@contiguous_zones.length do
 
           zone = @contiguous_zones[i-1]
@@ -76,17 +88,19 @@
               zone2_contains = "filter-row-zone-column-set-selected"
             end
           end
+
         %>
-        <div class="filter-row">
-          <div class="filter-row-left"></div>
-          <div class="filter-row-middle"></div>
-          <div class="filter-row-right"></div>
+        <div class="filter-row-small">
+          <div class="filter-row-left-small filter-odd-row-left"></div>
+          <div class="filter-row-middle-small filter-odd-row-middle"></div>
+          <div class="filter-row-right-small filter-odd-row-right"></div>
+
           <div class="filter-row-zone">
-            <span id="<%=zone.id%>" class="filter-row-zone-column filter-row-zone-column-one <%=zone_contains%>">
+            <span id="<%=zone.id%>" class="filter-row-zone-column-one <%=zone_contains%>">
               <%=zone.name%>
             </span>
             <% if zone2 != nil %>
-            <span id="<%=zone2.id%>"class="filter-row-zone-column filter-row-zone-column-two <%=zone2_contains%>">
+            <span id="<%=zone2.id%>"class="filter-row-zone-column-two <%=zone2_contains%>">
               <%=zone2.name%>
             </span>
             <% end %>
@@ -96,10 +110,10 @@
         end
         %>
         <div class="filter-row">
-          <div class="filter-row-left filter-even-row-left"></div>
-          <div class="filter-row-middle filter-even-row-middle"></div>
-          <div class="filter-row-right filter-even-row-right"></div>
-          <div class="filter-even-row-content">
+          <div class="filter-row-left filter-odd-row-left"></div>
+          <div class="filter-row-middle filter-odd-row-middle"></div>
+          <div class="filter-row-right filter-odd-row-right"></div>
+          <div class="filter-odd-row-content">
             <div style="float: left;">Telefono</div>
             <div class="hasTooltipsy" title="¿Solo mostrar profesores que pusieron a disposición un numero telefónico para contactarlos?" style="float: right;">
               <div class="sweetCheckbox" title="must_have_phone"></div>
@@ -202,7 +216,7 @@
 
         </div>
 
-        <div class="show-details"></div>
+        <div id="{{result.id}}" class="show-details"></div>
 
       </div>
     </div>

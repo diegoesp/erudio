@@ -25,7 +25,23 @@ app.search.initialize = function() {
   })
   $(".filter-row-zone-column-two").click(function() {
     app.search.filterRowZoneColumn_click(this);
-  })
+  });
+
+  $(".new-search").click(function() {
+    document.location.href = "/"
+  });
+
+  $("#login").click(function() {
+    document.location.href = "/login"
+  });
+
+  $("#login").click(function() {
+    document.location.href = "/register"
+  });
+
+  $(".show-details").click(function() {
+    document.location.href = "/teacher/" + this.id;
+  });
 
 
   // Configure the ToolTipsy tool.
@@ -45,7 +61,7 @@ app.search.filterRowZoneColumn_click = function(filter) {
       return;
     }
 
-    filter.className = filter.className.replace("-set-selected", "-set-unselected");
+    filter.className = filter.className.replace("set-selected", "set-unselected");
   }
   else
   {
