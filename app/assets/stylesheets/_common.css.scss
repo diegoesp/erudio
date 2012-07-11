@@ -1,2 +1,19 @@
 $activitiesSoftGreen: #a7d24d;
 $activitiesDarkerGreen: #76b935;
+
+
+
+#ajax-loading-indicator {
+  @include box-shadow(0 0 10px 1px hsla(0, 0%, 0%, 0.1));
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 100px;
+  z-index: 100;
+  padding: 8px 35px 8px 14px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #FCF8E3;
+  border: 1px solid #FBEED5;
+  @include border-radius(4px);
+  color: #C09853;
+}

@@ -13,9 +13,14 @@
 <body id=<%= yield :page_id %> >
 
   <%= render 'layouts/header' %>
-  
+
   <%= yield %>
-  
+
   <%= render 'layouts/footer' %>
+
+  <div id="ajax-loading-indicator">
+    Loading...
+  </div>
+
 </body>
 </html>
