@@ -39,10 +39,10 @@ app.search.initialize = function() {
     document.location.href = "/register"
   });
 
+  // Attach events
   $(".show-details").click(function() {
-    document.location.href = "/teacher/" + this.id;
+    document.location.href = "/teachers/" + this.id;
   });
-
 
   // Configure the ToolTipsy tool.
   app.search.initializeTooltipsy();
@@ -110,6 +110,11 @@ app.search.executeAjaxSearch = function() {
       $("section#teachers").children().remove();
       var template = _.template($("#searchTemplate")[0].text, {data : response});
       $("section#teachers").append(template);
+
+      // Attach events
+      $(".show-details").click(function() {
+        document.location.href = "/teachers/" + this.id;
+      });
     },
     error : function(xhr, ajaxOptions, thrownError) {
       alert(xhr.status);

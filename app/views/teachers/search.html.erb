@@ -167,7 +167,14 @@
   ]}
   {[ _.each(data, function(result, index) { ]}
 
-    {[ classValue = index%2 === 0 ? "teacher-list-odd" : "teacher-list-even"; ]}
+    {[ 
+      classValue = index%2 === 0 ? "teacher-list-odd" : "teacher-list-even"; 
+
+      description = result.description;
+      if (description.length > 150) {
+        description = description.substring(0, 150) + "...";
+      }
+    ]}
 
     <div class="teacher-list {{ classValue }}">
 
@@ -201,7 +208,7 @@
         
 
         <div class="teacher-description">
-          {{ result.description }}
+          {{ description }}
         </div>
 
         <div class="tags-section">
@@ -220,5 +227,7 @@
 
       </div>
     </div>
-  {[ }); ]}
+  {[ 
+    }); 
+  ]}
 </script>

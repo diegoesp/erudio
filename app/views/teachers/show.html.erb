@@ -4,11 +4,21 @@
     <label style="color: white;">
       Debugging Box
     </label></br>
-    <a onclick="app.home.alertSearchTerm();">Search Term to JSON</a></br>
-    <a onclick="app.home.wizard.back();">Previous</a>&nbsp;|&nbsp;
-    <a onclick="app.home.wizard.next();">Next</a></br>
-    <a onclick="app.home.post_search('.<%= url_for(:action => 'search', :controller => 'teachers') %>');">Post Search</a></br>
+    <br/>
+    <a onclick="document.location.href='/'">Go to home</a></br>
   </div>
+<% end %>
+
+<% content_for :head do %>
+  <script>
+
+    // Initialize the JavaScript for this particular page when the DOM is ready.
+    $(document).ready(function() {
+      app.show.initialize();
+    });
+  
+  </script>
+
 <% end %>
 
 <% content_for :page_id do %>
@@ -19,36 +29,79 @@
 
   <nav id="main-details-navigation">
     <div class="nav-left-buttons">
-      <div class="green-button">Nueva Busqueda</div>
-      <div class="dark-button">Volver a Resultados</div>
+      <div id="new_search" class="green-button">Nueva Busqueda</div>
+      <div id="back_to_results" class="dark-button">Volver a Resultados</div>
     </div>
   </nav>
 
   <section id="details">
     <header>
-        <div class="avatar">Avatar</div>
+        <div class="avatar"><img src="/avatars/<%=@teacher.avatar%>" align="middle" width="100%" style="position:absolute;max-height:150px;max-width:130px;vertical-align:middle"/></div>
 
         <div class="main-information">
-          <h2 class="fullname">Rafael Chiti</h2>
-          <div class="social-tags">F 41 Bajo Guitarra Guitarra Criolla</div>
-          <div>
-            <small class="header">Ubicacion</small>
-            <small class="value">Palermo</small>
+          <h2 class="fullname"><%=@teacher.first_name + " " + @teacher.last_name%></h2>
+          <div class="social-tags">
+            <%
+            @teacher.professorships.each do |professorship|
+            %>
+            <span class="social-tag">
+              <%=professorship.activity.name%>
+            </span>
+            <%
+            end              
+            %>
           </div>
           <div>
-            <small class="header">Metodologia</small>
-            <small class="value">A Domicilio</small>
+            <small class="header">Ubicacion:</small>
+            <%
+            for i in 0..@teacher.locations.length-1 do
+              location = @teacher.locations[i]
+              i > 0 ? comma = ", " : comma = ""
+            %>
+            <small class="value"><%=comma%><%=location%></small>
+            <%
+            end
+            %>
           </div>
           <div>
-            <small class="header">Costo</small>
-            <small class="value">Clas $ 80</small>
+            <small class="header">Metodologia:</small>
+            <small class="value">
+              <%
+              if @teacher.goes_to_places
+                %>
+                <%="Va a domicilio"%>
+                <%
+              end
+              if @teacher.receives_people
+                @teacher.goes_to_places ? separator = " y también d" : separator = "D"
+                %>
+                <%=separator + "a clases en su casa"%>
+                <%
+              end
+              %>
+
+            </small>
+          </div>
+          <div>
+            <small class="header">Costo de clase:</small>
+              <small class="value">
+              <%
+              @teacher.professorships.each do |professorship|
+
+                if !professorship.price_per_hour.nil?
+                %>
+                <%="$ #{professorship.price_per_hour} (#{professorship.activity.name})"%>
+                <%
+                end
+              end
+              %>
+              </small>
           </div>
         </div>
 
         <div class="secondary-information">
           <h3 class="teacher-activity">Educacion</h3>
-          <small class="activity-description">Conservatorio de Musica de la
-            Cuidad de Buenos Aires. Especializacion en instrumentos de cuerda
+          <small class="activity-description">PENDING IMPLEMENTATION
           </small>
         <div>
 
@@ -62,12 +115,10 @@
         <div class="gray-button">Preguntas</div>
       </div>
 
-      <div class="content">
-        Topping jelly soufflé. Powder pie jelly beans sweet roll cheesecake cake. Jelly-o cookie tiramisu. Cheesecake sesame snaps marzipan candy tootsie roll marzipan sweet roll. Bear claw chocolate sesame snaps wafer chocolate bar lollipop macaroon cake powder. Macaroon carrot cake carrot cake dragée sesame snaps. Lemon drops chupa chups cheesecake pie caramels lemon drops liquorice candy canes. Gingerbread oat cake dragée. Apple pie lemon drops carrot cake cookie sweet danish. Gummies macaroon applicake tart. Tiramisu marshmallow sweet apple pie cupcake chocolate jelly-o chocolate. Pudding chocolate jelly-o wafer pie icing dessert. Chupa chups caramels wafer ice cream candy sweet roll donut candy canes macaroon. Cotton candy brownie lollipop gummies tiramisu macaroon toffee.
-      </div>
+      <div class="content"><%=@teacher.description%></div>
 
       <form class="contact-form">
-        <h3>Contacta</h3>
+        <h3>Contactá al profesor en forma privada</h3>
         <div>
           <label>Nombre</label>
           <input type="text"></input>
