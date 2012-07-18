@@ -24,8 +24,9 @@ class Teacher < User
   has_many :classrooms
   has_many :professorships, :dependent => :destroy
   has_many :ratings, :dependent => :destroy
-
-  validates :description, :presence => true
+  has_many :qualifications, :dependent => :destroy
+  
+  validates :description, :presence => true,  :length => { :maximum => 2500 }
   
   attr_accessible :publish_email, :publish_phone, :description
   
@@ -109,4 +110,40 @@ class Teacher < User
 
     (rating_sum / i.to_f)
   end
+
+  # Gets a String array with the locations that the teacher can reach, no matter if it is going there
+  # or receiving people there. An appropriate alias for this method would be "area_of_influence"
+  # @return [Array] of strings with the list of zones
+  def locations()
+    locations_array = [];
+
+    self.classrooms.each do |classroom|
+      locations_array << classroom.zone.name      
+    end
+
+    locations_array
+  end
+
+  # If true, then this teacher goes to places to teach
+  # @return [Boolean] 
+  def goes_to_places()    
+    self.classrooms.each do |classroom|
+      if classroom.goes_here 
+        return true
+      end
+    end
+
+    false
+  end
+
+  def receives_people()
+    self.classrooms.each do |classroom|
+      if classroom.receives_people_here 
+        return true
+      end
+    end
+
+    false
+  end
+
 end

@@ -1,3 +1,10 @@
+/******************************************************************************
+
+Basic mixins
+
+The general mixins for inputs and buttons
+
+*******************************************************************************/
 
 @mixin common-input {
   border: none;
@@ -49,9 +56,26 @@
   }
 }
 
+/******************************************************************************
+
+Body
+
+The CSS implementation for the page
+
+*******************************************************************************/
+
 body#show_page {
   background-image: url(/assets/background_pattern.png);
 
+
+  /******************************************************************************
+
+  Section Main Content
+
+  This is the only section for the entire page. Contains one big square with the
+  other controls inside
+
+  *******************************************************************************/
 
   section#main_content {
     width: 940px;
@@ -64,15 +88,12 @@ body#show_page {
     nav#main-details-navigation {
       height: 30px;
       margin-bottom: 10px;
-
       .nav-left-buttons {
-
         div {
           float: left;
           margin-right: 10px;
         }
         clear: both;
-
         .green-button {
           @include green-button;
           width: 130px;
@@ -99,7 +120,6 @@ body#show_page {
           width: 130px;
           height: 160px;
           float: left;
-          outline: 1px dashed gray;
         }
 
         .main-information {
@@ -115,6 +135,20 @@ body#show_page {
           .social-tags {
             margin-top: 10px;
             margin-bottom: 20px;
+          }
+
+          .social-tag
+          {
+            background-color: #ffc056;
+            color: #95672b;
+            font-weight: bolder;
+            font-size:12px;
+            text-transform: lowercase;
+            padding-left: 7px;
+            padding-right: 7px;
+            padding-top:5px;
+            padding-bottom: 5px;
+            margin-right:5px;
           }
 
           small {
@@ -202,4 +236,3 @@ body#show_page {
 
   }
 }
-
