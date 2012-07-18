@@ -379,7 +379,7 @@ namespace :db do
 
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
-    description = Faker::Lorem.paragraph(10)
+    description = Faker::Lorem.paragraphs(14)
     email = Faker::Internet.free_email
     phone = Faker::PhoneNumber.phone_number
     password = "password"
@@ -427,6 +427,13 @@ namespace :db do
         user = User.random
         user = User.random while user.has_rated_teacher?(teacher)
         teacher.ratings.create!(:user_id => user.id, :rating => rating, :comment => Faker::Lorem.words(20))
+    end
+    # Add one or two titles
+    titles = ["Ingeniería en Sistemas de Información", "Concertista de guitarra", "Profesorado de inglés", "Profesorado de artes plásticas", "Profesorado de lenguas vivas", "Profesorado de ciencias exactas", "Filosofía"]
+    institutes = ["Liceo Cultural Brítánico", "Universidad de Buenos Aires", "Universidad Tecnológica Nacional", "Conservatorio Nacional", "Instituto nacional de Artes Plásticas"]
+
+    Random.new.rand(0..2).times do
+        teacher.qualifications.create!(:name => titles[Random.new.rand(0..titles.length-1)], :institute => institutes[Random.new.rand(0..institutes.length-1)])
     end
     # Return the name of the new teacher
     {:last_name => last_name, :first_name => first_name}

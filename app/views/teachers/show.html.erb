@@ -88,9 +88,11 @@
               <%
               @teacher.professorships.each do |professorship|
 
+                price_per_hour = "No disponible"
                 if !professorship.price_per_hour.nil?
+                  price_per_hour = "$ " + professorship.price_per_hour.to_s
                 %>
-                <%="$ #{professorship.price_per_hour} (#{professorship.activity.name})"%>
+                <%="#{price_per_hour} (#{professorship.activity.name})"%>
                 <%
                 end
               end
@@ -101,8 +103,19 @@
 
         <div class="secondary-information">
           <h3 class="teacher-activity">Educacion</h3>
-          <small class="activity-description">PENDING IMPLEMENTATION
-          </small>
+          <%
+          if @teacher.qualifications.length == 0
+          %>
+            <div class="activity-description">(el profesor no cargo certificaciones)</div>
+          <%
+          end
+
+          @teacher.qualifications.each do |qualification|
+          %>
+          <div class="activity-description"><%="#{qualification.name}"%></div>
+          <%
+          end
+          %>
         <div>
 
         <div class="clear"></div>
@@ -111,8 +124,8 @@
     <div class="details-content">
       <div class="left-menu">
         <div class="gray-button">Perfil</div>
-        <div class="gray-button">Alumnos</div>
-        <div class="gray-button">Preguntas</div>
+        <!--<div class="gray-button">Alumnos</div>-->
+        <!--<div class="gray-button">Preguntas</div>-->
       </div>
 
       <div class="content"><%=@teacher.description%></div>
@@ -120,15 +133,15 @@
       <form class="contact-form">
         <h3>Contactá al profesor en forma privada</h3>
         <div>
-          <label>Nombre</label>
+          <label>Tu nombre</label>
           <input type="text"></input>
         </div>
         <div>
-          <label>Mail</label>
+          <label>Tu e-mail de contacto</label>
           <input type="text"></input>
         </div>
         <div>
-          <label>Asunto</label>
+          <label>Asunto del mensaje</label>
           <input type="text"></input>
         </div>
         <div>

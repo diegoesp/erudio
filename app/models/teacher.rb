@@ -24,8 +24,9 @@ class Teacher < User
   has_many :classrooms
   has_many :professorships, :dependent => :destroy
   has_many :ratings, :dependent => :destroy
-
-  validates :description, :presence => true
+  has_many :qualifications, :dependent => :destroy
+  
+  validates :description, :presence => true,  :length => { :maximum => 2500 }
   
   attr_accessible :publish_email, :publish_phone, :description
   

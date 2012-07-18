@@ -46,6 +46,11 @@ Factory.define :rating do |rating|
 	rating.comment "Comment for the test teacher rating"
 end
 
+Factory.define :qualification do |qualification|
+	qualification.name "Systems engineering"
+	qualification.institute "Universidad Tecnologica Nacional"
+end
+
 
 Factory.define :zone do |zone|
 	zone.name "Villa Crespo"
