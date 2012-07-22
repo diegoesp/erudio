@@ -122,6 +122,19 @@ describe Teacher do
     teachers.length.should == 1
   end
   
+  it "should return Villa Crespo and Palermo for teacher" do
+    @teacher.classrooms << Factory(:classroom2, :teacher => @teacher, :zone => @zone2)
+    @teacher.locations.should include("Palermo")
+    @teacher.locations.should include("Villa Crespo")
+  end
+
+  it "should return that the teacher1 does not go to places to teach" do
+    @teacher.goes_to_places.should be_false
+  end
+  it "should return that the teacher1 receives people at home to teach" do
+    @teacher.receives_people.should be_true
+  end
+
   describe "test rating system for teacher" do
 
     before(:each) do

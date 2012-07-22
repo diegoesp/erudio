@@ -373,13 +373,13 @@ namespace :db do
   #
   # @param zone Zone to be used
   # @param activity Activity to be used
-  # @param random_activities [Integer] Optional. number of additional random activities to be added to the teacher. They will be added with the same price.
+  # @param random_activities_number [Integer] Optional. number of additional random activities to be added to the teacher. They will be added with the same price.
   # @return [Hash] a hash containing the last_name and first_name keys
-  def create_teacher(zone, activity, random_activities = 0)
+  def create_teacher(zone, activity, random_activities_number = 0)
 
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
-    description = Faker::Lorem.paragraph(2)
+    description = Faker::Lorem.paragraphs(14)
     email = Faker::Internet.free_email
     phone = Faker::PhoneNumber.phone_number
     password = "password"
@@ -393,7 +393,7 @@ namespace :db do
         :email => email, 
         :phone => phone, 
         :password => password, 
-        :password_confirmation => password_confirmation,         
+        :password_confirmation => password_confirmation,
         :avatar => avatar,
         :publish_email => publish_email,
         :publish_phone => publish_phone)
@@ -405,6 +405,10 @@ namespace :db do
     goes_here = true if (goes_here == false and receives_people_here == false) 
     # Create the classroom
     teacher.classrooms.create!(:zone_id => zone.id, :goes_here => goes_here, :receives_people_here => receives_people_here)
+    # Add a second classroom half of the time
+    if Random.new.rand(0..1) == 0
+        teacher.classrooms.create!(:zone_id => Zone.random, :goes_here => goes_here, :receives_people_here => receives_people_here)
+    end
     # Add a professorship
     price_per_hour = Random.new.rand(15..50)
     # Set a nil every 1/3 classrooms (approx)
@@ -413,9 +417,9 @@ namespace :db do
     end
     teacher.professorships.create!(:activity_id => activity.id, :price_per_hour => price_per_hour)
     # Random activity?
-    random_activities.times do
+    random_activities_number.times do
         activity = Activity.random;
-        teacher.professorships.create!(:activity_id => activity.id, :price_per_hour => price_per_hour)
+        teacher.professorships.create!(:activity_id => activity.id, :price_per_hour => Random.new.rand(15..50))
     end
     # Random rating for the teacher
     Random.new.rand(1..5).times do
@@ -423,6 +427,13 @@ namespace :db do
         user = User.random
         user = User.random while user.has_rated_teacher?(teacher)
         teacher.ratings.create!(:user_id => user.id, :rating => rating, :comment => Faker::Lorem.words(20))
+    end
+    # Add one or two titles
+    titles = ["Ingeniería en Sistemas de Información", "Concertista de guitarra", "Profesorado de inglés", "Profesorado de artes plásticas", "Profesorado de lenguas vivas", "Profesorado de ciencias exactas", "Filosofía"]
+    institutes = ["Liceo Cultural Brítánico", "Universidad de Buenos Aires", "Universidad Tecnológica Nacional", "Conservatorio Nacional", "Instituto nacional de Artes Plásticas"]
+
+    Random.new.rand(0..2).times do
+        teacher.qualifications.create!(:name => titles[Random.new.rand(0..titles.length-1)], :institute => institutes[Random.new.rand(0..institutes.length-1)])
     end
     # Return the name of the new teacher
     {:last_name => last_name, :first_name => first_name}

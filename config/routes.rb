@@ -19,10 +19,6 @@ Erudio::Application.routes.draw do
     get "contiguous" , :on => :member   # /1/contiguous
   end
   
-  # Deprecated. Should be erased when the real result page is implemented
-  match "/result_search", :to => "pages#result_search"
-  match "/result", :to => "pages#result"
-  
   # API caller for testing different APIs
   match "/api_caller", :to => "pages#api_caller"
   
