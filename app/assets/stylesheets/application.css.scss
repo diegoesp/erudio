@@ -11,6 +11,7 @@
 
 // Common custom styles and mixins
 @import "common";
+@import "custom_mixins";
 
 // Layout
 @import "footer";
@@ -27,7 +28,8 @@
 @import "teachers/show";
 // Search page
 @import "teachers/search";
-
+// Sign up Page
+@import "teachers/signup";
 
 body {
   font-family: "Century Gothic", "Geneva", "Helvetica";

@@ -6,7 +6,7 @@ The general mixins for inputs and buttons
 
 *******************************************************************************/
 
-@mixin common-input {
+@mixin show-page-common-input {
   border: none;
 
   @include box-shadow(0px 0px 3px 0px #71726C);
@@ -213,7 +213,7 @@ body#show_page {
           }
 
           input, textarea {
-            @include common-input;
+            @include show-page-common-input;
             width: 200px;
             height: 20px;
             color: gray;
