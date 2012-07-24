@@ -39,7 +39,31 @@
         <div class="avatar"><img src="/avatars/<%=@teacher.avatar%>" align="middle" width="100%" style="position:absolute;max-height:150px;max-width:130px;vertical-align:middle"/></div>
 
         <div class="main-information">
-          <h2 class="fullname"><%=@teacher.first_name + " " + @teacher.last_name%></h2>
+          <h2 class="fullname"><%=@teacher.first_name + " " + @teacher.last_name%>
+            <div class="reputation">
+              <%
+              rating = @teacher.get_rating
+              for i in 1..rating do
+
+                rating_class = "reputation-empty"
+
+                if (i < rating)
+                  rating_class = "reputation-star"
+                end
+
+                value = rating - i
+                if (value > 0 and value < 1)
+                  rating_class = "reputation-half-star"
+                end
+              %>
+              <div class="<%=rating_class%>"></div>
+
+              <%
+              end
+              %>
+            </div>
+          </h2>
+
           <div class="social-tags">
             <%
             @teacher.professorships.each do |professorship|
@@ -51,19 +75,17 @@
             end              
             %>
           </div>
-          <div>
+          <div class="line">
             <small class="header">Ubicacion:</small>
             <%
             for i in 0..@teacher.locations.length-1 do
               location = @teacher.locations[i]
               i > 0 ? comma = ", " : comma = ""
-            %>
-            <small class="value"><%=comma%><%=location%></small>
-            <%
+            %><small class="value"><%=comma%><%=location%></small><%
             end
             %>
           </div>
-          <div>
+          <div class="line">
             <small class="header">Metodologia:</small>
             <small class="value">
               <%
@@ -82,7 +104,7 @@
 
             </small>
           </div>
-          <div>
+          <div class="line">
             <small class="header">Costo de clase:</small>
               <small class="value">
               <%
@@ -112,7 +134,7 @@
 
           @teacher.qualifications.each do |qualification|
           %>
-          <div class="activity-description"><%="#{qualification.name}"%></div>
+          <div class="activity-description"><%="#{qualification.name}"%> de <%="#{qualification.institute}"%></div>
           <%
           end
           %>

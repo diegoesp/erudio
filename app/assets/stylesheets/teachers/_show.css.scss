@@ -17,6 +17,7 @@ The general mixins for inputs and buttons
   @include border-radius(3px);
   cursor: pointer;
   font-size: 16px;
+  font-weight: bold;
   text-align: center;
   padding: 5px;
   padding-top: 10px;
@@ -87,7 +88,7 @@ body#show_page {
 
     nav#main-details-navigation {
       height: 30px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       .nav-left-buttons {
         div {
           float: left;
@@ -115,7 +116,6 @@ body#show_page {
         background-color: white;
         min-height: 170px;
         padding: 10px;
-
         .avatar {
           width: 130px;
           height: 160px;
@@ -131,7 +131,38 @@ body#show_page {
           h2 {
             font-size: 18px;
           }
+          .fullname {
+            font-weight: bold;
+            padding-bottom:8px;
+          }
 
+          .reputation {
+            position:absolute;
+            display:inline;
+            padding-left:10px;
+            padding-top:2px;
+          }
+          .reputation-star {
+            width:15px;
+            height:20px;
+            background: image_url('sprites.png') no-repeat -240px -69px;
+            position: relative;
+            float:left;
+          }
+          .reputation-empty {
+            width:15px;
+            height:20px;
+            background: image_url('sprites.png') no-repeat -284px -69px;
+            position: relative;
+            float:left;
+          }
+          .reputation-half-star {
+            width:15px;
+            height:20px;
+            background: image_url('sprites.png') no-repeat -260px -69px;
+            position: relative;
+            float:left;
+          }
           .social-tags {
             margin-top: 10px;
             margin-bottom: 20px;
@@ -151,13 +182,13 @@ body#show_page {
             margin-right:5px;
           }
 
-          small {
-            .header {
-              font-weight: bold;
-            }
-            .value {
-
-            }
+          div.line {
+            padding-bottom: 5px;
+          }
+          small.header {
+            font-weight: bold;
+          }
+          small.value {            
           }
         }
 
@@ -172,6 +203,11 @@ body#show_page {
           small {
             font-weight: normal;
           }
+
+          .activity-description {
+            padding-bottom: 15px;
+          }
+
         }
       }
 

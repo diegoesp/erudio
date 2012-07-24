@@ -429,7 +429,7 @@ namespace :db do
         teacher.ratings.create!(:user_id => user.id, :rating => rating, :comment => Faker::Lorem.words(20))
     end
     # Add one or two titles
-    titles = ["Ingeniería en Sistemas de Información", "Concertista de guitarra", "Profesorado de inglés", "Profesorado de artes plásticas", "Profesorado de lenguas vivas", "Profesorado de ciencias exactas", "Filosofía"]
+    titles = ["Ingeniería en Sistemas de Información", "Concertista de guitarra", "Profesorado de inglés", "Profesorado de artes plásticas", "Profesorado de lenguas vivas", "Profesorado de ciencias exactas", "Licenciatura en Filosofía"]
     institutes = ["Liceo Cultural Brítánico", "Universidad de Buenos Aires", "Universidad Tecnológica Nacional", "Conservatorio Nacional", "Instituto nacional de Artes Plásticas"]
 
     Random.new.rand(0..2).times do
