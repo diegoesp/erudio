@@ -13,52 +13,56 @@ results and a section for configuring additional filters. See below.
 
 *******************************************************************************/
 
-section#main-content {
-  width: 1000px;
-  margin: auto;
-  position: relative;
-  padding-top: 110px;
-  margin-bottom: 50px;
-}
+#search_page {
 
-section#teachers {
-  width: 500px;
-  min-height: 500px;
-  position: relative;
-}
 
-section#login {
-  width: 150px;
-  height: 50px;
-  top:75px;
-  right:50px;
-  position: absolute;
-  font-weight:bold;
-}
+  section#main-content {
+    width: 1000px;
+    margin: auto;
+    position: relative;
+    padding-top: 110px;
+    margin-bottom: 50px;
+  }
 
-section#filters {
-  position: absolute;
-  width: 295px;
-  top:  162px;
-  right: 0px;
-}
+  section#teachers {
+    width: 500px;
+    min-height: 500px;
+    position: relative;
+  }
 
-.new-search {
-  background-color: #a7cf5f;
-  font-weight: bolder;
-  color: white;
-  width:160px;
-  height:40px;
-  text-align: center;
-  vertical-align: middle;
-  margin-bottom:10px;
-  line-height:40px;
-  border-color:#80B480;
-  border-width: 1px;
-  border-style: solid;
-  cursor:pointer;
-}
+  section#login {
+    width: 150px;
+    height: 50px;
+    top:75px;
+    right:50px;
+    position: absolute;
+    font-weight:bold;
+  }
 
+  section#filters {
+    position: absolute;
+    width: 295px;
+    top:  162px;
+    right: 0px;
+  }
+
+  .new-search {
+    background-color: #a7cf5f;
+    font-weight: bolder;
+    color: white;
+    width:160px;
+    height:40px;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom:10px;
+    line-height:40px;
+    border-color:#80B480;
+    border-width: 1px;
+    border-style: solid;
+    cursor:pointer;
+  }
+
+}
 /******************************************************************************
 
 The login section body part
@@ -72,41 +76,43 @@ It's a very simple box that contains two icons
 
 *******************************************************************************/
 
-div#register {
-  background: image_url('sprites.png') no-repeat -6px -5px;
-  width:50px;
-  height:50px;
-  position:absolute;
-  cursor:pointer;
-  z-index:500;
-}
-span#register-text {
-  bottom:-20px;
-  left: -23px;
-  position:absolute;
-  color:black;
-  width:90px;
-  text-align: center;
-}
+#search_page {
 
-div#login {
-  background: image_url('sprites.png') no-repeat -66px -5px;
-  width:50px;
-  height:50px;
-  right:0px;
-  position:absolute;
-  cursor:pointer;
-  z-index:500;
-}
-span#login-text {
-  bottom:-20px;
-  position:absolute;
-  color:black;
-  right: -5px;
-  width:70px;
-  text-align: center;
-}
+  div#register {
+    background: image_url('sprites.png') no-repeat -6px -5px;
+    width:50px;
+    height:50px;
+    position:absolute;
+    cursor:pointer;
+    z-index:500;
+  }
+  span#register-text {
+    bottom:-20px;
+    left: -23px;
+    position:absolute;
+    color:black;
+    width:90px;
+    text-align: center;
+  }
 
+  div#login {
+    background: image_url('sprites.png') no-repeat -66px -5px;
+    width:50px;
+    height:50px;
+    right:0px;
+    position:absolute;
+    cursor:pointer;
+    z-index:500;
+  }
+  span#login-text {
+    bottom:-20px;
+    position:absolute;
+    color:black;
+    right: -5px;
+    width:70px;
+    text-align: center;
+  }
+}
 /******************************************************************************
 
 The filters section body part

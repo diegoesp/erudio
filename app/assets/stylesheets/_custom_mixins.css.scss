@@ -1,0 +1,20 @@
+/*
+* Helpers to outline 'boxes'. This should be removed when the main layout is
+* completed.s
+*/
+@mixin debug-box-common($outline-color, $background-color) {
+  outline: 1px dashed $outline-color;
+  background-color: $background-color;
+}
+@mixin debug-box1 {
+  @include debug-box-common(gray, rgba(226, 231, 238, .5));
+}
+@mixin debug-box2 {
+  @include debug-box-common(gray, rgba(162, 194, 255, .5));
+}
+@mixin debug-box3 {
+  @include debug-box-common(gray, rgba(200, 215, 130, .5));
+}
+@mixin debug-box4 {
+  @include debug-box-common(gray, rgba(250, 192, 93, .5));
+}
